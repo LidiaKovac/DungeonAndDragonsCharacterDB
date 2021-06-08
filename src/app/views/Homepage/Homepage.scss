@@ -1,0 +1,62 @@
+@import "../../../styling/Mixins";
+@import "../../../styling/Breakpoints";
+
+.home__wrap {
+  width: 100vw;
+  height: 100vh;
+
+  @include bg--light--col;
+
+  justify-content: center;
+  span {
+    @include flex--row;
+    justify-content: space-between;
+    h2 {
+      position: relative;
+      z-index: 1;
+      width: 40%;
+      @include font-header;
+      color: #343434;
+      font-size: 50pt;
+      margin: {
+        left: 80px;
+      }
+      .shapes {
+        width: 240px;
+        height: auto;
+        position: absolute;
+        z-index: -1;
+        &:first-of-type {
+          top: -70px;
+          left: 0px;
+        }
+        &:last-of-type {
+          top: 80px;
+          right: 30px;
+        }
+      }
+    }
+    .wrap__button {
+      width: 60%;
+      @include flex--row;
+      @include flex--center;
+      .cta__button {
+        @include flex--row;
+        @include flex--center;
+        @include font-header;
+        background-color: #343434;
+        font-size: 28pt;
+        width: 400px;
+        height: 70px;
+        color: white;
+        border-radius: 40px;
+
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
