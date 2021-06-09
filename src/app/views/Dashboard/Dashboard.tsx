@@ -10,8 +10,8 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
   return <div className="dash__wrap">
     {/* {showJumbo && <Jumbotron show={(data:Boolean)=> setShowJumbo(data)}/>} */}
-    <CreateNew show={setShowModal}/>
-    {showModal && <Modal />}
+    <CreateNew show={()=>setShowModal(true)}/>
+    {showModal && <Modal type="new" close={()=>setShowModal(false)} />}
   </div>;
 };
 export default Dashboard;
