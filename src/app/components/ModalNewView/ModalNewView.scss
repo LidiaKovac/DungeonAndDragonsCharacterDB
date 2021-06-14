@@ -1,0 +1,29 @@
+@import "../../../styling/Colors";
+@import "../../../styling/Mixins";
+
+.idea--wrap {
+    width: 50%;
+    height: 100%;
+    @include flex--col;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    .title {
+        display: flex;
+    flex-direction: row;
+    }
+    textarea {
+        margin: 20px;
+        width: 90%;
+        resize: none;
+        border: none;
+        background-color: $bg--light;
+        border-radius: 20px;
+        padding: 10px;
+    }
+}
+.idea--moodboard {
+width: 50%;
+height: 100%;
+
+}

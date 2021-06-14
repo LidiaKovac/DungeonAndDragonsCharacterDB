@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Option, OptionClass } from "../../../interfaces";
 import Input from "../Input/Input";
+import ModalNewView from "../ModalNewView/ModalNewView";
 import Select from "../Select/Select";
 import "./Modal.scss";
 interface ModalProps {
@@ -33,7 +34,7 @@ const options = [new OptionClass("idea", "Brainstorming"), new OptionClass("char
             </h2>
             <div className="modal__input-wrap">
               {!mode && <Select options={options} selectedOpt={(mode:Option)=> setMode(mode.val)} />}
-              {mode === "idea" ? <div className='idea--wrap'><Input name="Name" type="text"/> <Input type='file' name='Build a moodboard for your character'/> </div> : <div></div>}
+              {mode === "idea" ? <ModalNewView/> : <div></div>}
             </div>
           </div>
         }
