@@ -6,7 +6,7 @@ import Modal from "../../components/Modal/Modal";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
-  const [showJumbo, setShowJumbo] = useState<boolean>(true)
+  // const [showJumbo, setShowJumbo] = useState<boolean>(true)
   const [showModal, setShowModal] = useState<boolean>(false)
   return <div className="dash__wrap">
     {/* {showJumbo && <Jumbotron show={(data:Boolean)=> setShowJumbo(data)}/>} */}

@@ -1,3 +1,5 @@
+import { Action } from "@reduxjs/toolkit"
+
 export interface Option {
     val: "idea" | "char";
     display: string;
@@ -20,3 +22,8 @@ export class ImageRequestBody {
         this.text = text
     }
 }
+
+export interface ActionWithPayLoad extends Action {
+    type: string;
+    payload?: string | Object;
+  }
