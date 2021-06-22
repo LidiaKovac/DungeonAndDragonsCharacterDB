@@ -11,3 +11,12 @@ export class OptionClass implements Option {
         this.display = display
     }
 }
+
+export class ImageRequestBody {
+    file: File
+    text: string
+    constructor(text:string, file:File) {
+        this.file = file
+        this.text = text
+    }
+}
