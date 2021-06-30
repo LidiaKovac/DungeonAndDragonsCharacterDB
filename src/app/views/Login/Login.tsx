@@ -7,20 +7,24 @@ import Button from "../../components/Button/Button";
 import {Link} from "react-router-dom"
 
 import "./Login.scss";
+import { login } from "../../../API/login";
+import { useState } from "react";
+import { UserCredentials } from "../../../interfaces";
 
 const Login = () => {
+  const [loginData, setLoginData] = useState<UserCredentials>()
   return (
     <div className="login__wrap">
       <div className="login">
         <h3>Login</h3>
-        <Input name="Email" type={false} />
+        <Input name="Email" type="email" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <h3>Password</h3>
-        <Input name="Password" type="Password" />
+        <Input name="Password" type="password" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <div className="login-social">
           <LoginButton logo={Google} name="Google" />
           <LoginButton logo={Reddit} name="Reddit" />
         </div>
-        <Link to='/home'>
+        <Link to='/home' onClick={()=> login(loginData?.email!, loginData?.password!)}>
         <Button text="Login"/>
         </Link>
       </div>
