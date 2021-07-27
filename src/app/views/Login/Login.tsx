@@ -17,9 +17,9 @@ const Login = () => {
     <div className="login__wrap">
       <div className="login">
         <h3>Login</h3>
-        <Input name="Email" type="email" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
+        <Input name="email" type="text" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <h3>Password</h3>
-        <Input name="Password" type="password" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
+        <Input name="password" type="password" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <div className="login-social">
           <LoginButton logo={Google} name="Google" />
           <LoginButton logo={Reddit} name="Reddit" />
