@@ -4,18 +4,19 @@ import {MdAddAPhoto} from "react-icons/md"
 import { generateLink } from '../../../API/image';
 import { useDispatch } from 'react-redux';
 interface InputProps {
-    name: string;
-    type: string | false;
-    value?: string
+    name: string; //what the input is storing
+    type: "text" | "file" | "password" ; //HTML type
+    value?: string //? 
+    handleEdit?: Function //onChange function
 }
-const Input:React.FunctionComponent<InputProps> = ({name, type})=> {
+const Input:React.FunctionComponent<InputProps> = ({name, type, handleEdit})=> {
     const dispatch = useDispatch()
     return (
     <>
-    <input className={type==='file' ? "hide": ""} type={type || "text"} placeholder={name} id={name} onChange={(e:ChangeEvent<HTMLInputElement>)=> {
-        console.log(e?.target?.files![0])
-        type==="file" && dispatch(generateLink(e?.target?.files![0]))}}/>
-    {type ==='file' && <label htmlFor={name}><MdAddAPhoto/></label>}
+    <input className={type==="file" ? "hide" : ""} type={type} placeholder={name} onChange={(event: ChangeEvent<HTMLInputElement>)=> {
+        type==="file" ? dispatch(generateLink(event.target.files![0])) :  
+        (name === "email" || name === "password") && handleEdit!({[type as string]: event.target.value})
+    } }/>
     </>)
 }
 export default Input;
