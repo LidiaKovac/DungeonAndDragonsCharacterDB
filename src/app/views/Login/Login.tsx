@@ -40,7 +40,12 @@ const Login = () => {
           isLogged ? setLogged(true) : setError("Wrong email or password")
         }}>
         <Button text="Login"/>
+
         </div>
+        <div>or</div>
+        <Link to="/signup">
+          <Button text="Register"/>
+        </Link>
       </div>
     </div>
   );
