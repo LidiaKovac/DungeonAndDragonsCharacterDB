@@ -1,8 +1,8 @@
 import { encryptPassword } from "../utils";
 
 export const login = async (
-  email: String,
-  password: String
+  email: string,
+  password: string
 ): Promise<Object> => {
   let isLogged
   try {
