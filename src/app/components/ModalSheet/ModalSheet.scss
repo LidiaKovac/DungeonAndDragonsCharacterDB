@@ -24,7 +24,12 @@
         align-items: center;
     }
     .sheet__core {
-        @include flex--col
+        @include flex--col;
+        .sheet__valMod {
+            @include flex--row;
+            align-items: center;
+        }
+
     }
     input[type="number"] {
         margin: 10px;

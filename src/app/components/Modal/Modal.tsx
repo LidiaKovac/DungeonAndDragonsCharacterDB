@@ -1,6 +1,6 @@
 import React,{ FC, useEffect, useState } from "react";
 import { Option, OptionClass } from "../../../interfaces";
-import Input from "../Input/Input";
+//import Input from "../Input/Input";
 import {IoMdArrowRoundBack} from "react-icons/io"
 import ModalNewView from "../ModalNewView/ModalNewView";
 import Select from "../Select/Select";
@@ -15,10 +15,6 @@ const Modal: FC<ModalProps> = ({ close, type }) => {
   const [mode, setMode] = useState<string | null>(
     type === "edit" ? "char" : null
   );
-  useEffect(()=> {
-    console.log(mode);
-    
-  },[mode])
 const options = [new OptionClass("new", "Create a new character!"), new OptionClass("idea", "Note down an idea")]
   return (
     <>

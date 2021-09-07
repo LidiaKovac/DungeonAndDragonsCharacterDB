@@ -4,6 +4,6 @@ interface LoginbuttonProps {
     name: string;
 }
 const LoginButton:React.FunctionComponent<LoginbuttonProps> = ({logo, name})=> {
-    return (<div className="login-button__wrap"><img src={logo}/></div>)
+    return (<div className="login-button__wrap"><img alt="logo" src={logo}/></div>)
 }
 export default LoginButton;

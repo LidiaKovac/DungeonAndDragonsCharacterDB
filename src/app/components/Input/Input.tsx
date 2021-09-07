@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react' 
 import "./Input.scss";
-import {MdAddAPhoto} from "react-icons/md"
+//import {MdAddAPhoto} from "react-icons/md"
 import { generateLink } from '../../../API/image';
 import { useDispatch } from 'react-redux';
 interface InputProps {
