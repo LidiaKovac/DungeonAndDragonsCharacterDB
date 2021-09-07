@@ -12,3 +12,6 @@ export const encryptPassword = async(password:string):Promise<String> => {
     return hashedPassword
 }
 
+export const calcModifier = (value:number):number => {
+    return Math.floor((value - 10)/2)
+}
