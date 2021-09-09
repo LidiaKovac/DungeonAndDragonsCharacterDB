@@ -5,11 +5,12 @@ export interface ability {
 }
 
 interface abilities_int {
-    str?: ability,
-    dex?: ability,
-    cos?: ability,
-    wis?: ability,
-    int?: ability
+    "str"?: ability,
+    "dex"?: ability,
+    "cos"?: ability,
+    "wis"?: ability,
+    "int"?: ability,
+    "cha"?: ability
 }
 export interface character_sheet {
     name?: string

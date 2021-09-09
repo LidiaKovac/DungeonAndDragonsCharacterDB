@@ -13,9 +13,9 @@ const Input:React.FunctionComponent<InputProps> = ({name, type, handleEdit})=> {
     const dispatch = useDispatch()
     return (
     <>
-    <input id={name} className={type==="file" ? "hide" : ""} type={type} placeholder={name} onChange={(event: ChangeEvent<HTMLInputElement>)=> {
+    <input id={name.toLowerCase()} className={type==="file" ? "hide" : ""} type={type} placeholder={name} onChange={(event: ChangeEvent<HTMLInputElement>)=> {
         type==="file" ? dispatch(generateLink(event.target.files![0])) :  
-        (name !== "file") && handleEdit!({[name as string]: event.target.value})
+        (name !== "file") && handleEdit!({[name.toLowerCase() as string]: event.target.value})
     } }/>
     </>)
 }
