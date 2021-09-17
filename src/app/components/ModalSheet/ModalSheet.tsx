@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { getClasses, getRaces } from "../../../API/dnd_data";
 import { Option } from "../../../interfaces";
 import { ability, character_sheet } from "../../../interfaces/char_creation";
-import { calcModifier, calcProf, getProfAbilities } from "../../../utils";
+import { calcModifier, calcProf, getProfAbilities } from "../../../utils/index";
 
 const ModalSheet = () => {
   let abilities = ["str", "cos", "int", "wis", "cha", "dex"];
