@@ -13,7 +13,7 @@ const ModalNewView = () => {
       <textarea placeholder="Write your character idea here, don't be afraid to be messy!" rows={10}></textarea>
     </div>
     <div className='idea--moodboard'>
-        <img/>
+        {/*<img alt="moodboard"/>*/}
     </div>
     </>
   );

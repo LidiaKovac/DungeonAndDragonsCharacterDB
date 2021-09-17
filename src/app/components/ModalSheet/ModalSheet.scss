@@ -1,4 +1,38 @@
-.modal__wrap {
-    display: flex;
-    flex-direction: column;
+@import "../../../styling/_Mixins.scss";
+@import "../../../styling/Colors";
+
+.sheet__wrap {
+    width: 100%;
+    height: 100%;
+    @include flex--col;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 20px;
+    .sheet__info {
+        width: calc(100% + 40px);
+        margin:  {
+            left: -20px;
+            right: -20px;
+        }
+        padding: {
+            bottom: 20px
+        }
+        border-bottom: 2px solid $blue-hex;
+        @include flex--row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .sheet__core {
+        @include flex--col;
+        .sheet__valMod {
+            @include flex--row;
+            align-items: center;
+        }
+
+    }
+    input[type="number"] {
+        margin: 10px;
+        width: 70px;
+    }
 }

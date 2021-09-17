@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import CreateNew from "../../components/CreateNew/CreateNew";
-import Jumbotron from "../../components/Jumbotron/Jumbotron";
+//import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import Modal from "../../components/Modal/Modal";
 
 import "./Dashboard.scss";

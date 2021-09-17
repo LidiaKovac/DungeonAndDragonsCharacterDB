@@ -1,5 +1,5 @@
 import { Dispatch } from "react"
-import { useDispatch } from "react-redux"
+//import { useDispatch } from "react-redux"
 import { ActionWithPayLoad, ImageRequestBody } from "../interfaces"
 import { ADD_IMAGE } from "../redux/actions"
 import { generateFormData } from "../utils"
