@@ -4,15 +4,37 @@ import LoginButton from "../../components/LoginButton/LoginButton";
 import Google from "../../../assets/ggg.png";
 import Reddit from "../../../assets/redd.png";
 import Button from "../../components/Button/Button";
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 
 import "./Login.scss";
 import { login } from "../../../API/login";
 import { useState } from "react";
 import { UserCredentials } from "../../../interfaces";
+import { useEffect } from "react";
 
 const Login = () => {
+  const history = useHistory()
+  const [isCorrect, setIsCorrect] = useState<boolean>(false)
   const [loginData, setLoginData] = useState<UserCredentials>()
+  const [error, setError] = useState<string>("")
+  useEffect(()=> {
+    if (isCorrect) {
+      history.push("/home")
+    } else {
+      //something
+    }
+  },[isCorrect])
+  const loginCheck = async() => {
+    let response = await login(loginData?.email!, loginData?.password!)
+    console.log(response.toString())
+    if (typeof response.toString().includes("Error" || "error")) {
+      setIsCorrect(false)
+      setError(response.toString())
+    } else {
+      setIsCorrect(true)
+    }
+  }
+  
   return (
     <div className="login__wrap">
       <div className="login">
@@ -24,9 +46,9 @@ const Login = () => {
           <LoginButton logo={Google} name="Google" />
           <LoginButton logo={Reddit} name="Reddit" />
         </div>
-        <Link to='/home' onClick={()=> login(loginData?.email!, loginData?.password!)}>
-        <Button text="Login"/>
-        </Link>
+        <div onClick={()=> loginCheck()}>
+        <Button text="Login" />
+        </div>
       </div>
     </div>
   );

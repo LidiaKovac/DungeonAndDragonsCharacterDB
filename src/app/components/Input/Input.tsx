@@ -16,7 +16,7 @@ const Input:React.FunctionComponent<InputProps> = ({name, type, handleEdit})=> {
     <input className={type==='file' ? "hide": ""} type={type || "text"} placeholder={name} id={name} 
     onChange={(e:ChangeEvent<HTMLInputElement>)=> {
         type==="file" ? dispatch(generateLink(e?.target?.files![0])) :
-        (type === "email" || type === "password") && handleEdit!({[type as string]: e.target.value })
+        (type === "email" || type === "password" || type === "username") && handleEdit!({[type as string]: e.target.value })
 }}
     
     />

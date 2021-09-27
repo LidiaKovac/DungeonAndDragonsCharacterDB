@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ close, type }) => {
-  const [mode, setMode] = useState<"idea" | "char" | null>(
+  const [mode, setMode] = useState<"idea" | "char" | string | null>(
     type === "edit" ? "char" : null
   );
   useEffect(()=> {
