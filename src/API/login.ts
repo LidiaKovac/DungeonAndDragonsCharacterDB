@@ -1,6 +1,6 @@
 import { encryptPassword } from "../utils";
 
-export const login = async (email: String, password: String) => {
+export const login = async (email: String, password: string) => {
   try {
     let encrypted = await encryptPassword(password);
   let response = await fetch(process.env.REACT_APP_BE_URL + "user/login", {

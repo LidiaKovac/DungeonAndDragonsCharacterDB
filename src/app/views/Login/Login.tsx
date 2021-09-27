@@ -16,39 +16,38 @@ const Login = () => {
   const history = useHistory()
   const [isCorrect, setIsCorrect] = useState<boolean>(false)
   const [loginData, setLoginData] = useState<UserCredentials>()
-  const [error, setError] = useState<string>("")
+  const [logged, setLogged] = useState<boolean>(false)
+  const [error, setError] = useState<string | undefined>()
+  const history = useHistory()
+
   useEffect(()=> {
-    if (isCorrect) {
+    if(logged) {
       history.push("/home")
-    } else {
-      //something
     }
-  },[isCorrect])
-  const loginCheck = async() => {
-    let response = await login(loginData?.email!, loginData?.password!)
-    console.log(response.toString())
-    if (typeof response.toString().includes("Error" || "error")) {
-      setIsCorrect(false)
-      setError(response.toString())
-    } else {
-      setIsCorrect(true)
-    }
-  }
-  
+  }, [logged])
   return (
     <div className="login__wrap">
       <div className="login">
-        <h3>Login</h3>
-        <Input name="Email" type="email" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
+        {error && <div className="error">{error}</div>}
+        <h3>Email</h3>
+        <Input name="email" type="text" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <h3>Password</h3>
-        <Input name="Password" type="password" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
+        <Input name="password" type="password" handleEdit={(credentials: UserCredentials)=> setLoginData({...loginData, ...credentials})} />
         <div className="login-social">
           <LoginButton logo={Google} name="Google" />
           <LoginButton logo={Reddit} name="Reddit" />
         </div>
-        <div onClick={()=> loginCheck()}>
-        <Button text="Login" />
+        <div onClick={async()=> {
+          let isLogged = await login(loginData?.email!, loginData?.password!)
+          isLogged ? setLogged(true) : setError("Wrong email or password")
+        }}>
+        <Button text="Login"/>
+
         </div>
+        <div>or</div>
+        <Link to="/signup">
+          <Button text="Register"/>
+        </Link>
       </div>
     </div>
   );

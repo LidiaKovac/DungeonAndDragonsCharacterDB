@@ -6,28 +6,30 @@ export interface UserCredentials {
   password: string;
 }
 
-export interface newUser {
-  username: string| null;
-  email: string| null;
-  password: string| null;
-  pronouns: "she" | "he" | "they"| null;
+export interface NewUserCred {
+    username?: string
+    email?: string
+    password?: string
+    pronouns?: string
 }
 
-export class newUserC implements newUser {
-  username: string| null;
-  email: string| null;
-  password: string| null;
-  pronouns: "she" | "he" | "they"| null;
-  constructor(
-    username: string | null,
-    email: string | null,
-    password: string | null,
-    pronouns: "she" | "he" | "they" | null
-  ) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.pronouns = pronouns;
+export class NewUserClass implements NewUserCred {
+    username?: string
+    email?: string
+    password?: string
+    pronouns?: string
+    constructor(username: string, email: string, password: string, pronouns: string) {
+        this.username = username
+        this.email = email
+        this.password = password
+        this.pronouns = pronouns
+    }
+}
+
+//---------------------------------SELECT
+export interface Option {
+    val: string;
+    display: string;
   }
 }
 
@@ -38,15 +40,16 @@ export interface Option {
 }
 
 export class OptionClass implements Option {
-  val: string;
-  display: string;
-  constructor(val: string, display: string) {
-    this.val = val;
-    this.display = display;
-  }
+    val: string
+    display: string
+    constructor(val:string, display: string) {
+        this.val = val
+        this.display = display
+    }
 }
 
-//--------------------------API
+
+//---------------------------------API
 export class ImageRequestBody {
   file: File;
   text: string;
@@ -56,7 +59,8 @@ export class ImageRequestBody {
   }
 }
 
-//--------------------------REDUX
+
+//---------------------------------REDUX
 export interface ActionWithPayLoad extends Action {
   type: string;
   payload?: string | Object;

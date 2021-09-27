@@ -4,6 +4,7 @@ import Dashboard from './app/views/Dashboard/Dashboard';
 import Homepage from './app/views/Homepage/Homepage';
 import Login from './app/views/Login/Login';
 import Register from './app/views/Register/Register';
+import Signup from './app/views/Signup/Signup';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
     </Route>
     <Route exact path="/home">
       <Dashboard/>
+    </Route>
+    <Route exact path="/signup">
+      <Signup/>
     </Route>
     </>
   );

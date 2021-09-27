@@ -7,7 +7,7 @@ export const generateFormData = (imageData:ImageRequestBody) => {
     return formData
 }
 
-export const encryptPassword = async(password:String):Promise<String> => {
+export const encryptPassword = async(password:string):Promise<String> => {
     let hashedPassword = bcryptjs.hash(password, 10)
     return hashedPassword
 }
