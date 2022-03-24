@@ -21,7 +21,6 @@ export const generateOptions = (elements:Array<any>, valueName:string, displayNa
     })
     return options
 }
-
 // ************************************* DND UTILS *************************************
 
 export const calcModifier = (value:number):number => {
@@ -47,28 +46,19 @@ export const calcProf = (lvl:number) => {
 }
 
 export const getProfAbilities = (char_class:string) => { //returns an array of abilities based on the class
-    if (char_class === "barbarian") {
+    if ((char_class === "barbarian") ||  (char_class === "fighter")) {
         return ["str", "cos"]
     }
     if (char_class === "bard") {
         return ["dex", "cha"]
     }
-    if (char_class === "cleric") {
+    if ((char_class === "cleric") || (char_class === "paladin") || (char_class === "warlock")) {
         return ["wis", "cha"]
     }
-    if (char_class === "druid") {
+    if ((char_class === "druid") || (char_class === "wizard")) {
         return ["int", "wis"]
     }
-    if (char_class === "fighter") {
-        return ["str", "cos"]
-    }
-    if (char_class === "monk") {
-        return ["str", "dex"]
-    }
-    if (char_class === "paladin") {
-        return ["wis", "cha"]
-    }
-    if (char_class === "ranger") {
+    if ((char_class === "monk") || (char_class === "ranger")) {
         return ["str", "dex"]
     }
     if (char_class === "rogue") {
@@ -77,10 +67,34 @@ export const getProfAbilities = (char_class:string) => { //returns an array of a
     if (char_class === "sorcerer") {
         return ["cos", "cha"]
     }
-    if (char_class === "warlock") {
-        return ["wis", "cha"]
-    }
-    if (char_class === "wizard") {
-        return ["int", "wis"]
-    }
 }
+
+export const getBonus = (race:string) => {
+    console.log(race);
+    
+    switch (race) {
+        case "dragonborn":
+            return [{ab: "str", mod: 2}, {ab: "cha", mod: 1}]
+        case "dwarf":
+            return []
+        case "elf":  
+            return [{ab: "dex", mod: 2}]
+        case "halfling":
+            return [{ab: "dex", mod: 2}]
+        case  "gnome":
+            return [{ab: "dex", mod: 2}]
+        case "human":
+            return [{ab: "dex", mod: 1}, {ab: "str", mod: 1}, {ab: "cha", mod: 1}, {ab:"int", mod: 1}, {ab: "wis", mod: 1}, {ab: "cos", mod: 1}]
+        case "half-elf":
+            return [{ab: "cha", mod: 2}]
+        case "half-orc":
+            return [{ab: "str", mod: 2}, {ab: "cos", mod: 1}]
+        case "tiefling":
+            return [{ab: "cha", mod: 2}, {ab: "int", mod: 1}]
+        default:
+            console.error("choose a race / invalid race")
+          break;
+      }
+}
+
+
