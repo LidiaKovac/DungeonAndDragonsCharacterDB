@@ -1,0 +1,14 @@
+@import "../../../styling/Mixins";
+
+.modal__input-wrap {
+    form {
+
+        width: 100%;
+        @include flex--col;
+        gap: 20px
+    }
+    .modal__input-selects {
+        @include flex--row;
+        gap: 20px;
+    }
+}

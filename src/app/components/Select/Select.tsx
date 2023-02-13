@@ -1,12 +1,19 @@
 import { FC, useState } from "react";
-import { Option } from "../../../interfaces";
 import "./Select.scss";
 interface SelectProps {
   options: Array<Option>;
   selectedOpt: Function;
+  field: string
 }
-
-const Select: FC<SelectProps> = ({ options, selectedOpt }) => {
+export class OptionClass implements Option {
+  val: string
+  display: string
+  constructor(val: string, display: string) {
+      this.val = val
+      this.display = display
+  }
+}
+const Select: FC<SelectProps> = ({ options, selectedOpt, field }) => {
   const [selected, setSelected] = useState<Option>();
   const [open, setOpen] = useState<boolean>(false);
   return (
@@ -20,9 +27,9 @@ const Select: FC<SelectProps> = ({ options, selectedOpt }) => {
             <div
               key={opt.display}
               className="single-option"
-              onClick={() => {
-                selectedOpt(opt); //sets selection in this component
-                setSelected(opt); //set selection in parent component
+              onClick={(ev) => {
+                selectedOpt(opt, field); //sets selection in parent component
+                setSelected(opt); //set selection in this component
                 setOpen(false); //closes component
               }}
             >

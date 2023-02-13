@@ -1,23 +1,18 @@
-import { FC, useEffect, useState } from "react";
-import { Option, OptionClass } from "../../../interfaces";
-import Input from "../Input/Input";
-import ModalNewView from "../ModalNewView/ModalNewView";
-import Select from "../Select/Select";
+import { FC, FormEvent, useEffect, useState } from "react";
+import { Stage } from "../Stage/Stage";
 import "./Modal.scss";
+import { NewCharForm } from "../NewCharForm/NewCharForm";
+import { Abilities } from "../Abilities/Abilities";
+import { CharacterSummary } from "../CharSummary/CharSummary";
 interface ModalProps {
   close: Function;
-  type: "new" | "edit";
+
 }
 
-const Modal: FC<ModalProps> = ({ close, type }) => {
-  const [mode, setMode] = useState<"idea" | "char" | null>(
-    type === "edit" ? "char" : null
-  );
-  useEffect(()=> {
-    console.log(mode);
-    
-  },[mode])
-const options = [new OptionClass("idea", "Brainstorming"), new OptionClass("char", "Building")]
+const Modal: FC<ModalProps> = ({ close }) => {
+  const [char, setChar] = useState<CharBody>({ classes: [], name: "", level: 1, race: "" } as CharBody)
+  const [secNum, setSecNum] = useState<number>(1)
+
   return (
     <>
       <div className="modal__wrap" onClick={() => close(false)}></div>
@@ -27,18 +22,18 @@ const options = [new OptionClass("idea", "Brainstorming"), new OptionClass("char
         </span>
         {
           <div className="modal">
-            <h2>
-              {type === "new"
-                ? "Create a new character"
-                : "Edit your character"}
-            </h2>
-            <div className="modal__input-wrap">
-              {!mode && <Select options={options} selectedOpt={(mode:Option)=> setMode(mode.val)} />}
-              {mode === "idea" ? <ModalNewView/> : <div></div>}
-            </div>
+            {secNum === 1 && <Stage stageNum={1} comps={[<NewCharForm setStageInModal={setSecNum} setCharInModal={setChar}/>]}/>}
+            {secNum === 2 && <Stage stageNum={2} comps={[<CharacterSummary char={char}/>, <Abilities char={char}/>]}/>}
+            
+            
+            
+
+           
+
           </div>
         }
       </div>
+
     </>
   );
 };

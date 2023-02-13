@@ -26,7 +26,8 @@
     position: absolute;
     top: 55px;
     width: 330px;
-    height: fit-content;
+    max-height: 400px;
+    overflow-y: auto;
     
     border-radius: 25px;
     border: none;

@@ -11,7 +11,7 @@ const Dashboard = () => {
   return <div className="dash__wrap">
     {/* {showJumbo && <Jumbotron show={(data:Boolean)=> setShowJumbo(data)}/>} */}
     <CreateNew show={()=>setShowModal(true)}/>
-    {showModal && <Modal type="new" close={()=>setShowModal(false)} />}
+    {showModal && <Modal close={()=>setShowModal(false)} />}
   </div>;
 };
 export default Dashboard;

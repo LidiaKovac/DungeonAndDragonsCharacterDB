@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2021",
     "lib": [
+      "es2021",
       "dom",
       "dom.iterable",
       "esnext"
@@ -18,9 +19,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
   },
   "include": [
-    "src"
+    "src/*", "src", "src/classes"
   ]
 }
