@@ -1,10 +1,13 @@
-import React from 'react' 
+import React, { FC } from 'react' 
 import "./Button.scss";
 
 interface ButtonProps {
     text: string
 }
-const Button:React.FunctionComponent<ButtonProps> = ({text})=> {
+const Button:FC<ButtonProps> = ({text})=> {
     return (<button>{text}</button>)
 }
 export default Button;
+
+
+{/* <Button /> */}

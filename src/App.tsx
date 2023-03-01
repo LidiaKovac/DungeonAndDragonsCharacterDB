@@ -1,4 +1,4 @@
-import { Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ColorRow from './app/components/ColorRow/ColorRow';
 import Dashboard from './app/views/Dashboard/Dashboard';
 import Homepage from './app/views/Homepage/Homepage';
@@ -6,20 +6,17 @@ import Login from './app/views/Login/Login';
 
 function App() {
   return (
-    <>
-    <Route>
-      <ColorRow/>
-    </Route>
-    <Route exact path='/'>
-      <Homepage/>
-    </Route>
-    <Route exact path='/login'>
-      <Login/>
-    </Route>
-    <Route exact path="/home">
-      <Dashboard/>
-    </Route>
-    </>
+      <BrowserRouter> 
+        <ColorRow /> 
+        {/* si vede ovunque */}
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          {/* Homepage si vede solo a / */}
+          <Route path='/login' element={<Login />} />
+          {/* Login si vede solo a /login */}
+          <Route path="/home" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 

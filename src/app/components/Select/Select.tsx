@@ -4,6 +4,7 @@ interface SelectProps {
   options: Array<Option>;
   selectedOpt: Function;
   field: string
+  value: Option
 }
 export class OptionClass implements Option {
   val: string
@@ -13,8 +14,8 @@ export class OptionClass implements Option {
       this.display = display
   }
 }
-const Select: FC<SelectProps> = ({ options, selectedOpt, field }) => {
-  const [selected, setSelected] = useState<Option>();
+const Select: FC<SelectProps> = ({ options, selectedOpt, field, value }) => {
+  const [selected, setSelected] = useState<Option>(value);
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="select">
