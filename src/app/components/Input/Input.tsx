@@ -9,7 +9,7 @@ interface InputProps {
 const Input:React.FunctionComponent<InputProps> = ({name, type})=> {
     return (
     <>
-    <input className={type==='file' ? "hide": ""} type={type || "text"} placeholder={name} id={name}/>
+    <input className={type==='file' ? "hide": ""} type={type || "text"} placeholder={name} id={name} name={name}/>
     {type ==='file' && <label htmlFor={name}><MdAddAPhoto/></label>}
     </>)
 }
