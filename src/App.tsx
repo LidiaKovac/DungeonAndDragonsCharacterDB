@@ -8,12 +8,9 @@ function App() {
   return (
       <BrowserRouter> 
         <ColorRow /> 
-        {/* si vede ovunque */}
         <Routes>
           <Route path='/' element={<Homepage />} />
-          {/* Homepage si vede solo a / */}
           <Route path='/login' element={<Login />} />
-          {/* Login si vede solo a /login */}
           <Route path="/home" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>

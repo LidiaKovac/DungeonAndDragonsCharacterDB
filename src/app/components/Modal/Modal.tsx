@@ -4,15 +4,16 @@ import "./Modal.scss";
 import { NewCharForm } from "../NewCharForm/NewCharForm";
 import { Abilities } from "../Abilities/Abilities";
 import { CharacterSummary } from "../CharSummary/CharSummary";
+import { useSelector } from "react-redux";
+import { reduxState } from "../../redux";
 interface ModalProps {
   close: Function;
 
 }
 
 const Modal: FC<ModalProps> = ({ close }) => {
-  const [char, setChar] = useState<CharBody>({ classes: [], name: "", level: 1, race: "" } as CharBody)
   const [secNum, setSecNum] = useState<number>(1)
-
+  const char = useSelector((state:reduxState)=> state.character.newChar)
   return (
     <>
       <div className="modal__wrap" onClick={() => close(false)}></div>
@@ -22,13 +23,13 @@ const Modal: FC<ModalProps> = ({ close }) => {
         </span>
         {
           <div className="modal">
-            {secNum === 1 && <Stage stageNum={1} comps={[<NewCharForm setStageInModal={setSecNum} setCharInModal={setChar}/>]}/>}
-            {secNum === 2 && <Stage stageNum={2} comps={[<CharacterSummary char={char}/>, <Abilities char={char}/>]}/>}
-            
-            
-            
+            {secNum === 1 && <Stage stageNum={1} comps={[<NewCharForm setStageInModal={setSecNum} />]} />}
+            {secNum === 2 && <Stage stageNum={2} comps={[<CharacterSummary char={char} />, <Abilities char={char} />]} />}
 
-           
+
+
+
+
 
           </div>
         }

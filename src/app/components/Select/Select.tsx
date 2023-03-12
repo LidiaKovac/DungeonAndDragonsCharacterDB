@@ -2,20 +2,19 @@ import { FC, useState } from "react";
 import "./Select.scss";
 interface SelectProps {
   options: Array<Option>;
-  selectedOpt: Function;
   field: string
-  value: Option
+  // value: Option
 }
 export class OptionClass implements Option {
   val: string
   display: string
   constructor(val: string, display: string) {
-      this.val = val
-      this.display = display
+    this.val = val
+    this.display = display
   }
 }
-const Select: FC<SelectProps> = ({ options, selectedOpt, field, value }) => {
-  const [selected, setSelected] = useState<Option>(value);
+const Select: FC<SelectProps> = ({ options,  field }) => {
+  const [selected, setSelected] = useState<Option | undefined>(undefined);
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="select">
@@ -24,12 +23,11 @@ const Select: FC<SelectProps> = ({ options, selectedOpt, field, value }) => {
       </div>
       {open && (
         <div className="select__options">
-          {options.map((opt) => (
+          {options.map((opt, i) => (
             <div
-              key={opt.display}
+              key={`race_${opt.display}_${i}`}
               className="single-option"
               onClick={(ev) => {
-                selectedOpt(opt, field); //sets selection in parent component
                 setSelected(opt); //set selection in this component
                 setOpen(false); //closes component
               }}
@@ -39,6 +37,16 @@ const Select: FC<SelectProps> = ({ options, selectedOpt, field, value }) => {
           ))}
         </div>
       )}
+      <select name={field} style={{ display: "none" }} value={selected ? selected.val : selected } onChange={ev => console.log(ev.target.value)}>
+        {options.map((opt,i) => (
+          <option
+            key={`select_${opt.display}_${i}`}
+            value={opt.val}
+          >
+            {opt.display}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

@@ -1,33 +1,43 @@
-import { FormEvent } from "react";
-import Input from "../../components/Input/Input";
-import LoginButton from "../../components/LoginButton/LoginButton";
-import Google from "../../../assets/ggg.png";
-import Reddit from "../../../assets/redd.png";
-import Button from "../../components/Button/Button";
+import { FormEvent, useEffect } from "react"
+import Input from "../../components/Input/Input"
+import LoginButton from "../../components/LoginButton/LoginButton"
+import Google from "../../../assets/ggg.png"
+import Reddit from "../../../assets/redd.png"
+import Button from "../../components/Button/Button"
 
-import "./Login.scss";
-import { useAppDispatch } from "../../redux";
-import { login } from "../../redux/slices/userSlice";
-import { useLocation, useNavigate } from "react-router-dom";
+import "./Login.scss"
+import { reduxState, useAppDispatch, useAppSelector } from "../../redux"
+import { login } from "../../redux/slices/tokenSlice"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Alert } from "../../components/Alert/Alert"
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
-  const handleSubmit = async (ev: FormEvent) => {
-    ev.preventDefault()
-    let fs = new FormData(ev.target as HTMLFormElement)
-    const loginBody = {
-      email: "",
-      password: ""
-    }
-    for (const ok of fs.entries()) {
-      loginBody[ok[0] as keyof { email: string, password: string }] = ok[1] as string
+  const error = useAppSelector((state: reduxState) => state.token.error)
 
+
+  const handleSubmit = async (ev: FormEvent) => {
+    try {
+      ev.preventDefault()
+      let fs = new FormData(ev.target as HTMLFormElement)
+      const loginBody = {
+        email: "",
+        password: "",
+      }
+      for (const ok of fs.entries()) {
+        loginBody[ok[0] as keyof { email: string; password: string }] =
+          ok[1] as string
+      }
+      console.log(loginBody)
+
+      let res = await dispatch(login(loginBody))
+
+      if (res.type.includes("fulfilled")) move("/home")
+    } catch (error) {
+      console.log(error)
     }
-    console.log(loginBody);
-    
-    await dispatch(login(loginBody))
-    move("/home")
   }
   return (
     <div className="login__wrap">
@@ -42,7 +52,8 @@ const Login = () => {
         </div>
         <Button text="Login" />
       </form>
+      {error && <Alert msg={error} />}
     </div>
-  );
-};
-export default Login;
+  )
+}
+export default Login

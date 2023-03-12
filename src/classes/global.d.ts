@@ -1,3 +1,4 @@
+
 interface Option {
     val: string;
     display: string;
@@ -44,7 +45,7 @@ interface Throws {
     cos: number,
     wis: number,
     int: number
-  }
+}
 
 class CharBody {
 
@@ -86,4 +87,29 @@ class CharBody {
         this.classes = classes
         this.race = race
     }
+}
+
+interface reduxInitialState {
+    loading: boolean
+    error: string | null
+}
+
+interface User {
+    id: number
+    full_name: string
+    nickname: string
+    email: string
+}
+
+interface userInitialState extends reduxInitialState {
+    logged: User
+}
+
+interface passiveInitialState extends reduxInitialState {
+    classes: Array<DNDClass>,
+    races: Array<DNDRace>
+}
+
+interface tokenInitialState extends reduxInitialState {
+    token: string
 }

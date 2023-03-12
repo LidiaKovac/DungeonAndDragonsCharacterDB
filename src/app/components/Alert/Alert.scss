@@ -1,0 +1,14 @@
+@import "/src/styling/Colors";
+.alert {
+  width: 30vw;
+  height: 50px;
+  position: fixed;
+  margin: 10px;
+  right: 0px;
+  bottom: 0px;
+  background-color: $blue-rgb;
+  color: white;
+  padding: 50px / 2 - 12px;
+  border-radius: 20px;
+  transition: 0.5s;
+}

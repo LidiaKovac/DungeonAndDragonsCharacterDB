@@ -16,7 +16,7 @@ const Homepage = () => {
           <img src={Shapes1} className="shapes" alt="shape" />
       </div>
       <div className="wrap__button">
-        <Link to="/home">
+        <Link to="/login">
           <div className="cta__button">Start now</div>
         </Link>
       </div>
