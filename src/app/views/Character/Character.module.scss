@@ -1,11 +1,11 @@
 @import "../../../styling/Colors";
 @import "../../../styling/Mixins";
 form.character__wrap {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 100vw;
   padding: {
-    left: 40px;
-    right: 40px;
+    left: 10%;
+    right: 10%;
     top: 20px;
     bottom: 20px;
   }
@@ -13,7 +13,8 @@ form.character__wrap {
     animation: fill-dots 1.5s linear infinite;
   }
   .character__options {
-    @include flex-config(row, flex-start, center, 5px, "uneven");
+    @include flex-config(row, center, center, 5px, "uneven");
+    margin-bottom: 20px;
     button {
       width: 50px;
       margin: 0px;
@@ -25,12 +26,16 @@ form.character__wrap {
   }
   input {
     border: none;
+    max-width: 300px;
+    min-width: 100px;
   }
   .char__anagraphics {
     @include flex-config(row, center, center, 40px, "uneven");
+    flex-wrap: wrap;
     .char__banner-name {
+      display: flex;
+      justify-content: flex-end;
       position: relative;
-      width: 30%;
       .char__name {
         @extend .char__banner--blue;
         // 20px * 1.5 => 1.5 is the line height!
@@ -47,19 +52,20 @@ form.character__wrap {
         background-color: lighten($blue-rgb, 10%);
         padding: 10px;
         border-radius: 100px;
-        stroke-width: 10px;
-        stroke-linecap: round;
-        stroke-linejoin: round;
       }
     }
 
     .char__game-data {
       @extend .char__banner--blue;
-      display: flex;
+      @include flex-config(row, center, center, 15px, "uneven");
+
       flex-wrap: wrap;
-      width: 70%;
+      max-width: 500px;
       height: fit-content;
-      gap: 20px;
+      padding: 20px;
+      .char__race {
+        width: 30%;
+      }
       .char__class-level {
         @extend .char__banner--pink;
 
@@ -67,29 +73,30 @@ form.character__wrap {
         padding-right: 0px;
         outline-width: 2px;
 
-        width: auto;
         input {
           @extend .char__banner--pink;
           outline-width: 0px;
+        }
+        .char__class {
+          width: calc(100% - 80px);
+        }
+        .char__level {
+          @extend .char__banner--pink;
+          flex: unset;
+          width: 40px;
+          min-width: 10px;
 
-          &.char__class {
-            width: calc(100% - 80px);
-          }
-          &.char__level {
-            @extend .char__banner--pink;
-            flex: unset;
-            width: 40px;
-            line-height: 40px;
-            font-size: 25px;
-            text-align: center;
-            font-kerning: 40px;
-          }
+          line-height: 40px;
+          font-size: 25px;
+          text-align: center;
+          font-kerning: 40px;
         }
       }
       > input {
-        width: cols(20px, 3);
+        width: cols(20px, 2);
         @extend .char__banner--pink;
         outline-width: 2px;
+        min-width: 200px;
       }
     }
   }
