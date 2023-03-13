@@ -13,8 +13,10 @@ $orange-rgb: rgb(230,165,71, 1);
 $pink-rgb: rgb(254,79,130, 1);
 
 
-$bg--light: #e0e3ff;
+$bg--light: lighten($blue-hex, 25%);
 $bg--blue: rgb(93,106,255, .5);
 $bg--orange: rgb(230,165,71, .5);
 $text: #343434
+
+
 

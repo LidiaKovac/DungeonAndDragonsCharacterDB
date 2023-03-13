@@ -1,7 +1,8 @@
 @import "../../../styling/Colors";
 
 .new__wrap {
-    width: 200px;
+    flex: 1 1 200px;
+    min-width: 200px;
     height: 280px;
 
     border-style: dashed;

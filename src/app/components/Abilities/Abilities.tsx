@@ -1,52 +1,38 @@
 // import "./Abilities.scss"
 import { FC, useState } from "react"
 import { SingleAbility } from "../SingleAbility/SingleAbility"
-import { die } from "../../../utils";
+import { die } from "../../../utils"
+import { useSelector } from "react-redux"
+import { RootState, useAppDispatch } from "../../redux"
+import { FaDiceD20 } from "react-icons/fa"
+import { setThrows } from "../../redux/slices/charSlice"
 
-interface AbilitiesProps {
-    char: CharBody
-}
-export const Abilities: FC<AbilitiesProps> = ({ char }) => {
+export const Abilities = () => {
+    const {char:newChar, throws: newThrows } = useSelector((state: RootState) => state.character)
+    const dispatch = useAppDispatch()
+    const abs = ["str", "dex", "con", "wis", "int"]
 
+    const saveAbilities = async () => { }
 
-    const [abs, setAbs] = useState<Throws>({
-        str: 0,
-        dex: 0,
-        cos: 0,
-        wis: 0,
-        int: 0
-    })
-
-    const saveAbilities = async () => {
-
-    }
-
-    const throwAbilityDice = () => {
-
-        for (const ability in abs) {
-
+    const throwAllDice = () => {
+        const allThrows = {} as Throws
+        for (const ability of abs) {
             let res = die(20) as number
-            if (Object.prototype.hasOwnProperty.call(abs, ability)) {
-                setAbs(prev => {
-                    return {
-                        ...prev,
-                        [ability as keyof Throws]: res
-                    }
-                })
-            }
+            allThrows[ability] = res
         }
+        dispatch(setThrows(allThrows))
     }
-    return (<>
-        {
-            Object.keys(abs).map(key => {
-                return <SingleAbility char={char} abName={key} abs={abs} />
-            })
-        }
-        <button onClick={() => throwAbilityDice()}>Throw dices</button>
+    
+    return (
+        <>
+            {abs.map((ab) => {
+                return <SingleAbility abName={ab} />
+            })}
+            <button onClick={() => throwAllDice()}>Throw dices</button>
 
+            <button onClick={() => saveAbilities()}>Accept</button>
 
-        <button onClick={() => saveAbilities()}>Accept</button>
-
-        <button onClick={() => throwAbilityDice()}>Retry</button>
-    </>)
+            <button onClick={() => throwAllDice()}>Retry</button>
+        </>
+    )
 }

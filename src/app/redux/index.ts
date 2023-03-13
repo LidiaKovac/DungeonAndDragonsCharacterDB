@@ -30,10 +30,10 @@ const persistedReducer = persistReducer(
     storage,
   },
   baseReducer
-)
+) 
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: persistedReducer as Reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
@@ -43,8 +43,8 @@ export const store = configureStore({
 
 export const persistor = persistStore(store)
 
-export type reduxState = ReturnType<typeof store.getState> //creates the type for the store
+export type RootState = ReturnType<typeof store.getState > //creates the type for the store
 export type AppDispatch = typeof store.dispatch
 type DispatchFunc = () => AppDispatch
 export const useAppDispatch: DispatchFunc = useDispatch
-export const useAppSelector: TypedUseSelectorHook<reduxState> = useSelector
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

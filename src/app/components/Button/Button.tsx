@@ -1,11 +1,13 @@
-import React, { FC } from 'react' 
-import "./Button.scss";
+import React, { FC, MouseEventHandler } from 'react' 
+import "./Button.module.scss";
 
 interface ButtonProps {
-    text: string
+    text: string | JSX.Element,
+    type?: "button" | "submit" | "reset"
+    onClick?: MouseEventHandler
 }
-const Button:FC<ButtonProps> = ({text})=> {
-    return (<button>{text}</button>)
+const Button:FC<ButtonProps> = ({text, type = "button", onClick})=> {
+    return (<button onClick={onClick} type={type} className='custom-button'>{text}</button>)
 }
 export default Button;
 

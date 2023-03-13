@@ -6,7 +6,7 @@ import Reddit from "../../../assets/redd.png"
 import Button from "../../components/Button/Button"
 
 import "./Login.scss"
-import { reduxState, useAppDispatch, useAppSelector } from "../../redux"
+import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
@@ -15,7 +15,7 @@ import { Alert } from "../../components/Alert/Alert"
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
-  const error = useAppSelector((state: reduxState) => state.token.error)
+  const error = useAppSelector((state: RootState) => state.token.error)
 
 
   const handleSubmit = async (ev: FormEvent) => {
@@ -50,7 +50,7 @@ const Login = () => {
           <LoginButton logo={Google} name="Google" />
           <LoginButton logo={Reddit} name="Reddit" />
         </div>
-        <Button text="Login" />
+        <Button type="submit" text="Login" />
       </form>
       {error && <Alert msg={error} />}
     </div>

@@ -28,6 +28,44 @@
 
 @mixin font-header {
   font-family: nobel, sans-serif;
-  font-weight: 800!important;
+  font-weight: 800 !important;
   font-style: italic;
+}
+@mixin flex-config($dir, $long, $short, $gap, $children: "even") {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $long;
+  align-items: $short;
+  gap: $gap;
+  @if ($children == "even") {
+    > * {
+      flex: 1 1 200px;
+    }
+  }
+}
+
+// $colNum: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+@function cols($margin, $colNum) {
+  $width: calc((100% - ($margin * 2)) / $colNum);
+  @return $width;
+}
+
+.char__banner {
+  padding: 10px;
+  // background-color: lighten($color, 20%);
+  border-radius: 30px;
+  // outline: $border lighten($color, 10%) solid;
+  height: 40px;
+}
+
+.char__banner--blue {
+  @extend .char__banner;
+  background-color: lighten($blue-rgb, 20%);
+  outline: 5px lighten($blue-rgb, 10%) solid;
+}
+
+.char__banner--pink {
+  @extend .char__banner;
+  background-color: lighten($pink-rgb, 20%);
+  outline: 5px lighten($pink-rgb, 10%) solid;
 }

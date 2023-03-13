@@ -1,0 +1,123 @@
+@import "../../../styling/Colors";
+@import "../../../styling/Mixins";
+form.character__wrap {
+  margin-top: 50px;
+  width: 100vw;
+  padding: {
+    left: 40px;
+    right: 40px;
+    top: 20px;
+    bottom: 20px;
+  }
+  .input--edit {
+    animation: fill-dots 1.5s linear infinite;
+  }
+  .character__options {
+    @include flex-config(row, flex-start, center, 5px, "uneven");
+    button {
+      width: 50px;
+      margin: 0px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  input {
+    border: none;
+  }
+  .char__anagraphics {
+    @include flex-config(row, center, center, 40px, "uneven");
+    .char__banner-name {
+      position: relative;
+      width: 30%;
+      .char__name {
+        @extend .char__banner--blue;
+        // 20px * 1.5 => 1.5 is the line height!
+        font-size: 20px;
+      }
+      svg {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        $width: 80px;
+        width: $width;
+        height: $width;
+        animation: rainbow 10s infinite linear;
+        background-color: lighten($blue-rgb, 10%);
+        padding: 10px;
+        border-radius: 100px;
+        stroke-width: 10px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    }
+
+    .char__game-data {
+      @extend .char__banner--blue;
+      display: flex;
+      flex-wrap: wrap;
+      width: 70%;
+      height: fit-content;
+      gap: 20px;
+      .char__class-level {
+        @extend .char__banner--pink;
+
+        @include flex-config(row, space-between, center, 0px);
+        padding-right: 0px;
+        outline-width: 2px;
+
+        width: auto;
+        input {
+          @extend .char__banner--pink;
+          outline-width: 0px;
+
+          &.char__class {
+            width: calc(100% - 80px);
+          }
+          &.char__level {
+            @extend .char__banner--pink;
+            flex: unset;
+            width: 40px;
+            line-height: 40px;
+            font-size: 25px;
+            text-align: center;
+            font-kerning: 40px;
+          }
+        }
+      }
+      > input {
+        width: cols(20px, 3);
+        @extend .char__banner--pink;
+        outline-width: 2px;
+      }
+    }
+  }
+}
+
+@keyframes rainbow {
+  $colors: (
+    0: $green-hex,
+    25: $yellow-hex,
+    50: $orange-hex,
+    75: $pink-hex,
+    100: $green-hex,
+  );
+  @each $perc, $col in $colors {
+    #{$perc}% {
+      color: $col;
+      stroke: darken($col, 20%);
+
+      transform: translateY(-50%) rotate((($perc / 100) * 360) + deg);
+    }
+  }
+}
+
+@keyframes fill-dots {
+  from {
+    outline-style: dashed;
+  }
+  to {
+    outline-style: solid;
+  }
+}

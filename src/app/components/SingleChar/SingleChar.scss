@@ -1,0 +1,23 @@
+@import "../../../styling/Colors";
+.single-char__wrap {
+  flex: 1 1 200px;
+
+  border-style: dashed;
+  min-width: 200px;
+  height: 280px;
+
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color: $blue-hex;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  font-size: 40pt;
+  font-weight: bold;
+  color: $blue-hex;
+  cursor: pointer;
+}

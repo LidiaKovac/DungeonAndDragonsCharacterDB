@@ -1,15 +1,9 @@
 import "./NewCharForm.scss"
-import { FormEvent, useState, useEffect, FC } from "react"
+import { FormEvent, useEffect, FC } from "react"
 import Select, { OptionClass } from "../Select/Select"
-import { useDispatch, useSelector } from "react-redux"
-import { reduxState, useAppDispatch } from "../../redux"
-import {
-  CHANGE_CHAR,
-  SET_CLASSES,
-  SET_PROFS,
-  SET_RACES,
-} from "../../redux/actions"
-import { profs } from "../../../utils"
+import { useSelector } from "react-redux"
+import { RootState, useAppDispatch } from "../../redux"
+
 import { fetchClasses, fetchRaces, setLoading } from "../../redux/slices/passiveSlice"
 import { useNavigate } from "react-router-dom"
 import { setChar } from "../../redux/slices/charSlice"
@@ -18,9 +12,9 @@ interface FormProps {
 }
 export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
   // const [char, setChar] = useState<CharBody>({ classes: [], name: "", level: 1, race: "" } as CharBody)
-  const { classes, races, loading } = useSelector((state: reduxState) => state.passive)
-  const me = useSelector((state: reduxState) => state.user.logged)
-  const token = useSelector((state: reduxState) => state.token.token)
+  const { classes, races, loading } = useSelector((state: RootState) => state.passive)
+  const me = useSelector((state: RootState) => state.user.logged)
+  const token = useSelector((state: RootState) => state.token.token)
   const dispatch = useAppDispatch()
   const moveTo= useNavigate()
 
