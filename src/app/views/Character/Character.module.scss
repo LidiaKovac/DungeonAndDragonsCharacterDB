@@ -115,7 +115,7 @@ form.character__wrap {
       color: $col;
       stroke: darken($col, 20%);
 
-      transform: translateY(-50%) rotate((($perc / 100) * 360) + deg);
+      transform: translateY(-50%) rotate((calc($perc / 100) * 360) + deg);
     }
   }
 }
