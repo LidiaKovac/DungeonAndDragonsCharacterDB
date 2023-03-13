@@ -1,8 +1,7 @@
 import { FormEvent } from "react"
 import Input from "../../components/Input/Input"
 import LoginButton from "../../components/LoginButton/LoginButton"
-import Google from "../../../assets/ggg.png"
-import Reddit from "../../../assets/redd.png"
+
 import Button from "../../components/Button/Button"
 
 import "./Login.scss"
@@ -46,8 +45,8 @@ const Login = () => {
         <h3>Password</h3>
         <Input name="password" type="Password" />
         <div className="login-social">
-          <LoginButton logo={Google} name="Google" />
-          <LoginButton logo={Reddit} name="Reddit" />
+          <LoginButton logo="/assets/ggg.png" name="Google" />
+          <LoginButton logo='/assets/redd.png' name="Reddit" />
         </div>
         <Button type="submit" text="Login" />
       </form>
