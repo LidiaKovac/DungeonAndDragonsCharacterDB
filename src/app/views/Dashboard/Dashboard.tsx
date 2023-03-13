@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import CreateNew from "../../components/CreateNew/CreateNew"
 import Modal from "../../components/Modal/Modal"
 import { SingleChar } from "../../components/SingleChar/SingleChar"
 import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { fetchAllChars } from "../../redux/slices/charSlice"
-// import { emptyError } from "../../redux/slices/tokenSlice";
 import { getMe } from "../../redux/slices/userSlice"
 
 import "./Dashboard.scss"
 
 const Dashboard = () => {
-  const [showJumbo, setShowJumbo] = useState<boolean>(true)
   const [showModal, setShowModal] = useState<boolean>(false)
   const moveTo = useNavigate()
   const token = useAppSelector((state: RootState) => state.token.token)
-  const error = useAppSelector((state: RootState) => state.token.error)
   const chars:CharBody[] = useAppSelector((state: RootState) => state.character.myChars)
 
 
   const asyncDispatch = useAppDispatch()
-  const dispatch = useDispatch()
 
   useEffect(() => {
 
@@ -33,6 +28,7 @@ const Dashboard = () => {
       
       asyncDispatch(fetchAllChars(token))
     })
+    //eslint-disable-next-line
   }, [])
 
 

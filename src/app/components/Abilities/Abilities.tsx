@@ -1,14 +1,10 @@
 // import "./Abilities.scss"
-import { FC, useState } from "react"
 import { SingleAbility } from "../SingleAbility/SingleAbility"
 import { die } from "../../../utils"
-import { useSelector } from "react-redux"
-import { RootState, useAppDispatch } from "../../redux"
-import { FaDiceD20 } from "react-icons/fa"
+import { useAppDispatch } from "../../redux"
 import { setThrows } from "../../redux/slices/charSlice"
 
 export const Abilities = () => {
-    const {char:newChar, throws: newThrows } = useSelector((state: RootState) => state.character)
     const dispatch = useAppDispatch()
     const abs = ["str", "dex", "con", "wis", "int"]
 

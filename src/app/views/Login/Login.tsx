@@ -1,4 +1,4 @@
-import { FormEvent, useEffect } from "react"
+import { FormEvent } from "react"
 import Input from "../../components/Input/Input"
 import LoginButton from "../../components/LoginButton/LoginButton"
 import Google from "../../../assets/ggg.png"
@@ -8,8 +8,7 @@ import Button from "../../components/Button/Button"
 import "./Login.scss"
 import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { Alert } from "../../components/Alert/Alert"
 
 const Login = () => {

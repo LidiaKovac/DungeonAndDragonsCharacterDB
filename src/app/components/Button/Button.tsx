@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from 'react' 
+import { FC, MouseEventHandler } from 'react'
 import "./Button.module.scss";
 
 interface ButtonProps {
@@ -6,10 +6,8 @@ interface ButtonProps {
     type?: "button" | "submit" | "reset"
     onClick?: MouseEventHandler
 }
-const Button:FC<ButtonProps> = ({text, type = "button", onClick})=> {
+const Button: FC<ButtonProps> = ({ text, type = "button", onClick }) => {
     return (<button onClick={onClick} type={type} className='custom-button'>{text}</button>)
 }
 export default Button;
 
-
-{/* <Button /> */}

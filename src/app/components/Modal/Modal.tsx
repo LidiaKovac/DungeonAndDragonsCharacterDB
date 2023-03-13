@@ -1,11 +1,10 @@
-import { FC, FormEvent, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Stage } from "../Stage/Stage";
 import "./Modal.scss";
 import { NewCharForm } from "../NewCharForm/NewCharForm";
 import { Abilities } from "../Abilities/Abilities";
 import { CharacterSummary } from "../CharSummary/CharSummary";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
+
 interface ModalProps {
   close: Function;
 
@@ -13,7 +12,6 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ close }) => {
   const [secNum, setSecNum] = useState<number>(1)
-  const char = useSelector((state:RootState)=> state.character.newChar)
   return (
     <>
       <div className="modal__wrap" onClick={() => close(false)}></div>

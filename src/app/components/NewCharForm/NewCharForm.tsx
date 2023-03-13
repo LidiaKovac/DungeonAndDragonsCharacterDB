@@ -13,16 +13,16 @@ interface FormProps {
 export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
   // const [char, setChar] = useState<CharBody>({ classes: [], name: "", level: 1, race: "" } as CharBody)
   const { classes, races, loading } = useSelector((state: RootState) => state.passive)
-  const me = useSelector((state: RootState) => state.user.logged)
   const token = useSelector((state: RootState) => state.token.token)
   const dispatch = useAppDispatch()
-  const moveTo= useNavigate()
+  const moveTo = useNavigate()
 
 
   useEffect(() => {
     if (classes.length === 0 && races.length === 0) {
       Promise.all([dispatch(fetchClasses()), dispatch(fetchRaces())])
     } else dispatch(setLoading(false))
+    //eslint-disable-next-line
   }, [])
 
   const handleSubmit = async (event: FormEvent) => {
@@ -36,13 +36,13 @@ export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
       }),
       body: char,
     })
-    if(res.ok) {
+    if (res.ok) {
       let char = await res.json()
       dispatch(setChar(char))
       setStageInModal(2)
     } else {
       let err = await res.text()
-      if(err.includes("token expired")) moveTo("/login")
+      if (err.includes("token expired")) moveTo("/login")
     }
     // let resGet = await fetch(`${process.env.REACT_APP_API}api/character` + id)
     // let newChar = await resGet.json()
@@ -65,15 +65,15 @@ export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
               id="level"
               name='level'
             />
-              <div className="warning">! multiclassing not supported !</div>
+            <div className="warning">! multiclassing not supported !</div>
             <div className="modal__input-selects">
               <Select
-                
+
                 field="classes"
                 options={classes.map((cl: DNDClass) => new OptionClass(cl.id, cl.name))}
               />
               <Select
-               
+
                 field="race"
                 options={races.map((ra: DNDRace) => new OptionClass(ra.id, ra.name))}
               />

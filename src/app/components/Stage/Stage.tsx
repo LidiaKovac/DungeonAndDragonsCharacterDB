@@ -1,4 +1,4 @@
-import { FC, Component, ReactElement } from "react"
+import { FC, ReactElement } from "react"
 
 // import "./Stage.scss"
 interface StageProps {

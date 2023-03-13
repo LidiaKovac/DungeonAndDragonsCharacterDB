@@ -9,7 +9,7 @@ export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
   const token = useAppSelector((state: RootState) => state.token.token)
-  const error = useAppSelector((state: RootState) => state.token.error)
+  // const error = useAppSelector((state: RootState) => state.token.error)
   
 
   const { id } = useParams()
@@ -23,6 +23,7 @@ export const Character = () => {
         console.log(token)
         asyncDispatch(fetchCharById({ token, id: id! }))
       })
+      //eslint-disable-next-line
   }, [])
   return (
     <>

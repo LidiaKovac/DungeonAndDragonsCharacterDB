@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, KeyboardEvent, useState } from "react"
-import { FaDiceD20, FaMoon, FaPalette, FaPencilAlt } from "react-icons/fa"
+import { KeyboardEvent, useState } from "react"
+import { FaDiceD20, FaMoon, FaPencilAlt } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import Button from "../../../components/Button/Button"
 import { RootState, useAppSelector } from "../../../redux"
