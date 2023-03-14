@@ -4,8 +4,9 @@ import { useNavigate, useParams } from "react-router-dom"
 import { fetchCharById } from "../../redux/slices/charSlice"
 import { getMe } from "../../redux/slices/userSlice"
 import { CharacterHeader } from "./CharHeader/CharHeader"
-import { CharAbilities } from "./CharHeader/CharAbilities"
+import { CharAbilities } from "./CharAbilities/CharAbilities"
 import { useSelector } from "react-redux"
+import styles from "./Character.module.scss"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -27,10 +28,13 @@ export const Character = () => {
   return (
     loading || (
       <>
+      <div className={styles["character__wrap"]}>
+
         <CharacterHeader />
-        <div className="sheet__main">
+        <div className={styles["char-sheet__main"]}>
           <CharAbilities />
         </div>
+      </div>
       </>
     )
   )

@@ -135,5 +135,24 @@ interface charInitialState extends defaultInitialState {
   newChar: CharBody
   newThrows: Throws
   myChars: Array<CharBody>
-  selectedChar:CharBody
+  selectedChar: {
+    char: CharBody,
+    modifiers: Modifiers 
+  }
+  editMode :boolean
+}
+
+
+interface SingleMod {
+  amount: number | string
+  source: "class" | "race" | "die" //???????????
+}
+interface Modifiers {
+  [key: string]: SingleMod[]
+  cha: SingleMod[]
+  str: SingleMod[]
+  con: SingleMod[]
+  dex: SingleMod[]
+  int: SingleMod[]
+  wis: SingleMod[]
 }

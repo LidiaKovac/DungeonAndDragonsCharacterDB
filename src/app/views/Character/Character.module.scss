@@ -1,6 +1,6 @@
 @import "../../../styling/Colors";
 @import "../../../styling/Mixins";
-form.character__wrap {
+.character__wrap {
   margin-top: 20px;
   width: 100vw;
   padding: {
@@ -9,94 +9,154 @@ form.character__wrap {
     top: 20px;
     bottom: 20px;
   }
-  .input--edit {
-    animation: fill-dots 1.5s linear infinite;
-  }
-  .character__options {
-    @include flex-config(row, center, center, 5px, "uneven");
-    margin-bottom: 20px;
-    button {
-      width: 50px;
-      margin: 0px;
-      svg {
-        width: 100%;
-        height: 100%;
+  form.char__header {
+    
+    .character__options {
+      @include flex-config(row, center, center, 5px, "uneven");
+      margin-bottom: 20px;
+      button {
+        width: 50px;
+        margin: 0px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
-  }
-  input {
-    border: none;
-    max-width: 300px;
-    min-width: 100px;
-  }
-  .char__anagraphics {
-    @include flex-config(row, center, center, 40px, "uneven");
-    flex-wrap: wrap;
-    .char__banner-name {
-      display: flex;
-      justify-content: flex-end;
-      position: relative;
-      .char__name {
-        @extend .char__banner--blue;
-        // 20px * 1.5 => 1.5 is the line height!
-        font-size: 20px;
-      }
-      svg {
-        position: absolute;
-        right: -20px;
-        top: 50%;
-        $width: 80px;
-        width: $width;
-        height: $width;
-        animation: rainbow 10s infinite linear;
-        background-color: lighten($blue-rgb, 10%);
-        padding: 10px;
-        border-radius: 100px;
-      }
+    input {
+      border: none;
+      max-width: 300px;
+      min-width: 100px;
     }
-
-    .char__game-data {
-      @extend .char__banner--blue;
-      @include flex-config(row, center, center, 15px, "uneven");
-
+    .char__anagraphics {
+      @include flex-config(row, center, center, 40px, "uneven");
       flex-wrap: wrap;
-      max-width: 500px;
-      height: fit-content;
-      padding: 20px;
-      .char__race {
-        width: 30%;
+      .char__banner-name {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        .char__name {
+          @extend .char__banner--blue;
+          // 20px * 1.5 => 1.5 is the line height!
+          font-size: 20px;
+        }
+        svg {
+          position: absolute;
+          right: -20px;
+          top: 50%;
+          $width: 80px;
+          width: $width;
+          height: $width;
+          animation: rainbow 10s infinite linear;
+          background-color: lighten($blue-rgb, 10%);
+          padding: 10px;
+          border-radius: 100px;
+        }
       }
-      .char__class-level {
-        @extend .char__banner--pink;
 
-        @include flex-config(row, space-between, center, 0px);
-        padding-right: 0px;
+      .char__game-data {
+        @extend .char__banner--blue;
+        @include flex-config(row, center, center, 15px, "uneven");
+
+        flex-wrap: wrap;
+        max-width: 500px;
+        height: fit-content;
+        padding: 20px;
+        .char__race {
+          width: 30%;
+        }
+        .char__class-level {
+          @extend .char__banner--pink;
+
+          @include flex-config(row, space-between, center, 0px);
+          padding-right: 0px;
+          outline-width: 2px;
+
+          input {
+            @extend .char__banner--pink;
+            outline-width: 0px;
+          }
+          .char__class {
+            width: calc(100% - 80px);
+          }
+          .char__level {
+            @extend .char__banner--pink;
+            flex: unset;
+            width: 40px;
+            min-width: 10px;
+
+            line-height: 40px;
+            font-size: 25px;
+            text-align: center;
+            font-kerning: 40px;
+          }
+        }
+        > input {
+          width: cols(20px, 2);
+          @extend .char__banner--pink;
+          outline-width: 2px;
+          min-width: 200px;
+        }
+      }
+    }
+  }
+  .char-sheet__main {
+    width: 100%;
+    form.char__abilities {
+      width: 100%;
+      height: 100%;
+      @include flex-config(column, space-between, flex-start, 20px);
+      .single__ab {
+        max-height: 50px;
+        max-width: 200px;
+        text-transform: uppercase;
+        @extend .char__banner--green;
         outline-width: 2px;
-
-        input {
-          @extend .char__banner--pink;
-          outline-width: 0px;
+        @include flex-config(row, space-between, center, 10px, "uneven");
+        padding: 0px;
+        padding-left: 20px;
+        // height: 70px;
+        height: fit-content;
+        width: 25%;
+        position: relative;
+        &:hover {
+          input {
+            // transition-delay: 0s;
+            // transform: rotateY(360deg);
+            // animation: swap .5s linear forwards;
+          }
+          .single__ab-modifier {
+            // animation: swap-back 1s linear forwards;
+            transform: translate(40%, -40%) scale(0.6);
+          }
         }
-        .char__class {
-          width: calc(100% - 80px);
-        }
-        .char__level {
-          @extend .char__banner--pink;
-          flex: unset;
-          width: 40px;
-          min-width: 10px;
-
-          line-height: 40px;
+        $input-width: 50px;
+        input,
+        div.single__ab-modifier {
+          transform-origin: bottom right;
+          transition: 0.5s;
+          position: absolute;
+          right: 0;
+          width: $input-width;
+          height: $input-width;
+          border: none;
+          // margin: 10px;
           font-size: 25px;
           text-align: center;
-          font-kerning: 40px;
+          @extend .char__banner--green;
         }
-      }
-      > input {
-        width: cols(20px, 2);
-        @extend .char__banner--pink;
-        outline-width: 2px;
-        min-width: 200px;
+        input {
+          z-index: 1;
+        }
+        div.single__ab-modifier {
+          z-index: 2;
+          padding: 0px;
+          line-height: $input-width;
+          font-size: 25px;
+          text-align: center;
+          font-kerning: $input-width;
+        }
+        // background-color: ;
       }
     }
   }
@@ -127,4 +187,44 @@ form.character__wrap {
   to {
     outline-style: solid;
   }
+}
+
+@keyframes swap {
+  0% {
+    transform: rotate(45deg);
+    z-index: -10;
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes swap-back {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    z-index: 0;
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+.input--edit {
+  animation: fill-dots 1.5s linear infinite;
 }

@@ -2,15 +2,15 @@ import { KeyboardEvent, useState } from "react"
 import { FaDiceD20, FaMoon, FaPencilAlt } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
 import Button from "../../../components/Button/Button"
-import { RootState } from "../../../redux"
-import { editChar } from "../../../redux/slices/charSlice"
+import { RootState, useAppSelector } from "../../../redux"
+import { editChar, setEdit } from "../../../redux/slices/charSlice"
 import styles from "../Character.module.scss"
 
 export const CharacterHeader = () => {
-  const [edit, setEdit] = useState(false)
+const edit = useAppSelector((state:RootState)=> state.character.editMode)
   const dispatch = useDispatch()
   const char = useSelector(
-    (state: RootState) => state.character.selectedChar
+    (state: RootState) => state.character.selectedChar.char
   )
   const me = useSelector(
     (state: RootState) => state.user.logged
@@ -27,15 +27,16 @@ export const CharacterHeader = () => {
       let form = ev.currentTarget.closest("form")
       const edited = new FormData(form!)
       dispatch(editChar({ token, id: char.id, data: edited }))
-      setEdit(false)
+      setEdit()
     }
   }
   return (
-    <form className={styles["character__wrap"]}>
+    <form className={styles["char__header"]} >
       <div className={styles["character__options"]}>
         <Button
           onClick={() => {
-            setEdit((prev) => !prev)
+            dispatch(setEdit())
+            
           }}
           text={(<FaPencilAlt />) as JSX.Element}
         />
