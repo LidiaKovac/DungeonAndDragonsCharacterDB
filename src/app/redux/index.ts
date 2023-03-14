@@ -38,13 +38,13 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-    devTools: process.env.REACT_APP_NODE_ENV === 'development'
+    devTools: process.env.NODE_ENV === 'development'
   // può esserci solo un valore per reducer nello store
 })
 
 export const persistor = persistStore(store)
 
-export type RootState = ReturnType<typeof store.getState > //creates the type for the store
+export type RootState = ReturnType<typeof store.getState> //creates the type for the store
 export type AppDispatch = typeof store.dispatch
 type DispatchFunc = () => AppDispatch
 export const useAppDispatch: DispatchFunc = useDispatch

@@ -7,7 +7,7 @@ import { editChar, setEdit } from "../../../redux/slices/charSlice"
 import styles from "../Character.module.scss"
 
 export const CharacterHeader = () => {
-const edit = useAppSelector((state:RootState)=> state.character.editMode)
+  const edit = useAppSelector((state: RootState) => state.character.editMode)
   const dispatch = useDispatch()
   const char = useSelector(
     (state: RootState) => state.character.selectedChar.char
@@ -36,7 +36,7 @@ const edit = useAppSelector((state:RootState)=> state.character.editMode)
         <Button
           onClick={() => {
             dispatch(setEdit())
-            
+
           }}
           text={(<FaPencilAlt />) as JSX.Element}
         />

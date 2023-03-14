@@ -1,15 +1,28 @@
-import { RootState, useAppSelector } from "../../../redux"
+import { RootState, useAppDispatch, useAppSelector } from "../../../redux"
 import styles from "../Character.module.scss"
+import {FormEvent} from "react"
 import { SingleSheetAbility } from "./SingleSheetAbility"
+import { editChar, setEdit } from "../../../redux/slices/charSlice"
 
 export const CharAbilities = () => {
   const abs = ["cha", "str", "con", "dex", "int", "wis"]
+  const asyncDispatch = useAppDispatch() 
+  const token = useAppSelector((state:RootState)=> state.token.token) 
+  const id = useAppSelector((state:RootState)=> state.character.selectedChar.char.id) 
+  console.log(process.env.NODE_ENV)
 
+  const handleSubmit = async(ev:FormEvent<HTMLFormElement>) => {
+    ev.preventDefault()
+    let data = new FormData(ev.currentTarget)
+    await asyncDispatch(editChar({token, id, data}))
+    asyncDispatch(setEdit())
+  }
   return (
-    <form className={styles['char__abilities']}>
+    <form className={styles['char__abilities'] } onSubmit={handleSubmit}>
       {abs.map((ab) => (
         <SingleSheetAbility ab={ab}/> 
       ))}
+      <input type="submit" value="" style={{display: "none"}} />
     </form>
   )
 }
