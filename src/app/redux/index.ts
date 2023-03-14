@@ -38,7 +38,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-    devTools: process.env.NODE_ENV === 'development'
+    devTools: process.env.REACT_APP_NODE_ENV === 'development'
   // può esserci solo un valore per reducer nello store
 })
 

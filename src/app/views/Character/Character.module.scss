@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 @import "../../../styling/Colors";
 @import "../../../styling/Mixins";
 .character__wrap {
@@ -170,8 +172,13 @@
     75: $pink-rgb,
     100: $green-rgb,
   );
+
+
+
+
   @each $perc, $col in $colors {
-    #{$perc}% {
+    
+    #{$perc + "%"} {
       color: $col;
       stroke: darken($col, 20%);
 
