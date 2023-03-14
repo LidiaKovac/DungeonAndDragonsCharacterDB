@@ -23,7 +23,7 @@ export const SingleSheetAbility = ({ ab }: { ab: string }) => {
       <Input className={edit ? styles["input--edit"]: ""} name={ab} type={"number"} defaultVal={char[ab]} disabled={!edit}  />
       {edit || <div className={styles["single__ab-modifier"]}>
         {
-          modifiers[ab].find(
+          modifiers[ab]?.find(
             (abilityMod: SingleMod) => abilityMod.source === "die"
           ).amount
         }
