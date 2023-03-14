@@ -104,11 +104,11 @@ form.character__wrap {
 
 @keyframes rainbow {
   $colors: (
-    0: $green-hex,
-    25: $yellow-hex,
-    50: $orange-hex,
-    75: $pink-hex,
-    100: $green-hex,
+    0: $green-rgb,
+    25: $yellow-rgb,
+    50: $orange-rgb,
+    75: $pink-rgb,
+    100: $green-rgb,
   );
   @each $perc, $col in $colors {
     #{$perc}% {

@@ -31,9 +31,7 @@ export const login = createAsyncThunk(
         },
       })
       if (resp.ok) {
-        for (const key of resp.headers.keys()) {
-          console.log(key)
-        }
+        
         let token = resp.headers.get("token")!
         const loginRes = await fetch(
           `${process.env.REACT_APP_API}api/user/me`,

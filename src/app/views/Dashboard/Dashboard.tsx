@@ -21,10 +21,8 @@ const Dashboard = () => {
   useEffect(() => {
 
     asyncDispatch(getMe(token)).then(res => {
-      console.log(res)
       if (res.type.includes("rejected")) moveTo("/login")
     }).then(() => {
-      console.log(token);
       
       asyncDispatch(fetchAllChars(token))
     })

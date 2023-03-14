@@ -1,21 +1,21 @@
 import { KeyboardEvent, useState } from "react"
 import { FaDiceD20, FaMoon, FaPencilAlt } from "react-icons/fa"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Button from "../../../components/Button/Button"
-import { RootState, useAppSelector } from "../../../redux"
+import { RootState } from "../../../redux"
 import { editChar } from "../../../redux/slices/charSlice"
 import styles from "../Character.module.scss"
 
 export const CharacterHeader = () => {
   const [edit, setEdit] = useState(false)
   const dispatch = useDispatch()
-  const char = useAppSelector(
+  const char = useSelector(
     (state: RootState) => state.character.selectedChar
   )
-  const me = useAppSelector(
+  const me = useSelector(
     (state: RootState) => state.user.logged
   )
-  const token = useAppSelector((state: RootState) => state.token.token)
+  const token = useSelector((state: RootState) => state.token.token)
   // const handleEdit = (ev: FormEvent) => {
   //     ev.preventDefault()
   //     console.log(ev);
@@ -23,11 +23,11 @@ export const CharacterHeader = () => {
   // }
 
   const handleChange = (ev: KeyboardEvent) => {
-    console.log(ev.key)
     if (ev.key === "Enter") {
       let form = ev.currentTarget.closest("form")
       const edited = new FormData(form!)
       dispatch(editChar({ token, id: char.id, data: edited }))
+      setEdit(false)
     }
   }
   return (

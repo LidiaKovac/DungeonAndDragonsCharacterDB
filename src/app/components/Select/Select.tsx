@@ -37,7 +37,7 @@ const Select: FC<SelectProps> = ({ options,  field }) => {
           ))}
         </div>
       )}
-      <select name={field} style={{ display: "none" }} value={selected ? selected.val : selected } onChange={ev => console.log(ev.target.value)}>
+      <select name={field} style={{ display: "none" }} value={selected ? selected.val : selected } >
         {options.map((opt,i) => (
           <option
             key={`select_${opt.display}_${i}`}

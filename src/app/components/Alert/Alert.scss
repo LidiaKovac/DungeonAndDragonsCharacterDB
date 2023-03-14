@@ -8,7 +8,7 @@
   bottom: 0px;
   background-color: $blue-rgb;
   color: white;
-  padding: 50px / 2 - 12px;
+  padding: calc(50px / 2 - 12px);
   border-radius: 20px;
   transition: 0.5s;
 }

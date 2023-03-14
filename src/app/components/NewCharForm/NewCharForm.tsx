@@ -3,7 +3,8 @@ import { FormEvent, useEffect, FC } from "react"
 import Select, { OptionClass } from "../Select/Select"
 import { useSelector } from "react-redux"
 import { RootState, useAppDispatch } from "../../redux"
-
+import Input from "../Input/Input"
+import Button from "../Button/Button"
 import { fetchClasses, fetchRaces, setLoading } from "../../redux/slices/passiveSlice"
 import { useNavigate } from "react-router-dom"
 import { setChar } from "../../redux/slices/charSlice"
@@ -55,16 +56,10 @@ export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
       {loading || (
         <div className="modal__input-wrap">
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              id="name"
-              name='name'
-            />
-            <input
-              type="number"
-              id="level"
-              name='level'
-            />
+            <Input name='name' type='text' />
+            <Input name='level' type='number' />
+
+
             <div className="warning">! multiclassing not supported !</div>
             <div className="modal__input-selects">
               <Select
@@ -78,8 +73,7 @@ export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
                 options={races.map((ra: DNDRace) => new OptionClass(ra.id, ra.name))}
               />
             </div>
-
-            <button type='submit'>start</button>
+          <Button text={"start"} type={"submit"}  />
           </form>
         </div>
       )}

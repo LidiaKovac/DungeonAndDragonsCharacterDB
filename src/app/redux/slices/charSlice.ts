@@ -92,10 +92,21 @@ const charSlice = createSlice({
       state.loading = true
     })
     builder.addCase(fetchCharById.fulfilled, (state, action) => {
-      state.loading = false
       state.selectedChar = action.payload as CharBody
+      state.loading = false
     })
     builder.addCase(fetchCharById.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload as string
+    })
+    builder.addCase(editChar.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(editChar.fulfilled, (state, action) => {
+      state.selectedChar = action.payload as CharBody
+      state.loading = false
+    })
+    builder.addCase(editChar.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload as string
     })

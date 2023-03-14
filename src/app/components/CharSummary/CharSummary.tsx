@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../redux"
 export const CharacterSummary = () => {
   const char = useSelector((state: RootState) => state.character.newChar)
-
+  
   return (
     <>
       <div>

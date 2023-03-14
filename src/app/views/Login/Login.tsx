@@ -5,15 +5,16 @@ import LoginButton from "../../components/LoginButton/LoginButton"
 import Button from "../../components/Button/Button"
 
 import "./Login.scss"
-import { RootState, useAppDispatch, useAppSelector } from "../../redux"
+import { RootState, useAppDispatch } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
 import { useNavigate } from "react-router-dom"
 import { Alert } from "../../components/Alert/Alert"
+import { useSelector } from "react-redux"
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
-  const error = useAppSelector((state: RootState) => state.token.error)
+  const error = useSelector((state: RootState) => state.token.error)
 
 
   const handleSubmit = async (ev: FormEvent) => {
@@ -28,7 +29,6 @@ const Login = () => {
         loginBody[ok[0] as keyof { email: string; password: string }] =
           ok[1] as string
       }
-      console.log(loginBody)
 
       let res = await dispatch(login(loginBody))
 
