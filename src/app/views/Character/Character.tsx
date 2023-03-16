@@ -7,9 +7,11 @@ import { CharacterHeader } from "./CharHeader/CharHeader"
 import { CharAbilities } from "./CharAbilities/CharAbilities"
 import { useSelector } from "react-redux"
 import styles from "./Character.module.scss"
-import { Skills } from "./CharSkills/Skills/Skills"
+import { CharSkills } from "./CharSkills/Skills/Skills"
 import Button from "../../components/Button/Button"
-import { FaDiceD20, FaDiceD6 } from "react-icons/fa"
+import { FaCampground, FaDiceD20, FaDiceD6 } from "react-icons/fa"
+import { CharDescription } from "./CharDescription/CharDescription"
+import { RiZzzLine } from "react-icons/ri"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -35,8 +37,14 @@ export const Character = () => {
 
           <CharacterHeader />
           <div className={styles["char-sheet__main"]}>
+            <div className={styles["char__body-column"]}>
             <CharAbilities />
-            <Skills />
+            <Button disabled={true} text={<span>Long rest <FaCampground/></span>}/>
+            <Button disabled={true} text={<span>Short rest <RiZzzLine/></span>}/>
+
+            </div>
+            <CharSkills />
+            <CharDescription/>
           </div>
         </div>
       </>

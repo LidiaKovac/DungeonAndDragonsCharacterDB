@@ -4,7 +4,6 @@ import "./Modal.scss";
 import { NewCharForm } from "../NewCharForm/NewCharForm";
 import { Abilities } from "../Abilities/Abilities";
 import { CharacterSummary } from "../CharSummary/CharSummary";
-import { Skills } from "../../views/Character/CharSkills/Skills/Skills";
 
 interface ModalProps {
   close: Function;

@@ -3,7 +3,7 @@ import { useState } from "react"
 import { RootState, useAppDispatch, useAppSelector } from "../../../../redux"
 import Input from "../../../../components/Input/Input"
 import styles from "./Skills.module.scss"
-export const Skills = () => {
+export const CharSkills = () => {
     const asyncDispatch = useAppDispatch()
     const { char, modifiers, skills } = useAppSelector((state: RootState) => state.character.selectedChar)
     const [charSkills, setCharSkills] = useState(char.Class?.skillProf?.map((sk: Skill) => sk.name))
