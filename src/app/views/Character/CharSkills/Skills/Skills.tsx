@@ -9,17 +9,9 @@ export const Skills = () => {
     const [charSkills, setCharSkills] = useState(char.Class?.skillProf?.map((sk: Skill) => sk.name))
     return <>
         <form className={styles["skill__form"]}>
-            You still have {char.Class.skillProfNum} skills to add to your profs
+            You still have {char.Class?.skillProfNum} skills to add to your profs
             {skills?.map((sk: Skill) => <label className={charSkills.includes(sk.name) ? styles["skill__prof"] : ""}><input type='checkbox' name={sk.name} /> <div> {sk.ab.toUpperCase()} </div> {sk.name} </label>)}
         </form>
     </>
 }
 
-//prop da aggiungere nel be: 
-//skillProfsLeft: number
-//iniziativa 
-//hp
-//deathSaves
-//description 
-//passive perception
-//db for session entries

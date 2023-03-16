@@ -8,6 +8,8 @@ import { CharAbilities } from "./CharAbilities/CharAbilities"
 import { useSelector } from "react-redux"
 import styles from "./Character.module.scss"
 import { Skills } from "./CharSkills/Skills/Skills"
+import Button from "../../components/Button/Button"
+import { FaDiceD20, FaDiceD6 } from "react-icons/fa"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -29,14 +31,14 @@ export const Character = () => {
   return (
     loading || (
       <>
-      <div className={styles["character__wrap"]}>
+        <div className={styles["character__wrap"]}>
 
-        <CharacterHeader />
-        <div className={styles["char-sheet__main"]}>
-          <CharAbilities />
-          <Skills/>
+          <CharacterHeader />
+          <div className={styles["char-sheet__main"]}>
+            <CharAbilities />
+            <Skills />
+          </div>
         </div>
-      </div>
       </>
     )
   )

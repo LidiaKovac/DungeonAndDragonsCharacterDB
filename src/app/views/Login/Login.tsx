@@ -5,17 +5,28 @@ import LoginButton from "../../components/LoginButton/LoginButton"
 import Button from "../../components/Button/Button"
 
 import "./Login.scss"
+import {useEffect} from "react"
 import { RootState, useAppDispatch } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
 import { useNavigate } from "react-router-dom"
 import { Alert } from "../../components/Alert/Alert"
 import { useSelector } from "react-redux"
+import { getMe } from "../../redux/slices/userSlice"
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
+  const token = useSelector((state:RootState)=> state.token.token)
   const error = useSelector((state: RootState) => state.token.error)
+  const moveTo = useNavigate()
 
+  useEffect(()=> {
+    dispatch(getMe(token)).then(res => {
+      if(res.type.includes("fulfilled")) {
+        moveTo("/home")
+      }
+    })
+   }, [])
 
   const handleSubmit = async (ev: FormEvent) => {
     try {

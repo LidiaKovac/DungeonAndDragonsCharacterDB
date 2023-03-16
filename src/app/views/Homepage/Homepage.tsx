@@ -1,7 +1,20 @@
 import "./Homepage.scss";
-
-import { Link } from "react-router-dom";
+import {useEffect}from"react"
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux";
+import { getMe } from "../../redux/slices/userSlice";
 const Homepage = () => {
+  const token = useSelector((state:RootState)=> state.token.token)
+  const moveTo = useNavigate()
+  const asyncDispatch = useAppDispatch()
+ useEffect(()=> {
+  asyncDispatch(getMe(token)).then(res => {
+    if(res.type.includes("rejected")) {
+      moveTo("/login")
+    }
+  })
+ }, [])
   return (
     <div className="home__wrap bg--light">
       <div className="home__titles">

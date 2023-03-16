@@ -3,6 +3,8 @@ import styles from "../Character.module.scss"
 import {FormEvent} from "react"
 import { SingleSheetAbility } from "./SingleSheetAbility"
 import { editChar, setEdit } from "../../../redux/slices/charSlice"
+import Button from "../../../components/Button/Button"
+import { FaDiceD20 } from "react-icons/fa"
 
 export const CharAbilities = () => {
   const abs = ["cha", "str", "con", "dex", "int", "wis"]
@@ -22,6 +24,7 @@ export const CharAbilities = () => {
       {abs.map((ab) => (
         <SingleSheetAbility ab={ab}/> 
       ))}
+
       <input type="submit" value="" style={{display: "none"}} />
     </form>
   )
