@@ -105,12 +105,14 @@
     width: 100%;
     margin-top: 50px;
     .char__body-column {
-      width: 25%;
-      @include flex-config(column, flex-start, flex-start, 40px, "uneven");
-      button {
-        width: 100%;
-        margin: 0px;
-        //FIX IN BUTTIN MODULE!!
+      width: 15%;
+      .char__rest-btns {
+        margin-top: 20px;
+        @include flex-config(column, flex-start, flex-start, 20px, "uneven");
+        button {
+          width: 100%;
+          //FIX IN BUTTIN MODULE!!
+        }
       }
     }
     @include flex-config(row, flex-start, flex-start, 50px, "uneven");
@@ -120,7 +122,7 @@
       @include flex-config(column, space-between, flex-start, 20px);
       .single__ab {
         max-height: 50px;
-        max-width: 200px;
+        // max-width: 200px;
         text-transform: uppercase;
         @extend .char__banner--green;
         outline-width: 2px;

@@ -39,8 +39,11 @@ export const Character = () => {
           <div className={styles["char-sheet__main"]}>
             <div className={styles["char__body-column"]}>
             <CharAbilities />
+            <div className={styles["char__rest-btns"]}>
+
             <Button disabled={true} text={<span>Long rest <FaCampground/></span>}/>
             <Button disabled={true} text={<span>Short rest <RiZzzLine/></span>}/>
+            </div>
 
             </div>
             <CharSkills />

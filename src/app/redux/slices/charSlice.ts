@@ -66,6 +66,26 @@ export const editChar = createAsyncThunk("character/editChar", ({ token, id, dat
   })
 })
 
+export const addSkill = createAsyncThunk("character/addSkill", ({token, id, skillName}: {token: string, id: string, skillName: string}, { rejectWithValue }): Promise<CharBody | string> => {
+  return new Promise(async (res, rej) => {
+    let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}/addSkill/${skillName}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+    if (resp.ok) {
+      let chars = await resp.json()
+      res(chars)
+    } else {
+      let err = await resp.text()
+      rej(rejectWithValue(err))
+    }
+  })
+})
+
+
+
 const charSlice = createSlice({
   name: "user",
   initialState,
@@ -116,6 +136,17 @@ const charSlice = createSlice({
       state.selectedChar.char = action.payload.char
       state.selectedChar.skills = action.payload.skills
 
+      state.loading = false
+    })
+    builder.addCase(addSkill.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload as string
+    })
+    builder.addCase(addSkill.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(addSkill.fulfilled, (state, action) => {
+      state.selectedChar.char = action.payload as CharBody
       state.loading = false
     })
     builder.addCase(editChar.rejected, (state, action) => {

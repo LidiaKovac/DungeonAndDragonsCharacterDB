@@ -47,64 +47,30 @@ interface Throws {
   int: number
 }
 
-class CharBody {
+interface CharBody {
   [key: string]: any
 
-  name?: string
-  id?: string
-
-  str?: number
-  cos?: number
-  dex?: number
-  int?: number
-  cha?: number
-  wis?: number
-  ab_prof_1?: string
-  ab_prof_2?: string
-  ab_prof_3?: string
-  ab_prof_4?: string
-  hit_points?: number
-
-  level?: number
-  Class: DNDClass
-  Race: DNDRace
-  constructor(
-    name,
-    id,
-    str,
-    cos,
-    dex,
-    int,
-    cha,
-    wis,
-    ab_prof_1,
-    ab_prof_2,
-    ab_prof_3,
-    ab_prof_4,
-    hit_points,
-    level,
-    classes,
-    race
-  ) {
-    this.name = name
-    this.id = id
-
-    this.str = str
-    this.cos = cos
-    this.dex = dex
-    this.int = int
-    this.cha = cha
-    this.wis = wis
-    this.ab_prof_1 = ab_prof_1
-    this.ab_prof_2 = ab_prof_2
-    this.ab_prof_3 = ab_prof_3
-    this.ab_prof_4 = ab_prof_4
-    this.hit_points = hit_points
-
-    this.level = level
-    this.classes = classes
-    this.race = race
-  }
+      id: number;
+      name: string;
+  
+      str: number;
+      con: number;
+      dex: number;
+      int: number;
+      cha: number;
+      wis: number;
+      initiativeMod: number;
+      currentInitiative: number;
+      skillProfLeft: number
+      hit_points: number
+      level: number      
+      Class: Classes
+      Race: RacialTrait
+      description: string 
+      deathScore: number
+      createdAt: Date;
+      updatedAt: Date;
+  
 }
 
 interface defaultInitialState {
