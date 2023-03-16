@@ -1,7 +1,7 @@
 // import "./SingleAbility.scss"
 import { FC } from "react"
 import { useSelector } from "react-redux"
-import { RootState } from "../../redux"
+import { RootState } from "../../../redux"
 interface SingleAbProps {
     abName: string,
 }

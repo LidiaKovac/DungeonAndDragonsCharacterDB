@@ -1,6 +1,9 @@
 import { KeyboardEvent, useState } from "react"
 import { FaDiceD20, FaMoon, FaPencilAlt } from "react-icons/fa"
+import { MdPhotoLibrary } from "react-icons/md"
+import { RiFilePaper2Line } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import Button from "../../../components/Button/Button"
 import { RootState, useAppSelector } from "../../../redux"
 import { editChar, setEdit } from "../../../redux/slices/charSlice"
@@ -38,9 +41,14 @@ export const CharacterHeader = () => {
             dispatch(setEdit())
 
           }}
-          text={(<FaPencilAlt />) as JSX.Element}
+          text={(<FaPencilAlt />)}
         />
-        <Button text={(<FaMoon />) as JSX.Element} />
+        <Button disabled={true} text={(<FaMoon />)} />
+        <Button disabled={true} text={<MdPhotoLibrary />} />
+
+        <Button disabled={true} text={<Link to={`/notes/${char.id}`}> <RiFilePaper2Line /></Link>} />
+
+
       </div>
       <div className={styles["char__anagraphics"]}>
         <div className={styles["char__banner-name"]}>

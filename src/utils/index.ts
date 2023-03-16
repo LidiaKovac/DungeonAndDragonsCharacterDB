@@ -1,5 +1,5 @@
 export const die = (max: number): number => {
-    return Math.floor(Math.random() * max)
+    return Math.floor(Math.random() * (max - 1)) + 1
 }
 
 export const calculateProf = (lvl: number) => {

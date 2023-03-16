@@ -7,7 +7,8 @@ const initialState: charInitialState = {
   myChars: [],
   selectedChar: {
     char: {} as CharBody,
-    modifiers: {} as Modifiers
+    modifiers: {} as Modifiers,
+    skills: []
   },
   editMode: false
 }
@@ -29,7 +30,7 @@ export const fetchAllChars = createAsyncThunk("character/fetchAllChars", (token:
   })
 })
 
-export const fetchCharById = createAsyncThunk("character/fetchCharById", ({ token, id }: { token: string, id: string }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers }> => {
+export const fetchCharById = createAsyncThunk("character/fetchCharById", ({ token, id }: { token: string, id: string }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers, skills: Array<{ name: string, ab: string }> }> => {
   return new Promise(async (res, rej) => {
     let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}`, {
       headers: {
@@ -46,7 +47,7 @@ export const fetchCharById = createAsyncThunk("character/fetchCharById", ({ toke
   })
 })
 
-export const editChar = createAsyncThunk("character/editChar", ({ token, id, data }: { token: string, id: string, data: FormData }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers }> => {
+export const editChar = createAsyncThunk("character/editChar", ({ token, id, data }: { token: string, id: string, data: FormData }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers, skills: Array<{ name: string, ab: string }> }> => {
   return new Promise(async (res, rej) => {
     let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}`, {
       method: "PUT",
@@ -78,7 +79,7 @@ const charSlice = createSlice({
     setSingleThrow: (state, { payload: { ab, value } }: PayloadAction<{ ab: string, value: number }>) => {
       state.newThrows[ab] = value
     },
-    setEdit: (state)=> {
+    setEdit: (state) => {
       state.editMode = !state.editMode
     }
   },
@@ -100,6 +101,7 @@ const charSlice = createSlice({
     builder.addCase(fetchCharById.fulfilled, (state, action) => {
       state.selectedChar.char = action.payload.char
       state.selectedChar.modifiers = action.payload.modifiers
+      state.selectedChar.skills = action.payload.skills
       state.loading = false
     })
     builder.addCase(fetchCharById.rejected, (state, action) => {
@@ -112,6 +114,8 @@ const charSlice = createSlice({
     builder.addCase(editChar.fulfilled, (state, action) => {
       state.selectedChar.modifiers = action.payload.modifiers
       state.selectedChar.char = action.payload.char
+      state.selectedChar.skills = action.payload.skills
+
       state.loading = false
     })
     builder.addCase(editChar.rejected, (state, action) => {

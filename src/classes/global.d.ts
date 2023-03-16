@@ -128,6 +128,11 @@ interface passiveInitialState extends defaultInitialState {
   races: Array<DNDRace>
 }
 
+interface Skill {
+  name: string 
+  ab: string
+}
+
 interface tokenInitialState extends defaultInitialState {
   token: string
 }
@@ -138,6 +143,7 @@ interface charInitialState extends defaultInitialState {
   selectedChar: {
     char: CharBody,
     modifiers: Modifiers 
+    skills: Array<Skill>
   }
   editMode :boolean
 }

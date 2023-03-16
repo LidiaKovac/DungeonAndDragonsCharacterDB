@@ -4,6 +4,7 @@ import "./Modal.scss";
 import { NewCharForm } from "../NewCharForm/NewCharForm";
 import { Abilities } from "../Abilities/Abilities";
 import { CharacterSummary } from "../CharSummary/CharSummary";
+import { Skills } from "../../views/Character/CharSkills/Skills/Skills";
 
 interface ModalProps {
   close: Function;
@@ -23,6 +24,7 @@ const Modal: FC<ModalProps> = ({ close }) => {
           <div className="modal">
             {secNum === 1 && <Stage stageNum={1} comps={[<NewCharForm setStageInModal={setSecNum} />]} />}
             {secNum === 2 && <Stage stageNum={2} comps={[<CharacterSummary />, <Abilities />]} />}
+            {/* {secNum === 3 && <Stage stageNum={3} comps={[<Skills />]} />} */}
           </div>
         }
       </div>

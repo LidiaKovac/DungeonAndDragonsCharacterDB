@@ -19,4 +19,15 @@
     &:hover {
         background-color: lighten($orange-hex, 20%);
     }
+    &:disabled {
+        background-color: lighten($orange-hex, 20%);
+        cursor: not-allowed;
+        svg {
+            color: darken($orange-hex, 20%)
+        }
+        a {
+            pointer-events: none;
+
+        }
+    }
 }

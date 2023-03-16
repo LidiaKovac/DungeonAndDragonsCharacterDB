@@ -7,6 +7,7 @@ import { CharacterHeader } from "./CharHeader/CharHeader"
 import { CharAbilities } from "./CharAbilities/CharAbilities"
 import { useSelector } from "react-redux"
 import styles from "./Character.module.scss"
+import { Skills } from "./CharSkills/Skills/Skills"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -33,6 +34,7 @@ export const Character = () => {
         <CharacterHeader />
         <div className={styles["char-sheet__main"]}>
           <CharAbilities />
+          <Skills/>
         </div>
       </div>
       </>

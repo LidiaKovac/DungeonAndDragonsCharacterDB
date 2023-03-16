@@ -1,0 +1,23 @@
+@import "../../../../../styling/Mixins";
+@import "../../../../../styling/Colors";
+form.skill__form {
+  @include flex-config(column, flex-start, flex-start, 10px, "uneven");
+  width: 25%;
+  label {
+    display: flex;
+    padding: 5px;
+    > div {
+      background-color: lighten($orange-rgb, 20%);
+      padding: 2px;
+      padding-inline: 8px;
+      border-radius: 20px;
+      margin-inline: 5px;
+      width: 50px;
+      text-align: center;
+    }
+    &.skill__prof {
+        background-color: $orange-rgb;
+        border-radius: 20px;
+    }
+  }
+}
