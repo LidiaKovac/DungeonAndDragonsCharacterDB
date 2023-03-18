@@ -7,22 +7,19 @@
   max-width: 100vw;
   height: 100vh;
 
-  @include flex--col;
-  @include flex--center;
+  @include flex-config(column, center, center, 20px, "uneven");
   .login {
-    width: 400px;
-    height: 600px;
+    @include flex-config(column, center, flex-start, 10px, "uneven");
+    width: 22%;
+    height: 60%;
     background-color: white;
     border-radius: 40px;
-    padding: 20px;
-    @include flex--col;
-    justify-content: center;
-    align-items: flex-start;
+    padding: 40px;
+    input {
+      width: 100%;
+    }
     h3 {
-      align-self: flex-start;
-      margin: {
-        left: 20px;
-      }
+      margin: 0px;
     }
     .login-social {
       @include flex--row;
@@ -39,6 +36,9 @@
       margin: {
         top: 40px;
       }
+    }
+    button.custom-button {
+      width: 90%;
     }
 
   }

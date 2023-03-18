@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from ".."
 const initialState: charInitialState = {
   loading: true,
   newChar: {} as CharBody,
@@ -47,8 +48,12 @@ export const fetchCharById = createAsyncThunk("character/fetchCharById", ({ toke
   })
 })
 
-export const editChar = createAsyncThunk("character/editChar", ({ token, id, data }: { token: string, id: string, data: FormData }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers, skills: Array<{ name: string, ab: string }> }> => {
+export const editChar = createAsyncThunk("character/editChar", ({ token, id, data }: { token: string, id: string, data: FormData }, { getState, rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers, skills: Array<{ name: string, ab: string }> }> => {
   return new Promise(async (res, rej) => {
+    const {character: {editMode}} = getState() as RootState
+    console.log(editMode);
+    
+    if (!editMode) rej(rejectWithValue("Edit mode is not enabled, what are you doing in the inspector?"))
     let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}`, {
       method: "PUT",
       headers: {
@@ -66,7 +71,7 @@ export const editChar = createAsyncThunk("character/editChar", ({ token, id, dat
   })
 })
 
-export const addSkill = createAsyncThunk("character/addSkill", ({token, id, skillName}: {token: string, id: string, skillName: string}, { rejectWithValue }): Promise<CharBody | string> => {
+export const addSkill = createAsyncThunk("character/addSkill", ({ token, id, skillName }: { token: string, id: string, skillName: string }, { rejectWithValue }): Promise<CharBody | string> => {
   return new Promise(async (res, rej) => {
     let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}/addSkill/${skillName}`, {
       method: "PUT",
@@ -135,8 +140,15 @@ const charSlice = createSlice({
       state.selectedChar.modifiers = action.payload.modifiers
       state.selectedChar.char = action.payload.char
       state.selectedChar.skills = action.payload.skills
+      state.editMode = false
 
       state.loading = false
+    })
+    builder.addCase(editChar.rejected, (state, action) => {
+      state.error = action.payload as string
+      state.loading = false
+      state.editMode = false
+
     })
     builder.addCase(addSkill.rejected, (state, action) => {
       state.loading = false
@@ -149,10 +161,10 @@ const charSlice = createSlice({
       state.selectedChar.char = action.payload as CharBody
       state.loading = false
     })
-    builder.addCase(editChar.rejected, (state, action) => {
-      state.loading = false
-      state.error = action.payload as string
-    })
+    // builder.addCase(addSkill.rejected, (state, action) => {
+    //   state.loading = false
+    //   state.error = action.payload as string
+    // })
   },
 })
 export const { setChar, setSingleThrow, setThrows, setEdit } = charSlice.actions
