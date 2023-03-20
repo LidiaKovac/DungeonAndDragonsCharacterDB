@@ -5,7 +5,7 @@ const initialState: userInitialState = {
   error: ""
 }
 
-export const getMe = createAsyncThunk("user/fetchMe", (token: string, {rejectWithValue}): Promise<User | string> => new Promise(async (res, rej) => {
+export const getMe = createAsyncThunk("user/fetchMe", (token: string, { rejectWithValue }): Promise<User | string> => new Promise(async (res, rej) => {
   let raw = await fetch(`${process.env.REACT_APP_API}api/user/me`, {
     headers: {
       authorization: `Bearer ${token}`
@@ -20,11 +20,25 @@ export const getMe = createAsyncThunk("user/fetchMe", (token: string, {rejectWit
   }
 }))
 
+export const createUser = createAsyncThunk("user/createUser", (body: FormData, { rejectWithValue }): Promise<User | string> => new Promise(async (res, rej) => {
+  let raw = await fetch(`${process.env.REACT_APP_API}api/user/`, {
+    method: "POST",
+    body: body,
+  })
+  if (raw.ok) {
+    let me = await raw.json()
+    res(me)
+  } else {
+    let err = await raw.text()
+    rej(rejectWithValue(err))
+  }
+}))
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    
+
   },
   extraReducers: (builder) => {
     builder
@@ -37,6 +51,20 @@ const userSlice = createSlice({
         // state.token = action.payload?.token!
       })
       .addCase(getMe.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload as string
+        // state.token = action.payload?.token!
+      })
+
+      .addCase(createUser.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.loading = false
+        state.logged = action.payload as User
+        // state.token = action.payload?.token!
+      })
+      .addCase(createUser.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload as string
         // state.token = action.payload?.token!

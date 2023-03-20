@@ -4,14 +4,13 @@
 .home__wrap {
   width: 100vw;
   height: 100vh;
-  @include flex--row;
+  @include flex-config(row, space-around, center, 20px, "uneven");
 
-  justify-content: space-around;
   .home__titles {
-    @include flex--col;
-    @include flex--center;
+    @include flex-config(column, center, center, 20px, "uneven");
+
     position: relative;
-    flex: 1.5 1 0
+    flex: 1.5 1 0;
   }
   h1 {
     @include font-header;
@@ -21,57 +20,54 @@
     position: relative;
     z-index: 1;
   }
-    h2 {
-      z-index: 1;
-      // width: 40%;
-      @include font-header;
-      color: #343434;
-      font-size: 50pt;
-      text-align: center;
-      margin: 0;
-      // margin: {
-      //   left: 80px;
-      // }
+  h2 {
+    z-index: 1;
+    // width: 40%;
+    @include font-header;
+    color: #343434;
+    font-size: 50pt;
+    text-align: center;
+    margin: 0;
+    // margin: {
+    //   left: 80px;
+    // }
+  }
+  .shapes {
+    width: 240px;
+    height: auto;
+    position: absolute;
+    z-index: 0;
+    animation: float 12s infinite linear backwards;
+    &:first-of-type {
+      top: 50%;
+      left: 20%;
+      animation: float 12s infinite linear backwards;
     }
-    .shapes {
-      width: 240px;
-      height: auto;
-      position: absolute;
-      z-index: 0;
-      animation: float 12s infinite linear backwards;
-      &:first-of-type {
-        top: 50%;
-        left: 20%;
-      animation: float 12s infinite linear backwards;
-
-      }
-      &:last-of-type {
-        top: 20%;
-        right: 20%;
+    &:last-of-type {
+      top: 20%;
+      right: 20%;
       animation: float 20s infinite linear backwards;
-
-      }
-  }
-    .wrap__button {
-      flex: 1 1 0;
-      @include flex--row;
-      @include flex--center;
-      .cta__button {
-        @include flex--row;
-        @include flex--center;
-        @include font-header;
-        background-color: #343434;
-        font-size: 28pt;
-        width: 400px;
-        height: 70px;
-        color: white;
-        border-radius: 40px;
-
-        cursor: pointer;
-      }
     }
   }
+  .wrap__button {
+    flex: 1 1 0;
+    @include flex-config(row, center, center, 20px, "uneven");
 
+    .cta__button {
+      @include flex-config(row, center, center, 20px, "uneven");
+
+      @include font-header;
+      background-color: #343434;
+      font-size: 28pt;
+      width: 400px;
+      height: 70px;
+      color: white;
+      border-radius: 40px;
+
+      cursor: pointer;
+    }
+  }
+}
 
 a {
   text-decoration: none;

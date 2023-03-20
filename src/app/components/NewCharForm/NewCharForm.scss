@@ -3,15 +3,14 @@
 .modal__input-wrap {
   form {
     width: 100%;
-    @include flex--col;
-    @include flex--center;
+    @include flex-config(column, center, center, 20px, "uneven");
 
     gap: 20px;
   }
   .modal__input-selects {
     flex-wrap: wrap;
-    @include flex--center;
-    @include flex--row;
+    @include flex-config(row, center, center, 20px, "uneven");
+
     gap: 20px;
   }
 }

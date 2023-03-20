@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom"
 import { Alert } from "../../components/Alert/Alert"
 import { useSelector } from "react-redux"
 import { getMe } from "../../redux/slices/userSlice"
+import { AsyncThunkAction, PayloadAction, ThunkAction } from "@reduxjs/toolkit"
+import { FulfilledActionFromAsyncThunk, RejectedActionFromAsyncThunk } from "@reduxjs/toolkit/dist/matchers"
 
 const Login = () => {
   const dispatch = useAppDispatch()
@@ -21,9 +23,12 @@ const Login = () => {
   const moveTo = useNavigate()
 
   useEffect(()=> {
-    dispatch(getMe(token)).then(res => {
+    dispatch(getMe(token)).then((res: any) => {
       if(res.type.includes("fulfilled")) {
         moveTo("/home")
+      } else {
+        res.payload.includes("404")
+        // moveTo("/signup")
       }
     })
    }, [])
@@ -55,10 +60,10 @@ const Login = () => {
         <Input name="email" type={false} />
         <h3>Password</h3>
         <Input name="password" type="Password" />
-        <div className="login-social">
+        {/* <div className="login-social">
           <LoginButton logo="/assets/ggg.png" name="Google" />
           <LoginButton logo='/assets/redd.png' name="Reddit" />
-        </div>
+        </div> */}
         <Button type="submit" text="Login" />
       </form>
       {error && <Alert msg={error} />}

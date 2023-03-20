@@ -1,0 +1,5 @@
+@import "../../../styling/Mixins";
+form.form__signup {
+    margin: 30px;
+    @include flex-config(column, space-evenly, center, 20px, "uneven")
+}

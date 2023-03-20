@@ -54,7 +54,9 @@ const tokenSlice = createSlice({
   name: "token",
   initialState,
   reducers: {
-   
+   emptyToken: (state)=> {
+    state.token = ""
+   }
   },
   extraReducers: (builder) => {
     builder
@@ -73,6 +75,6 @@ const tokenSlice = createSlice({
       })
   },
 })
-// export const { emptyError } = tokenSlice.actions
+export const { emptyToken } = tokenSlice.actions
 
 export default tokenSlice.reducer
