@@ -52,7 +52,7 @@ export const BubbleInput: React.FC<InputProps> = ({
             </div>
 
             {(!edit && hasSubBubble) && (
-                <div className={`${styles["sub__bubble"]} ${styles[`char__banner--${color}`] }`}>
+                <div className={`${styles["sub__bubble"]} ${styles[`char__banner--${color}`]}`}>
                     {subBubbleVal}
                 </div>
             )}

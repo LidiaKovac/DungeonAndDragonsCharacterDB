@@ -4,7 +4,7 @@ import Input from "../../../components/Input/Input"
 import { RootState, useAppDispatch, useAppSelector } from "../../../redux/"
 export const CharProf = () => {
     const asyncDispatch = useAppDispatch()
-    const { char:{level} } = useAppSelector((state: RootState) => state.character.selectedChar)
+    const { char: { level } } = useAppSelector((state: RootState) => state.character.selectedChar)
 
     return (
         <form>
