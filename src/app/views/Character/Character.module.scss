@@ -98,7 +98,10 @@
     width: 100%;
     margin-top: 50px;
     @include flex-config(row, flex-start, flex-start, 50px, "even");
-
+    flex-wrap: wrap;
+    > div {
+      min-width: 200px;
+    }
     .char__body-column {
       .char__rest-btns {
         margin-top: 20px;

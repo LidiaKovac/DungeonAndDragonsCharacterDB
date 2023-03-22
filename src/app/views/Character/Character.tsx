@@ -53,6 +53,9 @@ export const Character = () => {
               <CharProf/>
             <CharSkills />
             </div>
+            <div className={styles["char__body-third-col"]}>
+
+            </div>
             <CharDescription />
           </div>
         </div>

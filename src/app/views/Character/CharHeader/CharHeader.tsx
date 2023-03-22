@@ -68,7 +68,7 @@ export const CharacterHeader = () => {
                 ? `${styles["char__name"]} ${styles["input--edit"]}`
                 : styles["char__name"]
             }
-            defaultVal={char.name}
+            defaultVal={char?.name}
           />
           <FaDiceD20 />
         </div>
