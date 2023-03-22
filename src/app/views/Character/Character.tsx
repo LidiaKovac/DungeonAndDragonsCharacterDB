@@ -12,6 +12,8 @@ import Button from "../../components/Button/Button"
 import { FaCampground, FaDiceD20, FaDiceD6 } from "react-icons/fa"
 import { CharDescription } from "./CharDescription/CharDescription"
 import { RiZzzLine } from "react-icons/ri"
+import { CharInspoPoint } from "./CharInspirationPoints/CharInspirationPoints"
+import { CharProf } from "./CharProf/CharProf"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -46,7 +48,11 @@ export const Character = () => {
               </div>
 
             </div>
+            <div className={styles["char__body-second-col"]}>
+              <CharInspoPoint/>
+              <CharProf/>
             <CharSkills />
+            </div>
             <CharDescription />
           </div>
         </div>

@@ -134,13 +134,13 @@ const charSlice = createSlice({
       state.error = action.payload as string
     })
     builder.addCase(editChar.pending, (state, action) => {
-      state.loading = true
+      // state.loading = true
     })
     builder.addCase(editChar.fulfilled, (state, action) => {
       state.selectedChar.modifiers = action.payload.modifiers
       state.selectedChar.char = action.payload.char
       state.selectedChar.skills = action.payload.skills
-      state.editMode = false
+      // state.editMode = false
 
       state.loading = false
     })

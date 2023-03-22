@@ -57,9 +57,9 @@ const Login = () => {
     <div className="login__wrap">
       <form className="login" onSubmit={handleSubmit}>
         <h3>Login</h3>
-        <Input name="email" type={false} />
+        <Input color="blue" name="email" type={false} />
         <h3>Password</h3>
-        <Input name="password" type="Password" />
+        <Input color="blue" name="password" type="Password" />
         {/* <div className="login-social">
           <LoginButton logo="/assets/ggg.png" name="Google" />
           <LoginButton logo='/assets/redd.png' name="Reddit" />

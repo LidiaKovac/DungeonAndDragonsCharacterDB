@@ -56,8 +56,8 @@ export const NewCharForm: FC<FormProps> = ({ setStageInModal }) => {
       {loading || (
         <div className="modal__input-wrap">
           <form onSubmit={handleSubmit}>
-            <Input name='name' type='text' />
-            <Input name='level' type='number' />
+            <Input color="pink" name='name' type='text' />
+            <Input color="pink" name='level' type='number' />
 
 
             <div className="warning">! multiclassing not supported !</div>

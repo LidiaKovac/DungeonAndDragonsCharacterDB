@@ -35,28 +35,10 @@
   @return $width;
 }
 
-.char__banner {
-  padding: 10px;
-  // background-color: lighten($color, 20%);
-  border-radius: 30px;
-  // outline: $border lighten($color, 10%) solid;
-  height: 40px;
-}
 
-.char__banner--blue {
-  @extend .char__banner;
-  background-color: lighten($blue-rgb, 20%);
-  outline: 5px lighten($blue-rgb, 10%) solid;
-}
 
-.char__banner--green {
-  @extend .char__banner;
-  background-color: lighten($green-rgb, 20%);
-  outline: 5px lighten($green-rgb, 10%) solid;
-}
-
-.char__banner--pink {
-  @extend .char__banner;
-  background-color: lighten($pink-rgb, 20%);
-  outline: 5px lighten($pink-rgb, 10%) solid;
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

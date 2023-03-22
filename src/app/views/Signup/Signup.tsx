@@ -17,11 +17,11 @@ export const Signup = () => {
     }
     return (
         <form onSubmit={handleSubmit} className={styles["form__signup"]}>
-            <Input type="text" name="email" />
-            <Input type="text" name="full_name" />
-            <Input type="text" name="nickname" />
-            <Input type="password" name="password" />
-            <Input type="password" name="password_confirm" />
+            <Input color="pink" type="text" name="email" />
+            <Input color="pink" type="text" name="full_name" />
+            <Input color="pink" type="text" name="nickname" />
+            <Input color="pink" type="password" name="password" />
+            <Input color="pink" type="password" name="password_confirm" />
             {/* <Input type='file' name='' /> */}
             <button style={{ display: "none" }}></button>
             {error && <Alert msg={error} />}

@@ -5,6 +5,8 @@ import { RiFilePaper2Line } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import Button from "../../../components/Button/Button"
+import { BubbleInput } from "../../../components/Input/BubbleInput/BubbleInput"
+import Input from "../../../components/Input/Input"
 import { RootState, useAppSelector } from "../../../redux"
 import { editChar, setEdit } from "../../../redux/slices/charSlice"
 import styles from "../Character.module.scss"
@@ -15,9 +17,7 @@ export const CharacterHeader = () => {
   const char = useSelector(
     (state: RootState) => state.character.selectedChar.char
   )
-  const me = useSelector(
-    (state: RootState) => state.user.logged
-  )
+  const me = useSelector((state: RootState) => state.user.logged)
   const token = useSelector((state: RootState) => state.token.token)
   // const handleEdit = (ev: FormEvent) => {
   //     ev.preventDefault()
@@ -34,73 +34,90 @@ export const CharacterHeader = () => {
     }
   }
   return (
-    <form className={styles["char__header"]} >
+    <form className={styles["char__header"]}>
       <div className={styles["character__options"]}>
         <Button
           onClick={() => {
             dispatch(setEdit())
-
           }}
-          text={(<FaPencilAlt />)}
+          text={<FaPencilAlt />}
         />
-        <Button disabled={true} text={(<FaMoon />)} />
+        <Button disabled={true} text={<FaMoon />} />
         <Button disabled={true} text={<MdPhotoLibrary />} />
 
-        <Button disabled={true} text={<Link to={`/notes/${char.id}`}> <RiFilePaper2Line /></Link>} />
-
-
+        <Button
+          disabled={true}
+          text={
+            <Link to={`/notes/${char.id}`}>
+              {" "}
+              <RiFilePaper2Line />
+            </Link>
+          }
+        />
       </div>
       <div className={styles["char__anagraphics"]}>
         <div className={styles["char__banner-name"]}>
-          <input
+          <Input
+            color='blue'
             name="name"
             disabled={!edit}
-            onKeyDown={handleChange}
+            // onKeyDown={handleChange}
             type="text"
             className={
               edit
                 ? `${styles["char__name"]} ${styles["input--edit"]}`
                 : styles["char__name"]
             }
-            defaultValue={char.name}
+            defaultVal={char.name}
           />
           <FaDiceD20 />
         </div>
         <div className={styles["char__game-data"]}>
-          <div className={styles["char__class-level"]}>
-            <input
-              disabled
-              type="text"
-              defaultValue={char.Class?.name}
+            {/* <Input
+              color={"pink"}
               className={styles["char__class"]}
+              name=""
+              disabled={true}
+              type="text"
+              defaultVal={char.Class?.name}
             />
-            <input
+
+            <Input
+            /> */}
+            <BubbleInput color={"pink"}
+              side='right'
               disabled={!edit}
-              onKeyDown={handleChange}
+              // onKeyDown={handleChange}
               name="level"
               type="number"
-              className={
-                edit
-                  ? `${styles["char__level"]} ${styles["input--edit"]}`
-                  : styles["char__level"]
-              }
-              defaultValue={char.level}
+              labelVal={char.Class.name}
+              defaultVal={char.level}
             />
-          </div>
-          <input
-            disabled
-            defaultValue={char.Race?.name}
+          <Input
+            color='pink'
+
+            name=""
+            type='text' disabled={true}
+            defaultVal={char.Race?.name}
             className={styles["char__race"]}
           />
-          <input
-            disabled
+          <Input
+            color='pink'
+
+            name=""
+            type='text'
+            disabled={true}
             className={styles["char__player"]}
-            defaultValue={me.nickname}
+            defaultVal={me.nickname}
           />
-          <input
-            disabled
+          <Input
+            color='pink'
+
+            name=""
+            type='text'
+            disabled={true}
             className={styles["char__alignment"]}
-            defaultValue={"Cattivissimo Me"}
+            defaultVal={"Cattivissimo Me"}
           />
         </div>
       </div>

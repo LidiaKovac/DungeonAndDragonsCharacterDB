@@ -1,30 +1,120 @@
 @import "../../../styling/Colors";
+@import "../../../styling/Mixins";
+.char__banner {
+  padding: 10px;
+  // background-color: lighten($color, 20%);
+  border-radius: 30px;
+  // outline: $border lighten($color, 10%) solid;
+  height: 40px;
+}
 
-:global(input.custom-input) {
-    width: 300px;
+.char__banner--blue {
+  @extend .char__banner;
+  background-color: lighten($blue-rgb, 20%);
+  outline: 5px lighten($blue-rgb, 10%) solid;
+}
+
+.char__banner--green {
+  @extend .char__banner;
+  background-color: lighten($green-rgb, 20%);
+  outline: 5px lighten($green-rgb, 10%) solid;
+}
+
+.char__banner--pink {
+  @extend .char__banner;
+  background-color: lighten($pink-rgb, 20%);
+  outline: 5px lighten($pink-rgb, 10%) solid;
+}
+
+:global(.custom--input) {
+  //   height: 50px;
+//   width: 100%;
+  border-radius: 25px;
+  border: none;
+  // margin-left: 20px;
+  padding-left: 30px;
+  &.hide {
+    display: none;
+  }
+
+  & ~ label {
+    width: 50px;
     height: 50px;
-    
+    margin-left: 20px;
     border-radius: 25px;
     border: none;
     background-color: $bg--light;
-    // margin-left: 20px;
-    padding-left: 30px;
-    &.hide {
-        display: none;
-    }
-    
-    &~label {
-        width: 50px;
-        height: 50px;
-        margin-left: 20px;
-        border-radius: 25px;
-        border: none;
-        background-color: $bg--light;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #343434;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #343434;
+  }
+}
+:global(.bubble__form) {
+  $input-width: 50px;
+  width: 100%;
+  margin: 10px;
+  position: relative;
+  text-transform: uppercase;
+  @extend .char__banner;
+  outline-width: 2px;
+  @include flex-config(row, space-between, center, 10px, "uneven");
+  input.bubble__input {
+    padding: 0px;
+    // height: 70px;
+    font-size: 25px;
+    text-align: center;
+    position: absolute;
+    width: $input-width;
+    height: $input-width;
+    @extend .char__banner;
+  }
+  div.bubble__text {
+    width: 100%;
+    transform-origin: bottom right;
+    transition: 0.5s;
+    outline-width: 2px;
+    border: none;
+    // margin: 10px;
+    text-align: center;
+    // @extend .char__banner;
+  }
+
+  input {
+    z-index: 1;
+  }
+  div.sub__bubble {
+    z-index: 2;
+    padding: 0px;
+    line-height: $input-width;
+    font-size: 25px;
+    text-align: center;
+    font-kerning: $input-width;
+    transform: translate(40%, -40%) scale(0.6);
+    transform-origin: bottom right;
+    transition: 0.5s;
+    position: absolute;
+    right: 0;
+    width: $input-width;
+    height: $input-width;
+    border: none;
+    // margin: 10px;
+    font-size: 25px;
+    text-align: center;
+    @extend .char__banner;
+  }
 }
 
+.input--edit {
+  animation: fill-dots 1.5s linear infinite;
+}
+
+@keyframes fill-dots {
+  from {
+    outline-style: dashed;
+  }
+  to {
+    outline-style: solid;
+  }
+}

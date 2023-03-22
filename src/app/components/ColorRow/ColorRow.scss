@@ -1,7 +1,7 @@
 @import "../../../styling/Mixins";
 
 .color-row {
-    position: fixed;
+    position: sticky;
     top: 0;
     
     @include flex-config(row, center, center, 0px, "even");
