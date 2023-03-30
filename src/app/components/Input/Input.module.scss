@@ -6,29 +6,41 @@
   border-radius: 30px;
   // outline: $border lighten($color, 10%) solid;
   height: 40px;
+  transition: 0.5s;
+
 }
 
 .char__banner--blue {
   @extend .char__banner;
   background-color: lighten($blue-rgb, 20%);
-  outline: 5px lighten($blue-rgb, 10%) solid;
+  outline: 3px lighten($blue-rgb, 10%) solid;
 }
 
 .char__banner--green {
   @extend .char__banner;
   background-color: lighten($green-rgb, 20%);
-  outline: 5px lighten($green-rgb, 10%) solid;
+  outline: 3px lighten($green-rgb, 10%) solid;
 }
 
 .char__banner--pink {
   @extend .char__banner;
   background-color: lighten($pink-rgb, 20%);
-  outline: 5px lighten($pink-rgb, 10%) solid;
+  outline: 3px lighten($pink-rgb, 10%) solid;
+}
+
+.char__banner--orange {
+  @extend .char__banner;
+  background-color: lighten($orange-rgb, 20%);
+  outline: 3px lighten($orange-rgb, 10%) solid;
+}
+
+:global(textarea) {
+  @extend .char__banner--pink;
 }
 
 :global(.custom--input) {
   //   height: 50px;
-//   width: 100%;
+  //   width: 100%;
   border-radius: 25px;
   border: none;
   // margin-left: 20px;
@@ -58,7 +70,7 @@
   position: relative;
   text-transform: uppercase;
   @extend .char__banner;
-  outline-width: 2px;
+  outline-width: 3px;
   @include flex-config(row, space-between, center, 10px, "uneven");
   input.bubble__input {
     padding: 0px;
@@ -74,7 +86,7 @@
     width: 100%;
     transform-origin: bottom right;
     transition: 0.5s;
-    outline-width: 2px;
+    outline-width: 3px;
     border: none;
     // margin: 10px;
     text-align: center;
@@ -106,7 +118,7 @@
   }
 }
 
-.input--edit {
+:global(.input--edit) {
   animation: fill-dots 1.5s linear infinite;
 }
 

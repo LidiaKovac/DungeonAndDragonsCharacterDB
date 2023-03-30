@@ -10,7 +10,7 @@ interface InputProps {
     className?: string
     style?: Object
     hasSubBubble?: boolean
-    color: "pink" | "green" | "blue"
+    color: "pink" | "green" | "blue" | "orange"
     labelVal?: string
     subBubbleVal?: string
 }

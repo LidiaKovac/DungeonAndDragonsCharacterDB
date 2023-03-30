@@ -1,7 +1,7 @@
 import { combineReducers, configureStore, Reducer } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
-import  charSlice  from "./slices/charSlice"
-import  passiveSlice  from "./slices/passiveSlice"
+import charSlice from "./slices/charSlice"
+import passiveSlice from "./slices/passiveSlice"
 import userSlice from "./slices/userSlice"
 import { persistReducer, persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage"
@@ -30,7 +30,7 @@ const persistedReducer = persistReducer(
     storage,
   },
   baseReducer
-) 
+)
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -38,7 +38,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-    devTools: process.env.NODE_ENV === 'development'
+  devTools: process.env.NODE_ENV === 'development'
   // può esserci solo un valore per reducer nello store
 })
 

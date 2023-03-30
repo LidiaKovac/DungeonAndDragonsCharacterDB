@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ColorRow from './app/components/ColorRow/ColorRow';
+import { Loader } from './app/components/Loader/Loader';
 import { Navbar } from './app/components/Navbar/Navbar';
 import { Character } from './app/views/Character/Character';
 import Dashboard from './app/views/Dashboard/Dashboard';

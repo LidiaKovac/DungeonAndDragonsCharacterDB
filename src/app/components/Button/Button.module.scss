@@ -6,7 +6,7 @@
 
     align-self: center;
     // margin: 20px;
-    background-color: $orange-hex;
+    // background-color: $orange-hex;
     border: none;
     border-radius: 25px;
     padding: {
@@ -16,14 +16,14 @@
     font-weight: bold;
     cursor: pointer;
     transition: .2s;
-    &:hover {
-        background-color: lighten($orange-hex, 20%);
-    }
+    // &:hover {
+    //     background-color: lighten($orange-hex, 20%);
+    // }
     &:disabled {
-        background-color: lighten($orange-hex, 20%);
+        // background-color: lighten($orange-hex, 20%);
         cursor: not-allowed;
         svg {
-            color: darken($orange-hex, 20%)
+            // color: darken($orange-hex, 20%)
         }
         a {
             pointer-events: none;

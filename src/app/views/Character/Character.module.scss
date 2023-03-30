@@ -10,6 +10,29 @@
     top: 20px;
     bottom: 20px;
   }
+  @include flex-config(column, center, center, 5px, "uneven");
+  .color__picker-group {
+  @include flex-config(row, center, center, 5px, "uneven");
+    padding: 10px;
+    margin: 10px;
+    border: 2px dashed $blue-rgb;
+    border-radius: 50px;
+    width: fit-content;
+    position: relative;
+    h4 {
+      position: absolute;
+      background-color: white;
+      color: $text;
+      top: -15px;
+      left: 15px;
+      margin: 0px;
+    }
+    .color__picker {
+      width: 50px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+    }
+  }
   form.char__header {
     .character__options {
       @include flex-config(row, center, center, 5px, "uneven");
@@ -23,7 +46,7 @@
         }
       }
     }
-    
+
     .char__anagraphics {
       @include flex-config(row, center, center, 40px, "uneven");
       flex-wrap: wrap;
@@ -32,8 +55,6 @@
         justify-content: flex-end;
         position: relative;
         .char__name {
-          // @extend .char__banner--blue;
-          // 20px * 1.5 => 1.5 is the line height!
           font-size: 20px;
         }
         svg {
@@ -43,54 +64,21 @@
           $width: 80px;
           width: $width;
           height: $width;
-          animation: rainbow 10s infinite linear;
-          background-color: lighten($blue-rgb, 10%);
+          // animation: rainbow 10s infinite linear;
+          transform: translateY(-50%);
+
           padding: 10px;
           border-radius: 100px;
         }
       }
 
       .char__game-data {
-        // @extend .char__banner--blue;
         @include flex-config(row, center, center, 15px, "even");
 
         flex-wrap: wrap;
         max-width: 500px;
         height: fit-content;
         padding: 20px;
-
-        // .char__class-level {
-        //   // @extend .char__banner--pink;
-
-        //   @include flex-config(row, space-between, center, 0px);
-        //   padding-right: 0px;
-        //   outline-width: 2px;
-
-        //   input {
-        //     // @extend .char__banner--pink;
-        //     outline-width: 0px;
-        //   }
-        //   .char__class {
-        //     width: calc(100% - 80px);
-        //   }
-        //   .char__level {
-        //     // @extend .char__banner--pink;
-        //     flex: unset;
-        //     width: 40px;
-        //     min-width: 10px;
-
-        //     line-height: 40px;
-        //     font-size: 25px;
-        //     text-align: center;
-        //     font-kerning: 40px;
-        //   }
-        // }
-        // > input {
-        //   width: cols(20px, 2);
-        //   // @extend .char__banner--pink;
-        //   outline-width: 2px;
-        //   min-width: 200px;
-        // }
       }
     }
   }
@@ -108,7 +96,6 @@
         @include flex-config(column, flex-start, flex-start, 20px, "uneven");
         button {
           width: 100%;
-          //FIX IN BUTTIN MODULE!!
         }
       }
     }
@@ -120,14 +107,12 @@
       form.inspo__wrap {
         margin: 10px;
         @include flex-config(row, space-around, center, 20px, "uneven");
-        // @extend .char__banner--blue;
 
         outline-width: 2px;
         position: relative;
         $input-width: 40px;
 
         input {
-          // @extend .char__banner--blue;
           width: $input-width;
           height: $input-width;
           text-transform: uppercase;
@@ -144,14 +129,11 @@
       @include flex-config(column, space-between, flex-start, 20px, "uneven");
       .single__ab {
         max-height: 50px;
-        // max-width: 200px;
         text-transform: uppercase;
-        // @extend .char__banner--green;
         outline-width: 2px;
         @include flex-config(row, space-between, center, 10px, "uneven");
         padding: 0px;
         padding-left: 20px;
-        // height: 70px;
         height: fit-content;
         width: 100%;
         position: relative;
@@ -166,10 +148,8 @@
           width: $input-width;
           height: $input-width;
           border: none;
-          // margin: 10px;
           font-size: 25px;
           text-align: center;
-          // @extend .char__banner--green;
         }
 
         input {
@@ -184,7 +164,6 @@
           font-kerning: $input-width;
           transform: translate(40%, -40%) scale(0.6);
         }
-        // background-color: ;
       }
     }
   }
@@ -192,7 +171,6 @@
     textarea {
       width: 100%;
       border: none;
-      // @extend .char__banner--pink;
       height: unset;
       background-color: transparent;
       padding: 20px;
@@ -221,8 +199,6 @@
     }
   }
 }
-
-
 
 @keyframes swap {
   0% {

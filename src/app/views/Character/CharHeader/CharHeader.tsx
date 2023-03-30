@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from "react"
+import { FormEvent, KeyboardEvent, useState } from "react"
 import { FaDiceD20, FaMoon, FaPencilAlt } from "react-icons/fa"
 import { MdPhotoLibrary } from "react-icons/md"
 import { RiFilePaper2Line } from "react-icons/ri"
@@ -7,34 +7,36 @@ import { Link } from "react-router-dom"
 import Button from "../../../components/Button/Button"
 import { BubbleInput } from "../../../components/Input/BubbleInput/BubbleInput"
 import Input from "../../../components/Input/Input"
-import { RootState, useAppSelector } from "../../../redux"
+import { RootState, useAppDispatch, useAppSelector } from "../../../redux"
 import { editChar, setEdit } from "../../../redux/slices/charSlice"
 import styles from "../Character.module.scss"
 
 export const CharacterHeader = () => {
   const edit = useAppSelector((state: RootState) => state.character.editMode)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const char = useSelector(
     (state: RootState) => state.character.selectedChar.char
   )
   const me = useSelector((state: RootState) => state.user.logged)
   const token = useSelector((state: RootState) => state.token.token)
+  const color = useAppSelector((state: RootState) => state.character.color)
+
   // const handleEdit = (ev: FormEvent) => {
   //     ev.preventDefault()
   //     console.log(ev);
 
   // }
 
-  const handleChange = (ev: KeyboardEvent) => {
-    if (ev.key === "Enter") {
-      let form = ev.currentTarget.closest("form")
-      const edited = new FormData(form!)
-      dispatch(editChar({ token, id: char.id, data: edited }))
-      setEdit()
-    }
+  const handleSubmit = async (ev: FormEvent) => {
+    ev.preventDefault()
+    let form = ev.currentTarget as HTMLFormElement
+    const edited = new FormData(form)
+    await dispatch(editChar({ token, id: char.id, data: edited }))
+    dispatch(setEdit())
   }
   return (
-    <form className={styles["char__header"]}>
+    <form className={styles["char__header"]} onSubmit={handleSubmit}>
+      <button type="submit" style={{ display: "none" }}></button>
       <div className={styles["character__options"]}>
         <Button
           onClick={() => {
@@ -58,7 +60,7 @@ export const CharacterHeader = () => {
       <div className={styles["char__anagraphics"]}>
         <div className={styles["char__banner-name"]}>
           <Input
-            color='blue'
+            color={color}
             name="name"
             disabled={!edit}
             // onKeyDown={handleChange}
@@ -70,11 +72,11 @@ export const CharacterHeader = () => {
             }
             defaultVal={char?.name}
           />
-          <FaDiceD20 />
+          <FaDiceD20 className={styles[`bg--${color}`]} />
         </div>
         <div className={styles["char__game-data"]}>
-            {/* <Input
-              color={"pink"}
+          {/* <Input
+              color={color}
               className={styles["char__class"]}
               name=""
               disabled={true}
@@ -84,17 +86,17 @@ export const CharacterHeader = () => {
 
             <Input
             /> */}
-            <BubbleInput color={"pink"}
-              side='right'
-              disabled={!edit}
-              // onKeyDown={handleChange}
-              name="level"
-              type="number"
-              labelVal={char.Class.name}
-              defaultVal={char.level}
-            />
+          <BubbleInput color={color}
+            side='right'
+            disabled={!edit}
+            // onKeyDown={handleChange}
+            name="level"
+            type="number"
+            labelVal={char.Class?.name}
+            defaultVal={char.level}
+          />
           <Input
-            color='pink'
+            color={color}
 
             name=""
             type='text' disabled={true}
@@ -102,7 +104,7 @@ export const CharacterHeader = () => {
             className={styles["char__race"]}
           />
           <Input
-            color='pink'
+            color={color}
 
             name=""
             type='text'
@@ -111,7 +113,7 @@ export const CharacterHeader = () => {
             defaultVal={me.nickname}
           />
           <Input
-            color='pink'
+            color={color}
 
             name=""
             type='text'

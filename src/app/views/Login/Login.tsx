@@ -14,12 +14,14 @@ import { useSelector } from "react-redux"
 import { getMe } from "../../redux/slices/userSlice"
 import { AsyncThunkAction, PayloadAction, ThunkAction } from "@reduxjs/toolkit"
 import { FulfilledActionFromAsyncThunk, RejectedActionFromAsyncThunk } from "@reduxjs/toolkit/dist/matchers"
+import { Loader } from "../../components/Loader/Loader"
 
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
   const token = useSelector((state:RootState)=> state.token.token)
   const error = useSelector((state: RootState) => state.token.error)
+  const loading = useSelector((state:RootState)=> state.token.loading)
   const moveTo = useNavigate()
 
   useEffect(()=> {
@@ -55,6 +57,7 @@ const Login = () => {
   }
   return (
     <div className="login__wrap">
+      <Loader loading={loading}/>
       <form className="login" onSubmit={handleSubmit}>
         <h3>Login</h3>
         <Input color="blue" name="email" type={false} />

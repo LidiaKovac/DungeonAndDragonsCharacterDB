@@ -1,22 +1,57 @@
 /* Color Theme Swatches in Hex */
-$blue-hex: #5D6AFF;
-$green-hex: #47E6B1;
-$yellow-hex: #DCFC5B;
-$orange-hex: #E6A547;
-$pink-hex: #FE4F82;
+$blue-hex: #5d6aff;
+$green-hex: #47e6b1;
+$yellow-hex: #dcfc5b;
+$orange-hex: #e6a547;
+$pink-hex: #fe4f82;
 
 /* Color Theme Swatches in RGB */
-$blue-rgb: rgb(93,106,255, 1);
-$green-rgb: rgb(71,230,177, 1);
-$yellow-rgb: rgb(220,252,91, 1);
-$orange-rgb: rgb(230,165,71, 1);
-$pink-rgb: rgb(254,79,130, 1);
-
+$blue-rgb: rgb(93, 106, 255, 1);
+$green-rgb: rgb(71, 230, 177, 1);
+$yellow-rgb: rgb(220, 252, 91, 1);
+$orange-rgb: rgb(230, 165, 71, 1);
+$pink-rgb: rgb(254, 79, 130, 1);
 
 $bg--light: lighten($blue-hex, 25%);
-$bg--blue: rgb(93,106,255, .5);
-$bg--orange: rgb(230,165,71, .5);
-$text: #343434
+$bg--blue: rgb(93, 106, 255, 0.5);
+$bg--orange: rgb(230, 165, 71, 0.5);
+$text: #343434;
 
+$colors: (
+  blue: $blue-rgb,
+  pink: $pink-rgb,
+  orange: $orange-rgb,
+  yellow: $yellow-rgb,
+  green: $green-rgb,
+);
 
-
+@each $name, $col in $colors {
+  .bg--#{$name} {
+    background-color: $col;
+    transition: 0.2s;
+    &:hover {
+      background-color: lighten($col, 20%);
+      transform: scale(1.1);
+    }
+    &:disabled {
+      background-color: mix($col, grey);
+    }
+    @if ($col == $blue-rgb or $col == $pink-rgb) {
+      color: white;
+      a {
+        color: white!important;
+      }
+    } @else {
+      color: black;
+      a {
+        color: black!important;
+      }
+    }
+  }
+  .outline--#{$name} {
+    outline: 2px solid $col
+  }
+  .outline--#{$name}-darker {
+    outline: 3px solid darken($col, 10%)
+  }
+}

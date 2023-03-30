@@ -11,7 +11,8 @@ const initialState: charInitialState = {
     modifiers: {} as Modifiers,
     skills: []
   },
-  editMode: false
+  editMode: false,
+  color: "blue"
 }
 
 export const fetchAllChars = createAsyncThunk("character/fetchAllChars", (token: string, { rejectWithValue }): Promise<CharBody[] | string> => {
@@ -106,6 +107,9 @@ const charSlice = createSlice({
     },
     setEdit: (state) => {
       state.editMode = !state.editMode
+    },
+    setColor: (state,action) => {
+      state.color = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -134,13 +138,13 @@ const charSlice = createSlice({
       state.error = action.payload as string
     })
     builder.addCase(editChar.pending, (state, action) => {
-      // state.loading = true
+      state.loading = true
     })
     builder.addCase(editChar.fulfilled, (state, action) => {
       state.selectedChar.modifiers = action.payload.modifiers
       state.selectedChar.char = action.payload.char
       state.selectedChar.skills = action.payload.skills
-      // state.editMode = false
+      state.editMode = false
 
       state.loading = false
     })
@@ -167,5 +171,5 @@ const charSlice = createSlice({
     // })
   },
 })
-export const { setChar, setSingleThrow, setThrows, setEdit } = charSlice.actions
+export const { setChar, setSingleThrow, setThrows, setEdit, setColor } = charSlice.actions
 export default charSlice.reducer

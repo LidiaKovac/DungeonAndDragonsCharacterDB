@@ -1,7 +1,7 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { fetchCharById } from "../../redux/slices/charSlice"
+import { fetchCharById, setColor } from "../../redux/slices/charSlice"
 import { getMe } from "../../redux/slices/userSlice"
 import { CharacterHeader } from "./CharHeader/CharHeader"
 import { CharAbilities } from "./CharAbilities/CharAbilities"
@@ -14,11 +14,14 @@ import { CharDescription } from "./CharDescription/CharDescription"
 import { RiZzzLine } from "react-icons/ri"
 import { CharInspoPoint } from "./CharInspirationPoints/CharInspirationPoints"
 import { CharProf } from "./CharProf/CharProf"
+import { Loader } from "../../components/Loader/Loader"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
   const loading = useSelector((state: RootState) => state.character.loading)
   const token = useAppSelector((state: RootState) => state.token.token)
+  const color = useAppSelector((state: RootState) => state.character.color)
+
   // const error = useAppSelector((state: RootState) => state.token.error)
 
   const { id } = useParams()
@@ -33,33 +36,65 @@ export const Character = () => {
     //eslint-disable-next-line
   }, [])
   return (
-    loading || (
-      <>
-        <div className={styles["character__wrap"]}>
+    <>
+      <Loader loading={loading} />
 
-          <CharacterHeader />
-          <div className={styles["char-sheet__main"]}>
-            <div className={styles["char__body-column"]}>
-              <CharAbilities />
-              <div className={styles["char__rest-btns"]}>
+      <div className={styles["character__wrap"]}>
+        <div className={styles["color__picker-group"]}>
+          <h4>Pick a color</h4>
+          <div
+            onClick={() => asyncDispatch(setColor("blue"))}
+            className={`${styles["color__picker"]} ${styles["bg--blue"]} ${color === "blue" ? styles["outline--blue-darker"] : ""}`}
+            
+          ></div>
+          <div
+            onClick={() => asyncDispatch(setColor("orange"))}
+            className={`${styles["color__picker"]} ${styles["bg--orange"]} ${color === "orange" ? styles["outline--orange-darker"] : ""}`}
+          ></div>
+          <div
+            onClick={() => asyncDispatch(setColor("pink"))}
+            className={`${styles["color__picker"]} ${styles["bg--pink"]} ${color === "pink" ? styles["outline--pink-darker"] : ""}`}
+          ></div>
+          <div
+            onClick={() => asyncDispatch(setColor("green"))}
+            className={`${styles["color__picker"]} ${styles["bg--green"]} ${color === "green" ? styles["outline--green-darker"] : ""}`}
+          ></div>
+        </div>
 
-                <Button disabled={true} text={<span>Long rest <FaCampground /></span>} />
-                <Button disabled={true} text={<span>Short rest <RiZzzLine /></span>} />
-              </div>
-
+        <CharacterHeader />
+        {/* add choose color option here */}
+        <div className={styles["char-sheet__main"]}>
+          <div className={styles["char__body-column"]}>
+            <CharAbilities />
+            <div className={styles["char__rest-btns"]}>
+              <Button
+                disabled={true}
+                text={
+                  <span>
+                    Long rest <FaCampground />
+                  </span>
+                }
+              />
+              <Button
+                disabled={true}
+                text={
+                  <span>
+                    Short rest <RiZzzLine />
+                  </span>
+                }
+              />
             </div>
-            <div className={styles["char__body-second-col"]}>
-              <CharInspoPoint/>
-              <CharProf/>
+          </div>
+          <div className={styles["char__body-second-col"]}>
+            <CharInspoPoint />
+            <CharProf />
             <CharSkills />
-            </div>
-            <div className={styles["char__body-third-col"]}>
-
-            </div>
+          </div>
+          <div className={styles["char__body-third-col"]}>
             <CharDescription />
           </div>
         </div>
-      </>
-    )
+      </div>
+    </>
   )
 }

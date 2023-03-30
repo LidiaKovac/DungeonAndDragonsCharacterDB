@@ -7,6 +7,8 @@ export const CharDescription = () => {
     const asyncDispatch = useAppDispatch()
     const token = useAppSelector((state: RootState) => state.token.token)
     const { id, description } = useAppSelector((state: RootState) => state.character.selectedChar.char)
+    const color = useAppSelector((state: RootState) => state.character.color)
+
     const handleKeyDown = (ev: KeyboardEvent) => {
         if (ev.key === "Enter") {
             asyncDispatch(editChar({ token, id, data: new FormData(ev.currentTarget.parentElement as HTMLFormElement) }))
@@ -15,5 +17,5 @@ export const CharDescription = () => {
     const handleBlur = (ev: React.FocusEvent) => {
         asyncDispatch(editChar({ token, id, data: new FormData(ev.currentTarget!.parentElement as HTMLFormElement) }))
     }
-    return (<> <form className={styles["character__description"]}> <textarea className={edit ? styles["input--edit"] : ""} disabled={!edit} defaultValue={description} onBlur={handleBlur} onKeyUp={handleKeyDown} name="description" id="" rows={40}></textarea> </form> </>)
+    return (<> <form className={`${styles["character__description"]} `}> <textarea className={edit ? `input--edit ${styles[`outline--${color}`]}`: styles[`outline--${color}`]} disabled={!edit} defaultValue={description} onBlur={handleBlur} onKeyUp={handleKeyDown} name="description" id="" rows={40}></textarea> </form> </>)
 }

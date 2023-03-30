@@ -16,7 +16,9 @@ const Homepage = () => {
   })
  }, [])
   return (
+
     <div className="home__wrap bg--light">
+
       <div className="home__titles">
 
         <h1>DAAS</h1>

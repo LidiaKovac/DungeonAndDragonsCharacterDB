@@ -2,16 +2,16 @@
 @import "../../../../../styling/Colors";
 form.skill__form {
   @include flex-config(column, flex-start, flex-start, 10px, "uneven");
+
   label {
     display: flex;
     padding: 5px;
     .skill__name {
-
       min-width: 100px;
       @include ellipsis;
     }
-    > div.skill__ab {
-      background-color: lighten($orange-rgb, 20%);
+    .skill__ab {
+      // background-color: lighten($orange-rgb, 20%);
       padding: 2px;
       padding-inline: 8px;
       border-radius: 20px;
@@ -19,9 +19,24 @@ form.skill__form {
       width: 50px;
       text-align: center;
     }
-    &.skill__prof {
-        background-color: $orange-rgb;
-        border-radius: 20px;
+  }
+  @each $name, $col in $colors {
+    .skill__ab--#{$name} {
+      @extend .skill__ab;
+      background-color: lighten($col, 20%);
+    }
+    .skill__prof--#{$name} {
+      background-color: $col;
+      border-radius: 20px;
+      @if ($col == $blue-rgb or $col == $pink-rgb) {
+        .skill__name {
+          color: white;
+        }
+      } @else {
+        .skill__name {
+          color: black;
+        }
+      }
     }
   }
 }

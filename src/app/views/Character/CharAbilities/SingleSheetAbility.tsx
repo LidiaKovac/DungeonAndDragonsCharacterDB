@@ -8,17 +8,21 @@ export const SingleSheetAbility = ({ ab }: { ab: string }) => {
   const { char, modifiers } = useAppSelector(
     (state: RootState) => state.character.selectedChar
   )
+  const color = useAppSelector((state: RootState) => state.character.color)
+
   return (
     <BubbleInput
       side="right"
       name={ab}
       type="number"
-      color="green"
+      color={color}
       defaultVal={char[ab]}
       hasSubBubble={true}
-      subBubbleVal={modifiers[ab]?.find(
-        (abilityMod: SingleMod) => abilityMod.source === "die"
-      ).amount}
+      subBubbleVal={
+        modifiers[ab]?.find(
+          (abilityMod: SingleMod) => abilityMod.source === "die"
+        ).amount
+      }
     />
   )
 }

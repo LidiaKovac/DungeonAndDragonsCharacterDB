@@ -73,6 +73,7 @@ interface CharBody {
   
 }
 
+
 interface defaultInitialState {
   loading: boolean
   error: string | null
@@ -112,6 +113,7 @@ interface charInitialState extends defaultInitialState {
     skills: Array<Skill>
   }
   editMode :boolean
+  color: "blue" | "pink" | "orange" | "yellow" | "green"
 }
 
 
