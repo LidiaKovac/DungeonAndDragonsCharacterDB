@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button"
 
 import "./Login.scss"
 import {useEffect} from "react"
-import { RootState, useAppDispatch } from "../../redux"
+import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
 import { useNavigate } from "react-router-dom"
 import { Alert } from "../../components/Alert/Alert"
@@ -19,9 +19,9 @@ import { Loader } from "../../components/Loader/Loader"
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
-  const token = useSelector((state:RootState)=> state.token.token)
-  const error = useSelector((state: RootState) => state.token.error)
-  const loading = useSelector((state:RootState)=> state.token.loading)
+  const token = useAppSelector((state:RootState)=> state.token.token)
+  const error = useAppSelector((state: RootState) => state.token.error)
+  const loading = useAppSelector((state:RootState)=> state.user.loading)
   const moveTo = useNavigate()
 
   useEffect(()=> {

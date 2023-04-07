@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux"
 import { ChangeEvent, useEffect, useState } from "react"
-import { RootState, useAppDispatch, useAppSelector } from "../../../../redux"
-import Input from "../../../../components/Input/Input"
+import { RootState, useAppDispatch, useAppSelector } from "../../../redux"
+import Input from "../../../components/Input/Input"
 import styles from "./Skills.module.scss"
-import { addSkill } from "../../../../redux/slices/charSlice"
+import { addSkill } from "../../../redux/slices/charSlice"
 export const CharSkills = () => {
   const asyncDispatch = useAppDispatch()
   const { modifiers, Skills, Class, id, skillProfLeft } = useAppSelector(

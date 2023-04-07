@@ -7,7 +7,7 @@ import { CharacterHeader } from "./CharHeader/CharHeader"
 import { CharAbilities } from "./CharAbilities/CharAbilities"
 import { useSelector } from "react-redux"
 import styles from "./Character.module.scss"
-import { CharSkills } from "./CharSkills/Skills/Skills"
+import { CharSkills } from "./CharSkills/Skills"
 import Button from "../../components/Button/Button"
 import { FaCampground, FaDiceD20, FaDiceD6 } from "react-icons/fa"
 import { CharDescription } from "./CharDescription/CharDescription"
@@ -15,12 +15,17 @@ import { RiZzzLine } from "react-icons/ri"
 import { CharInspoPoint } from "./CharInspirationPoints/CharInspirationPoints"
 import { CharProf } from "./CharProf/CharProf"
 import { Loader } from "../../components/Loader/Loader"
+import { CharAC } from "./CharLifeData/CharAC"
+import { CharRoundProp } from "./CharRoundProp/CharRoundProp"
+import { TbBarrierBlock } from "react-icons/tb"
+import { CharHP } from "./CharHP/CharHP"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
   const loading = useSelector((state: RootState) => state.character.loading)
   const token = useAppSelector((state: RootState) => state.token.token)
   const color = useAppSelector((state: RootState) => state.character.color)
+  const { char: { Race }, modifiers } = useAppSelector((state: RootState) => state.character.selectedChar)
 
   // const error = useAppSelector((state: RootState) => state.token.error)
 
@@ -45,7 +50,7 @@ export const Character = () => {
           <div
             onClick={() => asyncDispatch(setColor("blue"))}
             className={`${styles["color__picker"]} ${styles["bg--blue"]} ${color === "blue" ? styles["outline--blue-darker"] : ""}`}
-            
+
           ></div>
           <div
             onClick={() => asyncDispatch(setColor("orange"))}
@@ -91,6 +96,15 @@ export const Character = () => {
             <CharSkills />
           </div>
           <div className={styles["char__body-third-col"]}>
+            <div className={styles["char__body-ac-init-speed"]}>
+
+            <CharAC />
+            <CharRoundProp name="Initiative" value={modifiers?.dex?.total} />
+            <CharRoundProp name="Speed" value={<TbBarrierBlock />} />
+            </div>
+              <CharHP/>
+          </div>
+          <div className={styles["char__body-fourth-col"]}>
             <CharDescription />
           </div>
         </div>

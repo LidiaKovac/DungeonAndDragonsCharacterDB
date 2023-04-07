@@ -39,19 +39,71 @@ $colors: (
     @if ($col == $blue-rgb or $col == $pink-rgb) {
       color: white;
       a {
-        color: white!important;
+        color: white !important;
       }
     } @else {
       color: black;
       a {
-        color: black!important;
+        color: black !important;
       }
     }
   }
+  .bg--#{$name}-lighter {
+    background-color: lighten($col, 20%);
+    transition: 0.2s;
+    &:hover {
+      background-color: lighten($col, 20%);
+      transform: scale(1.1);
+    }
+    &:disabled {
+      background-color: mix($col, grey);
+    }
+    
+  }
+  .bg--#{$name}-lightest {
+    background-color: lighten($col, 25%);
+    transition: 0.2s;
+    &:hover {
+      background-color: lighten($col, 25%);
+      transform: scale(1.1);
+    }
+    &:disabled {
+      background-color: mix($col, grey);
+    }
+    
+  }
   .outline--#{$name} {
-    outline: 2px solid $col
+    outline: 2px solid $col;
   }
   .outline--#{$name}-darker {
-    outline: 3px solid darken($col, 10%)
+    outline: 3px solid darken($col, 10%);
+  }
+  .outline--#{$name}-medium {
+    outline: 3px lighten($col, 10%) solid;
+  }
+  .fill--#{$name}-lighter {
+    fill: $col
+  }
+  .fill--#{$name}-medium {
+    fill: lighten($col, 10%)
+  }
+  .fill--#{$name}-lighter {
+    fill: lighten($col, 20%)
+  }
+  .color--#{$name} {
+    color: $col;
+    div {
+      @if ($col == $blue-rgb or $col == $pink-rgb) {
+        color: white;
+      } @else {
+        color: $text;
+      }
+    }
+  }
+  .color--#{$name}--light {
+    color: lighten($col, 20%);
+    div {
+      color: $text;
+    }
   }
 }

@@ -1,5 +1,5 @@
-@import "../../../../../styling/Mixins";
-@import "../../../../../styling/Colors";
+@import "../../../../styling/Mixins";
+@import "../../../../styling/Colors";
 form.skill__form {
   @include flex-config(column, flex-start, flex-start, 10px, "uneven");
 

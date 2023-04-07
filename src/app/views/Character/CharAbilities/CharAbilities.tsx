@@ -11,7 +11,6 @@ export const CharAbilities = () => {
   const asyncDispatch = useAppDispatch() 
   const token = useAppSelector((state:RootState)=> state.token.token) 
   const id = useAppSelector((state:RootState)=> state.character.selectedChar.char.id) 
-  console.log(process.env.NODE_ENV)
 
   const handleSubmit = async(ev:FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
