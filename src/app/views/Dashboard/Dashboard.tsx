@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
   const moveTo = useNavigate()
   const token = useAppSelector((state: RootState) => state.token.token)
-  const chars:CharBody[] = useAppSelector((state: RootState) => state.character.myChars)
+  const chars: CharBody[] = useAppSelector((state: RootState) => state.character.myChars)
 
 
   const asyncDispatch = useAppDispatch()
@@ -23,7 +23,7 @@ const Dashboard = () => {
     asyncDispatch(getMe(token)).then(res => {
       if (res.type.includes("rejected")) moveTo("/login")
     }).then(() => {
-      
+
       asyncDispatch(fetchAllChars(token))
     })
     //eslint-disable-next-line
@@ -37,7 +37,7 @@ const Dashboard = () => {
       <CreateNew show={() => setShowModal(true)} />
       {chars.map((char) => {
         return <SingleChar char={char} />
-      })} 
+      })}
       {showModal && <Modal close={() => setShowModal(false)} />}
     </div>
   )

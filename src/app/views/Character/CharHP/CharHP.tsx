@@ -1,5 +1,6 @@
 import { RootState, useAppDispatch, useAppSelector } from "../../../redux/"
 import styles from "../Character.module.scss"
+import { TbHeartbeat } from "react-icons/tb"
 export const CharHP = () => {
   //   const asyncDispatch = useAppDispatch()
   const color = useAppSelector((state: RootState) => state.character.color)
@@ -8,8 +9,9 @@ export const CharHP = () => {
   )
   return (
     <div className={`${styles["char__hp"]} ${styles[`bg--${color}-lighter`]}`}>
-      <div className={`${styles["max__hp"]} ${styles[`outline--${color}`]}`}>
-        {hp || "N/A"}
+      <div className={`${styles["max__hp"]} ${styles[`outline--${color}-medium`]}`}>
+        <TbHeartbeat className={`${styles[`color--${color}--lighter`]}`} />
+        <span>{hp || "N/A"} </span>
       </div>
       <div
         className={`${styles["curr__hp"]} ${styles[`bg--${color}-lighter`]}`}

@@ -58,7 +58,6 @@ $colors: (
     &:disabled {
       background-color: mix($col, grey);
     }
-    
   }
   .bg--#{$name}-lightest {
     background-color: lighten($col, 25%);
@@ -70,7 +69,6 @@ $colors: (
     &:disabled {
       background-color: mix($col, grey);
     }
-    
   }
   .outline--#{$name} {
     outline: 2px solid $col;
@@ -81,14 +79,17 @@ $colors: (
   .outline--#{$name}-medium {
     outline: 3px lighten($col, 10%) solid;
   }
-  .fill--#{$name}-lighter {
-    fill: $col
+  .outline--#{$name}-lighter {
+    outline: 3px lighten($col, 20%) solid;
+  }
+  .fill--#{$name} {
+    fill: $col;
   }
   .fill--#{$name}-medium {
-    fill: lighten($col, 10%)
+    fill: lighten($col, 10%);
   }
   .fill--#{$name}-lighter {
-    fill: lighten($col, 20%)
+    fill: lighten($col, 20%);
   }
   .color--#{$name} {
     color: $col;
@@ -101,7 +102,13 @@ $colors: (
     }
   }
   .color--#{$name}--light {
-    color: lighten($col, 20%);
+    color: lighten($col, 10%);
+    div {
+      color: $text;
+    }
+  }
+  .color--#{$name}--lighter {
+    color: lighten($col, 25%);
     div {
       color: $text;
     }

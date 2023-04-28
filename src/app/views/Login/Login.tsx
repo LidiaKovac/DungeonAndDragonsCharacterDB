@@ -5,7 +5,7 @@ import LoginButton from "../../components/LoginButton/LoginButton"
 import Button from "../../components/Button/Button"
 
 import "./Login.scss"
-import {useEffect} from "react"
+import { useEffect } from "react"
 import { RootState, useAppDispatch, useAppSelector } from "../../redux"
 import { login } from "../../redux/slices/tokenSlice"
 import { useNavigate } from "react-router-dom"
@@ -19,21 +19,21 @@ import { Loader } from "../../components/Loader/Loader"
 const Login = () => {
   const dispatch = useAppDispatch()
   const move = useNavigate()
-  const token = useAppSelector((state:RootState)=> state.token.token)
+  const token = useAppSelector((state: RootState) => state.token.token)
   const error = useAppSelector((state: RootState) => state.token.error)
-  const loading = useAppSelector((state:RootState)=> state.user.loading)
+  const loading = useAppSelector((state: RootState) => state.user.loading)
   const moveTo = useNavigate()
 
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(getMe(token)).then((res: any) => {
-      if(res.type.includes("fulfilled")) {
+      if (res.type.includes("fulfilled")) {
         moveTo("/home")
       } else {
         res.payload.includes("404")
         // moveTo("/signup")
       }
     })
-   }, [])
+  }, [])
 
   const handleSubmit = async (ev: FormEvent) => {
     try {
@@ -57,7 +57,7 @@ const Login = () => {
   }
   return (
     <div className="login__wrap">
-      <Loader loading={loading}/>
+      <Loader loading={loading} />
       <form className="login" onSubmit={handleSubmit}>
         <h3>Login</h3>
         <Input color="blue" name="email" type={false} />
