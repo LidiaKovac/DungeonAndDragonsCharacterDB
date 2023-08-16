@@ -16,7 +16,7 @@ import { FormComponent } from './components/form/form.component';
 import { SelectComponent } from './components/select/select.component';
 import { SingleCharComponent } from './components/single-char/single-char.component';
 import { StageComponent } from './components/stage/stage.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/landing/home.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';

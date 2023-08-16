@@ -18,11 +18,11 @@ $bg--orange: rgb(230, 165, 71, 0.5);
 $text: #343434;
 
 $colors: (
-  blue: $blue-rgb,
-  pink: $pink-rgb,
-  orange: $orange-rgb,
-  yellow: $yellow-rgb,
-  green: $green-rgb,
+  "blue": $blue-rgb,
+  "pink": $pink-rgb,
+  "orange": $orange-rgb,
+  "yellow": $yellow-rgb,
+  "green": $green-rgb,
 );
 
 @each $name, $col in $colors {

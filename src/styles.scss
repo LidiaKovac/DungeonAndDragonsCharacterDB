@@ -1,7 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-@import "./styles/media";
 @import "./styles/colors";
+@import "./styles/mixins";
+@import "./styles/media";
 @import "./styles/inputs";
+
 * {
   box-sizing: border-box;
 }
