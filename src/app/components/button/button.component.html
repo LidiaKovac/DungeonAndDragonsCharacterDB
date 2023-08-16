@@ -1,1 +1,6 @@
-<p>button works!</p>
+<button [ngClass]="{
+  'custom__button--blue': color === 'blue',
+  'custom__button--green': color === 'green',
+  'custom__button--pink': color === 'pink',
+  'custom__button--orange': color === 'orange'
+}" [disabled]="disabled" type={{type}}>{{text}}</button>

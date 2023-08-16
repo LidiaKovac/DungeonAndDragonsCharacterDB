@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-
+  @Input() color!: string
+  @Input() defaultValue!: string
+  @Input() disabled: boolean = false
+  @Input() type:string = "text"
+  @Input() placeholder!: string
+  @Input() id!: string
+  @Input() name!: string
   constructor() { }
 
   ngOnInit(): void {

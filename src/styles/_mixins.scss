@@ -1,0 +1,44 @@
+@import "./Colors";
+@import "https://use.typekit.net/alr5cbb.css";
+@font-face {
+  font-family: nobel, sans-serif;
+  src: url("https://use.typekit.net/alr5cbb.css");
+}
+
+@mixin bg--light--col {
+  background-color: $bg--light;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin font-header {
+  font-family: nobel, sans-serif;
+  font-weight: 800 !important;
+  font-style: italic;
+}
+@mixin flex-config($dir, $long, $short, $gap, $children: "even") {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $long;
+  align-items: $short;
+  gap: $gap;
+  @if ($children == "even") {
+    > * {
+      flex: 1 1 200px;
+    }
+  }
+}
+
+// $colNum: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+@function cols($margin, $colNum) {
+  $width: calc((100% - ($margin * 2)) / $colNum);
+  @return $width;
+}
+
+
+
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

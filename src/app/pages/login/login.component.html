@@ -1,1 +1,11 @@
-<p>login works!</p>
+<div class="login__wrap">
+  <form class="login" #form="ngForm" (submit)="handleSubmit(form)">
+    <h3>Login</h3>
+    <input type="email" class="custom__input--blue" name="email" ngModel >
+    <h3>Password</h3>
+    <input type="password" class="custom__input--blue" name="password" ngModel >
+
+
+    <app-button [color]="'blue'" [type]="'submit'" [text]="'Login'" ></app-button>
+  </form>
+</div>

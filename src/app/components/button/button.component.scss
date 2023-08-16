@@ -1,0 +1,33 @@
+@use "../../../styles/colors";
+:host {
+  width: 100%;
+  .custom__button {
+    width: 100%;
+    height: 50px;
+
+    align-self: center;
+    border: none;
+    border-radius: 25px;
+    padding: {
+      left: 15px;
+      right: 15px;
+    }
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    &:disabled {
+      cursor: not-allowed;
+      svg {
+      }
+      a {
+        pointer-events: none;
+      }
+    }
+  }
+  @each $name, $col in colors.$colors {
+    .custom__button--#{$name} {
+      @extend .custom__button;
+      @extend .bg--#{$name};
+    }
+  }
+}

@@ -1,1 +1,7 @@
-<p>input works!</p>
+<input [ngClass]="{
+  'custom__input--blue`': color === 'blue',
+  'custom__input--green': color === 'green',
+  'custom__input--pink': color === 'pink',
+  'custom__input--orange': color === 'orange'
+}" defaultValue="{{ defaultValue }}" [disabled]="disabled" class="custom__input" type="{{ type }}"
+  placeholder="{{ name }}" id="{{ name }}" name="{{name}}" ngModel />

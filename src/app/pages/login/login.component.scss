@@ -1,0 +1,27 @@
+@import "../../../styles/mixins";
+@import "../../../styles/breakpoints";
+@import "../../../styles/colors";
+
+.login__wrap {
+  background-color: $bg--light;
+  max-width: 100vw;
+  height: 100vh;
+  @include flex-config(column, center, center, 20px, "uneven");
+  .login {
+    @include flex-config(column, center, flex-start, 10px, "uneven");
+    min-width: 350px;
+    width: 22%;
+    height: 60%;
+    background-color: white;
+    border-radius: 40px;
+    padding: 40px;
+    input {
+      width: 100%;
+    }
+    h3 {
+      margin: 0px;
+    }
+
+
+  }
+}
