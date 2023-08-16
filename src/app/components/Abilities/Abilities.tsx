@@ -16,7 +16,7 @@ export const Abilities = () => {
     const saveAbilities = async () => {
         const data = new FormData()
         for (const ab of abs) {
-            data.append(ab, throws[ab])
+            data.append(ab, throws[ab].toString())
         }
         dispatch(editChar({ token, id: selected.id, data }))
 

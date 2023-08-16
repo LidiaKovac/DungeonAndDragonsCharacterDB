@@ -12,7 +12,7 @@ interface InputProps {
     hasSubBubble?: boolean
     color: "pink" | "green" | "blue" | "orange"
     labelVal?: string
-    subBubbleVal?: string
+    subBubbleVal?: string | number
 }
 
 export const BubbleInput: React.FC<InputProps> = ({

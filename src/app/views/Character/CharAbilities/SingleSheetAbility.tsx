@@ -19,7 +19,7 @@ export const SingleSheetAbility = ({ ab }: { ab: string }) => {
       defaultVal={char[ab]}
       hasSubBubble={true}
       subBubbleVal={
-        modifiers[ab]?.total
+        modifiers[ab].mods?.find((mod) => mod.source === "die")?.amount || 0
       }
     />
   )

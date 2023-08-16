@@ -5,9 +5,9 @@ import { SingleSheetAbility } from "./SingleSheetAbility"
 import { editChar, setEdit } from "../../../redux/slices/charSlice"
 import Button from "../../../components/Button/Button"
 import { FaDiceD20 } from "react-icons/fa"
-
+import {abs} from "../../../../utils"
 export const CharAbilities = () => {
-  const abs = ["cha", "str", "con", "dex", "int", "wis"]
+
   const asyncDispatch = useAppDispatch() 
   const token = useAppSelector((state:RootState)=> state.token.token) 
   const id = useAppSelector((state:RootState)=> state.character.selectedChar.char.id) 

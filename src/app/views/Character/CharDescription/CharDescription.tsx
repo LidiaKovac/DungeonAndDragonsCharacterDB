@@ -17,5 +17,5 @@ export const CharDescription = () => {
     const handleBlur = (ev: React.FocusEvent) => {
         asyncDispatch(editChar({ token, id, data: new FormData(ev.currentTarget!.parentElement as HTMLFormElement) }))
     }
-    return (<> <form className={`${styles["character__description"]} `}> <textarea className={edit ? `input--edit ${styles[`outline--${color}`]}`: styles[`outline--${color}`]} disabled={!edit} defaultValue={description} onBlur={handleBlur} onKeyUp={handleKeyDown} name="description" id="" rows={40}></textarea> </form> </>)
+    return (<> <form className={`${styles["character__description"]} `}> <textarea className={edit ? `input--edit ${styles[`outline--${color}`]}` : styles[`outline--${color}`]} disabled={!edit} defaultValue={description} onBlur={handleBlur} onKeyUp={handleKeyDown} name="description" id="" rows={40}></textarea> </form> </>)
 }

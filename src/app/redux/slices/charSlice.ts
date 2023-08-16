@@ -34,6 +34,7 @@ export const fetchAllChars = createAsyncThunk("character/fetchAllChars", (token:
 
 export const fetchCharById = createAsyncThunk("character/fetchCharById", ({ token, id }: { token: string, id: string }, { rejectWithValue }): Promise<{ char: CharBody, modifiers: Modifiers, skills: Array<{ name: string, ab: string }> }> => {
   return new Promise(async (res, rej) => {
+    console.log("ok")
     let resp = await fetch(`${process.env.REACT_APP_API}api/character/${id}`, {
       headers: {
         authorization: `Bearer ${token}`

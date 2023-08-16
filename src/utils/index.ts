@@ -1,4 +1,4 @@
-import {useRef, useEffect} from "react"
+import { useRef, useEffect } from "react"
 export const die = (max: number): number => {
     return Math.floor(Math.random() * (max - 1)) + 1
 }
@@ -41,10 +41,12 @@ export const profs = (chosenClass: DNDClass, lvl: number) => {
     return profValues
 }
 
-export function usePrevious(value:string) {
+export function usePrevious(value: string) {
     const ref = useRef<string>();
     useEffect(() => {
-      ref.current = value;
+        ref.current = value;
     });
     return ref.current;
-   }
+}
+
+export const abs = ["str", "dex", "con", "int", "wis", "cha"]

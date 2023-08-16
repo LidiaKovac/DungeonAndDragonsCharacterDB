@@ -1,0 +1,11 @@
+@import "../../../../styling/Mixins";
+.round__wrap {
+    margin: 10px 0;
+    button {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .single__round {
+        @include flex-config(row, center, space-around, 10px, "uneven")
+    }
+}

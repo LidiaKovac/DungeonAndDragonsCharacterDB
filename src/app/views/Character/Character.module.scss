@@ -124,8 +124,9 @@
       }
     }
     .char__body-third-col {
+      
       .char__body-ac-init-speed {
-        @include flex-config(row, space-between, center, 10px, "uneven");
+        @include flex-config(row, space-between, center, 20px, "uneven");
       }
       $size: 50px;
       .char__hp {
@@ -318,6 +319,7 @@
     100: $green-rgb,
   );
 
+  
   @each $perc, $col in $colors {
     #{$perc + "%"} {
       color: $col;

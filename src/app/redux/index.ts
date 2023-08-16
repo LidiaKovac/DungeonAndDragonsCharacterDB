@@ -15,22 +15,24 @@ const baseReducer = combineReducers({
   token: tokenSlice,
 })
 
+const persistConfig = {
+  key: "root",
+  whitelist: ["token", "passive"],
+  transforms: [
+    encryptTransform({
+      secretKey: process.env.REACT_APP_ENCRYPT_SECRET!,
+      onError: (err) => {
+        console.log(err)
+      },
+    }),
+  ],
+  storage,
+}
+
 const persistedReducer = persistReducer(
-  {
-    key: "root",
-    whitelist: ["token", "passive"],
-    transforms: [
-      encryptTransform({
-        secretKey: process.env.REACT_APP_ENCRYPT_SECRET!,
-        onError: (err) => {
-          console.log(err)
-        },
-      }),
-    ],
-    storage,
-  },
+  persistConfig,
   baseReducer
-)
+) as typeof baseReducer
 
 export const store = configureStore({
   reducer: persistedReducer,

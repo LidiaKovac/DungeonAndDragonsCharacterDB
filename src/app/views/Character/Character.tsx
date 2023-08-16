@@ -19,6 +19,7 @@ import { CharAC } from "./CharAC/CharAC"
 import { CharRoundProp } from "./CharRoundProp/CharRoundProp"
 import { TbBarrierBlock } from "react-icons/tb"
 import { CharHP } from "./CharHP/CharHP"
+import { Round } from "../Game/Round/Round"
 export const Character = () => {
   const asyncDispatch = useAppDispatch()
   const moveTo = useNavigate()
@@ -31,6 +32,7 @@ export const Character = () => {
 
   const { id } = useParams()
   useEffect(() => {
+    console.log("ou")
     asyncDispatch(getMe(token))
       .then((res) => {
         if (res.type.includes("rejected")) moveTo("/login")
@@ -99,10 +101,11 @@ export const Character = () => {
             <div className={styles["char__body-ac-init-speed"]}>
 
             <CharAC />
-            <CharRoundProp name="Initiative" value={modifiers?.dex?.total} />
+            <CharRoundProp name="Initiative" value={12} />
             <CharRoundProp name="Speed" value={<TbBarrierBlock />} />
             </div>
               <CharHP/>
+              <Round/>
           </div>
           <div className={styles["char__body-fourth-col"]}>
             <CharDescription />

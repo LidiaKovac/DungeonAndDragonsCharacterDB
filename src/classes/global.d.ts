@@ -50,27 +50,27 @@ interface Throws {
 interface CharBody {
   [key: string]: any
 
-      id: number;
-      name: string;
-  
-      str: number;
-      con: number;
-      dex: number;
-      int: number;
-      cha: number;
-      wis: number;
-      initiativeMod: number;
-      currentInitiative: number;
-      skillProfLeft: number
-      hit_points: number
-      level: number      
-      Class: Classes
-      Race: RacialTrait
-      description: string 
-      deathScore: number
-      createdAt: Date;
-      updatedAt: Date;
-  
+  id: string;
+  name: string;
+
+  str: number;
+  con: number;
+  dex: number;
+  int: number;
+  cha: number;
+  wis: number;
+  initiativeMod: number;
+  currentInitiative: number;
+  skillProfLeft: number
+  hit_points: number
+  level: string
+  Class: Classes
+  Race: RacialTrait
+  description: string
+  deathScore: number
+  createdAt: Date;
+  updatedAt: Date;
+
 }
 
 
@@ -96,7 +96,7 @@ interface passiveInitialState extends defaultInitialState {
 }
 
 interface Skill {
-  name: string 
+  name: string
   ab: string
 }
 
@@ -109,24 +109,27 @@ interface charInitialState extends defaultInitialState {
   myChars: Array<CharBody>
   selectedChar: {
     char: CharBody,
-    modifiers: Modifiers 
+    modifiers: Modifiers
     skills: Array<Skill>
   }
-  editMode :boolean
-  color: "blue" | "pink" | "orange" | "yellow" | "green"
+  editMode: boolean
+  color: "blue" | "pink" | "orange" | "green"
 }
 
 
 interface SingleMod {
-  amount: number | string
-  source: "class" | "race" | "die" //???????????
+  mods: {
+    amount: number
+    source: "class" | "race" | "die" //???????????
+  }[]
+  total: number
 }
 interface Modifiers {
-  [key: string]: SingleMod[]
-  cha: SingleMod[]
-  str: SingleMod[]
-  con: SingleMod[]
-  dex: SingleMod[]
-  int: SingleMod[]
-  wis: SingleMod[]
+  [key: string]: SingleMod
+  cha: SingleMod
+  str: SingleMod
+  con: SingleMod
+  dex: SingleMod
+  int: SingleMod
+  wis: SingleMod
 }
