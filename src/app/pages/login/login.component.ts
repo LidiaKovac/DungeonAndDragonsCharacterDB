@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from "@angular/forms"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
     email: "",
     password: ""
   }
-  constructor(private authSrv: AuthService) { }
+  constructor(private authSrv: AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   handleSubmit(form: NgForm) {
     // ev.preventDefault()
     console.log(form)
-    this.authSrv.login(form.value.email, form.value.password).subscribe(res => console.log(res))
+    this.authSrv.login(form.value.email, form.value.password).subscribe(res => {
+      this.router.navigate(["/"])
+    })
   }
 }
