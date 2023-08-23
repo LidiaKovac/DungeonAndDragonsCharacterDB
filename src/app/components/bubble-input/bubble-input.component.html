@@ -1,0 +1,19 @@
+<div class="bubble__form">
+  <app-input [color]="color" [name]="'name'" [type]="'type'" [defaultValue]="defaultValue" [disabled]="false" [ngStyle]="{
+      'left': side === 'left' ? '0px' : 'unset',
+      'right': side === 'right' ? '0px' : 'unset'
+    }" class="bubble__input"></app-input>
+
+  <div class="bubble__text" [ngClass]="{
+    'custom__input--blue': color === 'blue',
+    'custom__input--green': color === 'green',
+    'custom__input--pink': color === 'pink',
+    'custom__input--orange': color === 'orange'
+  }" [ngStyle]="{
+    textAlign: side === 'left' ? 'right' : 'left'
+  }">
+    {{label}}
+  </div>
+
+
+</div>

@@ -3,4 +3,6 @@
   'custom__button--green': color === 'green',
   'custom__button--pink': color === 'pink',
   'custom__button--orange': color === 'orange'
-}" [disabled]="disabled" type={{type}}>{{text}}</button>
+}" [disabled]="disabled" type={{type}}>
+  <ng-content></ng-content>
+</button>

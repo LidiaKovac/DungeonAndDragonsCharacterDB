@@ -11,4 +11,7 @@ export class CharactersService {
   getAllChars() {
     return this.http.get<Character[]>("http://localhost:3001/api/character")
   }
+  getCharById(id:string) {
+    return this.http.get<ApiResp<Character>>("http://localhost:3001/api/character/" + id)
+  }
 }

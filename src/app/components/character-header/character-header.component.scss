@@ -3,8 +3,9 @@ form.char__header {
   .character__options {
     @include flex-config(row, center, center, 5px, "uneven");
     margin-bottom: 20px;
-    button {
-      width: 50px;
+    app-button {
+      width: 50px!important;
+      height: 50px!important;
       margin: 0px;
       svg {
         width: 100%;

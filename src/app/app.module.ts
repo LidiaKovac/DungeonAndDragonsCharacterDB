@@ -24,6 +24,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { BubbleInputComponent } from './components/bubble-input/bubble-input.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     CharacterComponent,
     DashboardComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    BubbleInputComponent
   ],
   imports: [
     BrowserModule,

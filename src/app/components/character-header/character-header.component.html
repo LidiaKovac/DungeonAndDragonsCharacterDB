@@ -1,45 +1,25 @@
-<form class="char__header" (submit)="handleSubmit()">
+<form *ngIf="char?.char?.name" class="char__header" (submit)="handleSubmit()">
   <button type="submit" [ngStyle]="{ display: 'none' }"></button>
   <div class="character__options">
-    <app-button onClick={} [text]="'FaPencilAlt'"></app-button>
-    <app-button [disabled]="true" text={FaMoon}></app-button>
-    <app-button [disabled]="true" text={MdPhotoLibrary}></app-button>
-    <app-button [disabled]="true" text={}></app-button>
+    <app-button [color]="'blue'">
+      <i class="bi bi-pencil-square"></i>
+    </app-button>
+    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-moon-fill"></i></app-button>
+    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-images"></i></app-button>
+    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-paperclip"></i></app-button>
   </div>
   <div class="char__anagraphics">
     <div class="char__banner-name">
-      <!-- <app-input
-        [color]="color"
-        [name]="name"
-        [disabled]="!edit"
-        [type]="text"
-        [class]="'char__name'"
-        [defaultValue]="char?.name"
-      ></app-input> -->
+      <app-input [color]="'blue'" [name]="char.char.name" [isForm]="false" [disabled]="false" [type]="'text'" [class]="'char__name'"
+        [defaultValue]="char.char.name"></app-input>
       <!-- <FaDiceD20 class=`bg--${color}`]} /> -->
     </div>
     <div class="char__game-data">
-      <!-- <app-input
-        [color]="color"
-        [name]=""
-        [disabled]="true"
-        [type]="text"
-        [class]="'char__class'"
-        [defaultValue]="char.Class?.name"
-      ></app-input> -->
+      <app-input [color]="'blue'" [disabled]="true" [isForm]="false" [type]="'text'" [class]="'char__class'"
+        [defaultValue]="char.char.Class.name"></app-input>
 
-
-
-      <!-- <BubbleInput color={color}
-        side='right'
-        [disabled]={!edit}
-        // onKeyDown={handleChange}
-        name="level"
-        type="number"
-        labelVal={char.Class?.name}
-        defaultVal={char.level}
-      /> -->
-
+      <app-bubble-input [color]="'blue'" [side]="'right'"  [disabled]="false" [name]="char.char.level" type="number"
+        [label]="'Level'" [defaultValue]="char.char.level"></app-bubble-input>
 
       <!-- <app-input
         [color]="color"
@@ -67,8 +47,6 @@
         [class]="'char__alignment'"
         [defaultValue]="'Cattivvissimo me'"
       ></app-input> -->
-
-
     </div>
   </div>
 </form>

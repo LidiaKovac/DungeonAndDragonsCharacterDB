@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  selector: 'app-bubble-input',
+  templateUrl: './bubble-input.component.html',
+  styleUrls: ['./bubble-input.component.scss']
 })
-export class InputComponent implements OnInit {
+export class BubbleInputComponent implements OnInit {
+  @Input() side!:"left" | 'right'
   @Input() color!: string
   @Input() defaultValue!: string
   @Input() disabled: boolean = false
@@ -13,8 +14,7 @@ export class InputComponent implements OnInit {
   @Input() placeholder!: string
   @Input() id!: string
   @Input() name!: string
-  @Input() isForm!: boolean
-
+  @Input() label!:string
   constructor() { }
 
   ngOnInit(): void {

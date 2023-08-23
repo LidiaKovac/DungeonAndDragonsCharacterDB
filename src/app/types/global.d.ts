@@ -46,6 +46,12 @@ interface Throws extends Record<string, number> {
   int: number
 }
 
+interface ApiResp<T> {
+  char:T
+  skills: Skill[]
+  modifiers: Modifiers
+}
+
 interface Character extends Record<string, string | number | DNDClass | DNDRace | Date> {
 
   id: string;

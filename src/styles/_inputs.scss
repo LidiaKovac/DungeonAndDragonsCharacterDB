@@ -33,7 +33,7 @@
 @each $name, $col in colors.$colors {
   .custom__input--#{$name} {
     @extend .custom__input;
-    background-color: ligthen($col, 20%);
+    background-color: lighten($col, 20%);
     outline: 3px lighten($col, 10%) solid;
   }
 }
@@ -53,7 +53,7 @@ textarea {
   @extend .custom__input;
   outline-width: 3px;
   @include flex-config(row, space-between, center, 10px, "uneven");
-  input.bubble__input {
+  .bubble__input, .bubble__input input {
     padding: 0px;
     // height: 70px;
     font-size: 25px;

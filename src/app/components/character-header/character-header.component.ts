@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-character-header',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./character-header.component.scss']
 })
 export class CharacterHeaderComponent implements OnInit {
-
+  @Input() char!: ApiResp<Character>
   constructor() { }
 
   ngOnInit(): void {
