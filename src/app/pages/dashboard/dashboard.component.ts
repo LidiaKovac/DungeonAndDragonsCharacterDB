@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  chars!: Character[]
+  constructor(private charSrv:CharactersService) {
+    this.charSrv.getAllChars().subscribe(res => {
+      this.chars = res
+    })
+  }
 
   ngOnInit(): void {
   }

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
 export class CharacterComponent implements OnInit {
-
-  constructor() { }
+  id!:string | null
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(param => this.id = param.get("id"))
+  }
 
   ngOnInit(): void {
   }

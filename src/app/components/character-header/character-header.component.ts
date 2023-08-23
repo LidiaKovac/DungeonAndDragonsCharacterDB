@@ -12,4 +12,7 @@ export class CharacterHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleSubmit() {
+
+  }
 }

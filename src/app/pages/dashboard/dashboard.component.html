@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div class="dash__wrap">
+  <!-- {/* {showJumbo && <Jumbotron show={(data:Boolean)=> setShowJumbo(data)}/>} */}
+
+  <CreateNew show={() => setShowModal(true)} />
+
+    {chars.map((char) => {
+    return <SingleChar char={char} />
+  })}
+  {showModal && <Modal close={() => setShowModal(false)} />} -->
+  <app-single-char *ngFor="let char of chars" [char]="char"></app-single-char>
+</div>

@@ -38,8 +38,7 @@ interface DNDRace {
   type: "race" | "subrace"
 }
 
-interface Throws {
-  [field: string]: number
+interface Throws extends Record<string, number> {
   str: number
   dex: number
   cos: number
@@ -47,8 +46,7 @@ interface Throws {
   int: number
 }
 
-interface CharBody {
-  [key: string]: any
+interface Character extends Record<string, string | number | DNDClass | DNDRace | Date> {
 
   id: string;
   name: string;
@@ -74,10 +72,6 @@ interface CharBody {
 }
 
 
-interface defaultInitialState {
-  loading: boolean
-  error: string | null
-}
 
 interface User {
   id: number
@@ -86,34 +80,10 @@ interface User {
   email: string
 }
 
-interface userInitialState extends defaultInitialState {
-  logged: User
-}
-
-interface passiveInitialState extends defaultInitialState {
-  classes: Array<DNDClass>
-  races: Array<DNDRace>
-}
 
 interface Skill {
   name: string
   ab: string
-}
-
-interface tokenInitialState extends defaultInitialState {
-  token: string
-}
-interface charInitialState extends defaultInitialState {
-  newChar: CharBody
-  newThrows: Throws
-  myChars: Array<CharBody>
-  selectedChar: {
-    char: CharBody,
-    modifiers: Modifiers
-    skills: Array<Skill>
-  }
-  editMode: boolean
-  color: "blue" | "pink" | "orange" | "green"
 }
 
 
@@ -124,8 +94,7 @@ interface SingleMod {
   }[]
   total: number
 }
-interface Modifiers {
-  [key: string]: SingleMod
+interface Modifiers extends Record<string, SingleMod> {
   cha: SingleMod
   str: SingleMod
   con: SingleMod

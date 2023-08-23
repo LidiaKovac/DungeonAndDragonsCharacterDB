@@ -1,1 +1,74 @@
-<p>character-header works!</p>
+<form class="char__header" (submit)="handleSubmit()">
+  <button type="submit" [ngStyle]="{ display: 'none' }"></button>
+  <div class="character__options">
+    <app-button onClick={} [text]="'FaPencilAlt'"></app-button>
+    <app-button [disabled]="true" text={FaMoon}></app-button>
+    <app-button [disabled]="true" text={MdPhotoLibrary}></app-button>
+    <app-button [disabled]="true" text={}></app-button>
+  </div>
+  <div class="char__anagraphics">
+    <div class="char__banner-name">
+      <!-- <app-input
+        [color]="color"
+        [name]="name"
+        [disabled]="!edit"
+        [type]="text"
+        [class]="'char__name'"
+        [defaultValue]="char?.name"
+      ></app-input> -->
+      <!-- <FaDiceD20 class=`bg--${color}`]} /> -->
+    </div>
+    <div class="char__game-data">
+      <!-- <app-input
+        [color]="color"
+        [name]=""
+        [disabled]="true"
+        [type]="text"
+        [class]="'char__class'"
+        [defaultValue]="char.Class?.name"
+      ></app-input> -->
+
+
+
+      <!-- <BubbleInput color={color}
+        side='right'
+        [disabled]={!edit}
+        // onKeyDown={handleChange}
+        name="level"
+        type="number"
+        labelVal={char.Class?.name}
+        defaultVal={char.level}
+      /> -->
+
+
+      <!-- <app-input
+        [color]="color"
+        [name]=""
+        [disabled]="true"
+        [type]="text"
+        [class]="'char__race'"
+        [defaultValue]="char.Race?.name"
+      ></app-input> -->
+
+      <!-- <app-input
+        [color]="color"
+        [name]=""
+        [disabled]="true"
+        [type]="text"
+        [class]="'char__player'"
+        [defaultValue]="me.nickname"
+      ></app-input> -->
+
+      <!-- <app-input
+        [color]="color"
+        [name]=""
+        [disabled]="true"
+        [type]="text"
+        [class]="'char__alignment'"
+        [defaultValue]="'Cattivvissimo me'"
+      ></app-input> -->
+
+
+    </div>
+  </div>
+</form>

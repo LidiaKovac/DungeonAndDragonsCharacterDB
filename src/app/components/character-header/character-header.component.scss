@@ -1,0 +1,50 @@
+@import "../../../styles/mixins";
+form.char__header {
+  .character__options {
+    @include flex-config(row, center, center, 5px, "uneven");
+    margin-bottom: 20px;
+    button {
+      width: 50px;
+      margin: 0px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .char__anagraphics {
+    @include flex-config(row, center, center, 40px, "uneven");
+    flex-wrap: wrap;
+    .char__banner-name {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      .char__name {
+        font-size: 20px;
+      }
+      svg {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        $width: 80px;
+        width: $width;
+        height: $width;
+        // animation: rainbow 10s infinite linear;
+        transform: translateY(-50%);
+
+        padding: 10px;
+        border-radius: 100px;
+      }
+    }
+
+    .char__game-data {
+      @include flex-config(row, center, center, 15px, "even");
+
+      flex-wrap: wrap;
+      max-width: 500px;
+      height: fit-content;
+      padding: 20px;
+    }
+  }
+}

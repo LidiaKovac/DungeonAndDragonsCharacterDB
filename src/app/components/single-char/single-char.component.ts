@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-single-char',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-char.component.scss']
 })
 export class SingleCharComponent implements OnInit {
-
+  @Input() char!: Character
   constructor() { }
 
   ngOnInit(): void {
