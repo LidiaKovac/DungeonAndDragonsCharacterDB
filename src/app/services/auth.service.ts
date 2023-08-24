@@ -8,9 +8,11 @@ import { BehaviorSubject, catchError, map } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.verify().subscribe()
+  }
   isLoggedIn = new BehaviorSubject<boolean>(false)
-
+  me = new BehaviorSubject<User | null>(null)
   login(email: string, password: string) {
     return this.http.post("http://localhost:3001/api/user/login", {
       email, password
@@ -30,12 +32,12 @@ export class AuthService {
 
   }
   verify() {
-    return this.http.get("http://localhost:3001/api/user/me", {
-      responseType: 'text',
+    return this.http.get<User>("http://localhost:3001/api/user/me", {
+      // responseType: 'text',
       observe: 'response',
     }).pipe(map(res => {
       this.isLoggedIn.next(true)
-
+      this.me.next(res.body)
     }))
   }
 

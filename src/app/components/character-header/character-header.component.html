@@ -16,37 +16,30 @@
     </div>
     <div class="char__game-data">
       <app-input [color]="'blue'" [disabled]="true" [isForm]="false" [type]="'text'" [class]="'char__class'"
-        [defaultValue]="char.char.Class.name"></app-input>
+        [defaultValue]="char.char.Race.name"></app-input>
 
       <app-bubble-input [color]="'blue'" [side]="'right'"  [disabled]="false" [name]="char.char.level" type="number"
-        [label]="'Level'" [defaultValue]="char.char.level"></app-bubble-input>
+        [label]="char.char.Class.name" [defaultValue]="char.char.level"></app-bubble-input>
 
-      <!-- <app-input
-        [color]="color"
-        [name]=""
-        [disabled]="true"
-        [type]="text"
-        [class]="'char__race'"
-        [defaultValue]="char.Race?.name"
-      ></app-input> -->
 
-      <!-- <app-input
-        [color]="color"
-        [name]=""
+      <app-input
+        [color]="'blue'"
+        [name]="'player'"
         [disabled]="true"
-        [type]="text"
+        [type]="'text'"
         [class]="'char__player'"
         [defaultValue]="me.nickname"
-      ></app-input> -->
+        [isForm]="false"
+      ></app-input>
 
-      <!-- <app-input
-        [color]="color"
-        [name]=""
+      <app-input
+        [color]="'blue'"
+        [name]="'alignment'"
         [disabled]="true"
-        [type]="text"
+        [type]="'text'"
         [class]="'char__alignment'"
-        [defaultValue]="'Cattivvissimo me'"
-      ></app-input> -->
+        [defaultValue]="'Cattivissimo me'"
+      ></app-input>
     </div>
   </div>
 </form>
