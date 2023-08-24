@@ -51,10 +51,10 @@
     }
     .char__body-second-col {
       @include flex-config(column, center, center, 20px, "uneven");
-      > form {
+      >div {
         width: 100%;
       }
-      form.inspo__wrap {
+      .inspo__wrap {
         margin: 10px;
         @include flex-config(row, space-around, center, 20px, "uneven");
 
@@ -204,7 +204,7 @@
     }
 
   }
-  form.character__description {
+  .character__description {
     textarea {
       width: 100%;
       border: none;

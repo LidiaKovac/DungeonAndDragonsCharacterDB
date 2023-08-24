@@ -10,11 +10,12 @@ import { EditService } from 'src/app/services/edit.service';
 export class CharacterHeaderComponent implements OnInit {
   @Input() char!: ApiResp<Character>;
   me!: User;
+  edit!: boolean
   constructor(private authSrv: AuthService, private editSrv:EditService) {
     this.authSrv.me.subscribe((res) => {
       if (res) this.me = res;
     });
-
+    this.editSrv.edit.subscribe(res => this.edit = res)
   }
 
   ngOnInit(): void { }

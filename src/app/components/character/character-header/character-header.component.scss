@@ -1,5 +1,5 @@
 @import "../../../../styles/mixins";
-form.char__header {
+.char__header {
   .character__options {
     @include flex-config(row, center, center, 5px, "uneven");
     margin-bottom: 20px;

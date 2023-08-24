@@ -1,6 +1,6 @@
-<form class="char__abilities" (submit)="handleSubmit()">
+<div class="char__abilities" (submit)="handleSubmit()">
   <app-single-ability *ngFor="let ab of abs" [ab]="ab" [char]="char.char" ></app-single-ability>
 
 
   <input type="submit" value="" style="display: 'none'" />
-</form>
+</div>

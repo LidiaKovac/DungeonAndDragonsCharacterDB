@@ -2,7 +2,7 @@
 :host {
   width: 100%;
 }
-form.char__abilities {
+.char__abilities {
   width: 100%;
   height: 100%;
   @include flex-config(column, space-between, flex-start, 20px, "uneven");

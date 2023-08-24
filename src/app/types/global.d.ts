@@ -68,6 +68,7 @@ interface Character extends Record<string, string | number | DNDClass | CharSkil
   currentInitiative: number;
   skillProfLeft: number
   hit_points: number
+  curr_hp: number
   level: string
   Class: DNDClass
   Race: DNDRace

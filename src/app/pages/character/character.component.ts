@@ -33,4 +33,10 @@ export class CharacterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleSubmit(ev:Event) {
+    const trg = ev.target as HTMLFormElement
+    this.charSrv.editCharById(this.char.char.id, new FormData(trg)).subscribe(res => {
+      this.editSrv.toggleEdit()
+    })
+  }
 }

@@ -1,4 +1,4 @@
-<form *ngIf="char?.char?.name" class="char__header" (submit)="handleSubmit()">
+<div *ngIf="char?.char?.name" class="char__header" >
   <button type="submit" [ngStyle]="{ display: 'none' }"></button>
   <div class="character__options">
     <app-button [color]="'blue'" (click)="setEdit()">
@@ -10,15 +10,15 @@
   </div>
   <div class="char__anagraphics">
     <div class="char__banner-name">
-      <app-input [color]="'blue'" [name]="char.char.name" [isForm]="false" [disabled]="false" [type]="'text'" [class]="'char__name'"
+      <app-input [color]="'blue'" [name]="char.char.name" [isForm]="false" [disabled]="!edit" [type]="'text'" [class]="'char__name'"
         [defaultValue]="char.char.name"></app-input>
       <!-- <FaDiceD20 class=`bg--${color}`]} /> -->
     </div>
     <div class="char__game-data">
-      <app-input [color]="'blue'" [disabled]="true" [isForm]="false" [type]="'text'" [class]="'char__class'"
+      <app-input [color]="'blue'" [disabled]="!edit" [isForm]="false" [type]="'text'" [class]="'char__class'"
         [defaultValue]="char.char.Race.name"></app-input>
 
-      <app-bubble-input [color]="'blue'" [side]="'right'"  [disabled]="false" [name]="char.char.level" type="number"
+      <app-bubble-input [color]="'blue'" [side]="'right'"  [disabled]="!edit" [name]="char.char.level" type="number"
         [label]="char.char.Class.name" [defaultValue]="char.char.level"></app-bubble-input>
 
 
@@ -42,4 +42,4 @@
       ></app-input>
     </div>
   </div>
-</form>
+</div>

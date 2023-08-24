@@ -15,4 +15,7 @@ export class CharactersService {
   getCharById(id: string) {
     return this.http.get<ApiResp<Character>>("http://localhost:3001/api/character/" + id)
   }
+  editCharById(id:string, data:FormData) {
+    return this.http.put("http://localhost:3001/api/character/" + id, data)
+  }
 }
