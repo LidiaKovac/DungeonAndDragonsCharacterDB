@@ -1,10 +1,11 @@
+type PK = Readonly<string>
 interface Option {
   val: string
   display: string
 }
 
 interface DNDClass {
-  id: string
+  id: PK
   name: string
   parent_class: string
   source_name: string
@@ -19,12 +20,12 @@ interface DNDClass {
   weaponProf: string
   toolsProf: string
   skillProfNum: number
-  skillProf: string
+  skillProf: Skill[]
   startEquip: string
 }
 
 interface DNDRace {
-  id: string
+  id: PK
   name: string
   source_id: string
   source_name: string
@@ -52,9 +53,9 @@ interface ApiResp<T> {
   modifiers: Modifiers
 }
 
-interface Character extends Record<string, string | number | DNDClass | DNDRace | Date> {
+interface Character extends Record<string, string | number | DNDClass | CharSkill[] | DNDRace | Date> {
 
-  id: string;
+  id: PK;
   name: string;
 
   str: number;
@@ -70,6 +71,7 @@ interface Character extends Record<string, string | number | DNDClass | DNDRace 
   level: string
   Class: DNDClass
   Race: DNDRace
+  Skills: CharSkill[]
   description: string
   deathScore: number
   createdAt: Date;
@@ -77,10 +79,10 @@ interface Character extends Record<string, string | number | DNDClass | DNDRace 
 
 }
 
-
+type Abs = 'cha' | 'str' | 'con' | 'dex' | 'int' | 'wis'
 
 interface User {
-  id: number
+  id: PK
   full_name: string
   nickname: string
   email: string
@@ -90,6 +92,15 @@ interface User {
 interface Skill {
   name: string
   ab: string
+}
+
+interface CharSkill extends Skill {
+  CharSkill: {
+    CharId: PK
+    SkillId: PK
+    createdAt: Date
+    updatedAt: Date
+  }
 }
 
 

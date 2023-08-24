@@ -3,19 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AbilitiesComponent } from './components/abilities/abilities.component';
-import { ButtonComponent } from './components/button/button.component';
-import { AlertComponent } from './components/alert/alert.component';
-import { CharacterHeaderComponent } from './components/character-header/character-header.component';
+import { AbilitiesComponent } from './components/character/abilities/abilities.component';
+import { ButtonComponent } from './components/layout/button/button.component';
+import { AlertComponent } from './components/layout/alert/alert.component';
+import { CharacterHeaderComponent } from './components/character/character-header/character-header.component';
 import { CreateNewButtonComponent } from './components/create-new-button/create-new-button.component';
-import { InputComponent } from './components/input/input.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormComponent } from './components/form/form.component';
-import { SelectComponent } from './components/select/select.component';
+import { InputComponent } from './components/layout/input/input.component';
+import { LoaderComponent } from './components/layout/loader/loader.component';
+import { ModalComponent } from './components/layout/modal/modal.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { FormComponent } from './components/layout/form/form.component';
+import { SelectComponent } from './components/layout/select/select.component';
 import { SingleCharComponent } from './components/single-char/single-char.component';
-import { StageComponent } from './components/stage/stage.component';
+import { StageComponent } from './components/layout/stage/stage.component';
 import { HomeComponent } from './pages/landing/home.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -24,7 +24,9 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { BubbleInputComponent } from './components/bubble-input/bubble-input.component';
+import { BubbleInputComponent } from './components/layout/bubble-input/bubble-input.component';
+import { SingleAbilityComponent } from './components/character/abilities/single-ability/single-ability.component';
+import { SkillsComponent } from './components/character/skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { BubbleInputComponent } from './components/bubble-input/bubble-input.com
     DashboardComponent,
     LoginComponent,
     SignupComponent,
-    BubbleInputComponent
+    BubbleInputComponent,
+    SingleAbilityComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,

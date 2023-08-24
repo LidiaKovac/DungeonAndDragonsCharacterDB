@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EditService } from 'src/app/services/edit.service';
 
 @Component({
   selector: 'app-input',
@@ -9,13 +10,15 @@ export class InputComponent implements OnInit {
   @Input() color!: string
   @Input() defaultValue!: string
   @Input() disabled: boolean = false
-  @Input() type:string = "text"
+  @Input() type: string = "text"
   @Input() placeholder!: string
   @Input() id!: string
   @Input() name!: string
   @Input() isForm!: boolean
-
-  constructor() { }
+  edit: boolean = false
+  constructor(private editSrv: EditService) {
+    this.editSrv.edit.subscribe(res => this.edit = res)
+  }
 
   ngOnInit(): void {
   }

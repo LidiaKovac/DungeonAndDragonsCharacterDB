@@ -1,0 +1,16 @@
+<form class="skill__form" *ngIf="char">
+  <span *ngIf="char.char.skillProfLeft > 0">You still have {{char.char.skillProfLeft}} skills to add to your
+    profs</span>
+
+  <label *ngFor="let skill of char.skills" [ngClass]="{
+    'skill__prof--blue': charSkill && charSkill.includes(skill.name)
+
+  }">
+    <input [disabled]="!possibleCharSkillProf.includes(skill.name) || char.char.skillProfLeft <=0"
+      [checked]="charSkill && charSkill.includes(skill.name)" type="checkbox" [name]="skill.name" />
+    <div class="skill__ab--blue">
+      {{skill.ab.toUpperCase()}}
+    </div>
+    <div class="skill__name">{{skill.name}} </div>
+  </label>
+</form>

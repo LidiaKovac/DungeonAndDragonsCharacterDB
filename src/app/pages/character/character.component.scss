@@ -99,10 +99,11 @@
           @include flex-config(row, center, center, 0px, "uneven");
           font-size: 15pt;
           font-weight: bold;
-          svg {
+          i {
             position: absolute;
-            width: 80%;
-            height: 80%;
+            // width: 80%;
+            // height: 80%;
+            font-size: 30px;
             z-index: 1;
           }
           span {
@@ -201,49 +202,7 @@
         }
       }
     }
-    form.char__abilities {
-      width: 100%;
-      height: 100%;
-      @include flex-config(column, space-between, flex-start, 20px, "uneven");
-      .single__ab {
-        max-height: 50px;
-        text-transform: uppercase;
-        outline-width: 2px;
-        @include flex-config(row, space-between, center, 10px, "uneven");
-        padding: 0px;
-        padding-left: 20px;
-        height: fit-content;
-        width: 100%;
-        position: relative;
 
-        $input-width: 50px;
-        input,
-        div.single__ab-modifier {
-          transform-origin: bottom right;
-          transition: 0.5s;
-          position: absolute;
-          right: 0;
-          width: $input-width;
-          height: $input-width;
-          border: none;
-          font-size: 25px;
-          text-align: center;
-        }
-
-        input {
-          z-index: 1;
-        }
-        div.single__ab-modifier {
-          z-index: 2;
-          padding: 0px;
-          line-height: $input-width;
-          font-size: 25px;
-          text-align: center;
-          font-kerning: $input-width;
-          transform: translate(40%, -40%) scale(0.6);
-        }
-      }
-    }
   }
   form.character__description {
     textarea {

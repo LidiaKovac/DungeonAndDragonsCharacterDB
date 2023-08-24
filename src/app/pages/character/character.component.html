@@ -8,33 +8,66 @@
   </div>
 
   <app-character-header [char]="char"></app-character-header>
-  <!-- {/* add choose color option here */} -->
-  <div class="char-sheet__main">
+  <div *ngIf="char" class="char-sheet__main">
     <div class="char__body-column">
-      <!-- <CharAbilities /> -->
+      <app-abilities [char]="char"></app-abilities>
       <div class="char__rest-btns">
-        <!-- <app-button [disabled]="true" [text]="<span>Long rest /* <FaCampground />*/ </span>"></app-button>
-        <app-button [disabled]="true" [text]="<span>Long rest FaCampground </span>"></app-button>
+        <app-button [color]="'orange'" [disabled]="true">
+          <span>Long rest <i class="bi bi-fire"></i> </span>
+        </app-button>
 
-        <app-button [disabled]="true" [text]="<span> Short rest RiZzzLine </span>"></app-button> -->
+        <app-button [color]="'orange'" [disabled]="true">
+          <span> Short rest <i class="bi bi-signpost-2-fill"></i> </span>
+        </app-button>
       </div>
     </div>
     <div class="char__body-second-col">
-      <!-- <CharInspoPoint />
-      <CharProf />
-      <CharSkills /> -->
+      <app-bubble-input [color]="'blue'" [side]="'left'" [defaultValue]="'0'"
+        [label]="'INSPIRATION'"></app-bubble-input>
+      <app-bubble-input [color]="'blue'" [side]="'right'" [defaultValue]="prof.toString()"
+        [label]="'Proficiency'"></app-bubble-input>
+      <app-skills [char]="char"></app-skills>
+
     </div>
     <div class="char__body-third-col">
       <div class="char__body-ac-init-speed">
 
-        <!-- <CharAC /> -->
-        <!-- <CharRoundProp name="Initiative" value={modifiers?.dex?.total} />
-        <CharRoundProp name="Speed" value={<TbBarrierBlock />} /> -->
+        <div class="char__ac">
+          <div class="outline--blue-medium bg--blue-lighter">
+            <i class="bi bi-shield-fill color--blue--lighter fill--color--lighter"></i>
+            <div class="char__ac-value">12</div>
+          </div>
+          <small>Armor class</small>
+        </div>
+        <div class="char__round-wrap">
+          <div class="char__round-prop bg--blue-lighter outline--blue-medium">
+            {{char.modifiers.dex.total}}
+
+          </div>
+          <small>Initiative</small>
+        </div>
+        <div class="char__round-wrap">
+          <div class="char__round-prop bg--blue-lighter outline--blue-medium">
+            12
+
+          </div>
+          <small>Speed</small>
+        </div>
       </div>
-      <!-- <CharHP /> -->
+      <div class="char__hp bg--blue-lighter">
+        <div class="max__hp outline--blue-medium">
+          <i class="bi bi-activity color--blue--lighter"></i>
+          <span>{{char.char.hit_points || "N/A"}}</span>
+        </div>
+        <div class="curr__hp bg--blue-lighter">
+          <input type="number" class="bg--blue-lightest" />
+        </div>
+      </div>
     </div>
     <div class="char__body-fourth-col">
-      <!-- <CharDescription /> -->
+      <form class="character__description"> <textarea class="outline--blue" [ngClass]="{
+        'input--edit': edit
+      }" [disabled]='false' [defaultValue]="char.char.description || ''"  [name]="'description'" rows="40"></textarea> </form>
     </div>
   </div>
 </div>

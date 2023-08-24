@@ -1,7 +1,7 @@
 <form *ngIf="char?.char?.name" class="char__header" (submit)="handleSubmit()">
   <button type="submit" [ngStyle]="{ display: 'none' }"></button>
   <div class="character__options">
-    <app-button [color]="'blue'">
+    <app-button [color]="'blue'" (click)="setEdit()">
       <i class="bi bi-pencil-square"></i>
     </app-button>
     <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-moon-fill"></i></app-button>

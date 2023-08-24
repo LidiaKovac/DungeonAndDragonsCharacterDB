@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import "../../../../styles/mixins";
 form.char__header {
   .character__options {
     @include flex-config(row, center, center, 5px, "uneven");
