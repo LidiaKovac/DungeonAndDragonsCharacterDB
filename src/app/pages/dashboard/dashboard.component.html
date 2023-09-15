@@ -1,11 +1,15 @@
 <div class="dash__wrap">
-  <!-- {/* {showJumbo && <Jumbotron show={(data:Boolean)=> setShowJumbo(data)}/>} */}
+  <h1>Your characters</h1>
+  <div class="char__table">
+    <div class="char-table__header">
+      <span>Name</span>
+      <span>Level</span>
+      <span>Game</span>
+      <span>Complete?</span>
+    </div>
+    <div class="char-table__body">
 
-  <CreateNew show={() => setShowModal(true)} />
-
-    {chars.map((char) => {
-    return <SingleChar char={char} />
-  })}
-  {showModal && <Modal close={() => setShowModal(false)} />} -->
-  <app-single-char *ngFor="let char of chars" [char]="char"></app-single-char>
+      <app-single-char *ngFor="let char of chars" [char]="char"></app-single-char>
+    </div>
+  </div>
 </div>

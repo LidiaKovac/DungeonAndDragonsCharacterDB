@@ -1,8 +1,25 @@
 @use "./colors";
 @import "./mixins";
-:host {
-  width: 100%;
+
+
+
+input[type="file"]:has(~ label) {
+  display: none;
 }
+input[type="file"]:has(~ label) ~ label {
+  padding: 20px;
+  outline: 3px solid map-get(colors.$colors, "green");
+  background-color: lighten(map-get(colors.$colors, "green"), 30%);
+  border-radius: 30px;
+  cursor: pointer;
+  height: 100%;
+  // max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .custom__input {
   width: 100%;
   padding: 10px;
@@ -40,6 +57,7 @@
 
 textarea {
   @extend .custom__input--pink;
+  height: unset;
 }
 
 .bubble__form {

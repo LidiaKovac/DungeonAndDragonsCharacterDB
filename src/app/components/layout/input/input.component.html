@@ -1,16 +1,8 @@
-<input *ngIf="isForm" [ngClass]="{
-  'custom__input--blue': color === 'blue',
-  'custom__input--green': color === 'green',
-  'custom__input--pink': color === 'pink',
-  'custom__input--orange': color === 'orange',
-  'input--edit': edit === true
-}" defaultValue="{{ defaultValue }}" [disabled]="disabled" class="custom__input" type="{{ type }}"
-  placeholder="{{ name }}" id="{{ name }}" name="{{name}}" ngModel />
-<input *ngIf="!isForm" [ngClass]="{
-    'custom__input--blue': color === 'blue',
-    'custom__input--green': color === 'green',
-    'custom__input--pink': color === 'pink',
-    'custom__input--orange': color === 'orange',
-    'input--edit': edit === true
-  }" defaultValue="{{ defaultValue }}" [disabled]="disabled" class="custom__input" type="{{ type }}"
-  placeholder="{{ name }}" id="{{ name }}" name="{{name}}" />
+<input *ngIf="type!=='file'" class="custom__input--{{color}}" [ngClass]="{
+  'input--edit': (edit && !disabled) === true
+}" [required]="required" defaultValue="{{ defaultValue }}" [disabled]="disabled" class="custom__input"
+  type="{{ type }}" placeholder="{{ placeholder || name }}" [id]="id || name" [name]="name" />
+
+
+
+<!-- input type file -->

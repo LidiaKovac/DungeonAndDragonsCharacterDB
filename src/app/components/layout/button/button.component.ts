@@ -6,7 +6,7 @@ import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/co
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-  @Input() color!: string
+  @Input() color!: Colors
   @Input() type:"button" | "submit" | "reset" = 'button'
   @Input() disabled!: boolean
   constructor() { }

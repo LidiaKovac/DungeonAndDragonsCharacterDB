@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
   selector: 'app-single-ability',
@@ -8,7 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SingleAbilityComponent implements OnInit {
   @Input() ab!: string
   @Input() char!: Character
-  constructor() { }
+  color!: Colors;
+  constructor(private charSrv: CharactersService) {
+    this.charSrv.color.subscribe(col => this.color = col)
+  }
 
   ngOnInit(): void {
   }

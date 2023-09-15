@@ -1,22 +1,15 @@
 <div class="character__wrap">
   <div class="color__picker-group">
     <h4>Pick a color</h4>
-    <div
-      onClick="{}"
-      class="color__picker bg--blue blue outline--blue-darker"
-    ></div>
-    <div
-      onClick="{}"
-      class="color__picker bg--orange outline--orange-darker"
-    ></div>
-    <div onClick="{}" class="color__picker bg--pink outline--pink-darker"></div>
-    <div
-      onClick="{}"
-      class="color__picker bg--green outline--green-darker"
-    ></div>
+    <div (click)="setColor('blue')" [ngClass]="{'selected': color === 'blue'}" class="color__picker bg--blue border--blue-darker"></div>
+    <div (click)="setColor('orange')" [ngClass]="{'selected': color === 'orange'}" class="color__picker bg--orange border--orange-darker"></div>
+    <div (click)="setColor('pink')" [ngClass]="{'selected': color === 'pink'}" class="color__picker bg--pink border--pink-darker"></div>
+    <div (click)="setColor('green')" [ngClass]="{'selected': color === 'green'}" class="color__picker bg--green border--green-darker"></div>
   </div>
+  <form *ngIf="char" (submit)="handleSubmit($event)">
 
-  <app-character-header [char]="char"></app-character-header>
+    <app-character-header [char]="char" ></app-character-header>
+  </form>
   <form *ngIf="char" class="char-sheet__main" (submit)="handleSubmit($event)">
     <div class="char__body-column">
       <app-abilities [char]="char"></app-abilities>
@@ -31,68 +24,49 @@
       </div>
     </div>
     <div class="char__body-second-col">
-      <app-bubble-input
-        [color]="'blue'"
-        [side]="'left'"
-        [disabled]="!edit"
-        [defaultValue]="'0'"
-        [label]="'INSPIRATION'"
-      ></app-bubble-input>
-      <app-bubble-input
-        [color]="'blue'"
-        [side]="'right'"
-        [disabled]="true"
-        [defaultValue]="prof.toString()"
-        [label]="'Proficiency'"
-      ></app-bubble-input>
+      <app-bubble-input [color]="color" [side]="'left'" [disabled]="!edit" [defaultValue]="'0'"
+        [label]="'INSPIRATION'"></app-bubble-input>
+      <app-bubble-input [color]="color" [side]="'right'" [disabled]="true" [defaultValue]="char.char.prof.toString() || 'N/A'"
+        [label]="'Proficiency'"></app-bubble-input>
       <app-skills [char]="char"></app-skills>
     </div>
     <div class="char__body-third-col">
       <div class="char__body-ac-init-speed">
         <div class="char__ac">
-          <div class="outline--blue-medium bg--blue-lighter">
-            <i
-              class="bi bi-shield-fill color--blue--lighter fill--color--lighter"
-            ></i>
+          <div class="outline--{{color}}-medium bg--{{color}}-lighter">
+            <i class="bi bi-shield-fill color--{{color}}--lighter fill--{{color}}--lighter"></i>
             <div class="char__ac-value">12</div>
           </div>
           <small>Armor class</small>
         </div>
         <div class="char__round-wrap">
-          <div class="char__round-prop bg--blue-lighter outline--blue-medium">
-            {{ char.modifiers.dex.total }}
+          <div class="char__round-prop bg--{{color}}-lighter outline--{{color}}-medium">
+            {{ char.modifiers?.dex?.total || "N/A" }}
           </div>
           <small>Initiative</small>
         </div>
         <div class="char__round-wrap">
-          <div class="char__round-prop bg--blue-lighter outline--blue-medium">
+          <div class="char__round-prop bg--{{color}}-lighter outline--{{color}}-medium">
             12
           </div>
           <small>Speed</small>
         </div>
       </div>
-      <div class="char__hp bg--blue-lighter">
-        <div class="max__hp outline--blue-medium">
-          <i class="bi bi-activity color--blue--lighter"></i>
+      <div class="char__hp bg--{{color}}-lighter">
+        <div class="max__hp outline--{{color}}-medium">
+          <i class="bi bi-activity color--{{color}}--lighter"></i>
           <span>{{ char.char.hit_points || "N/A" }}</span>
         </div>
-        <div class="curr__hp bg--blue-lighter">
-          <input type="number" name="curr_hp" [defaultValue]="char.char.curr_hp" class="bg--blue-lightest" />
+        <div class="curr__hp bg--{{color}}-lighter">
+          <input type="number" name="curr_hp" [defaultValue]="char.char.curr_hp || 'N/A'" class="bg--{{color}}-lightest" />
         </div>
       </div>
     </div>
     <div class="char__body-fourth-col">
       <div class="character__description">
-        <textarea
-          class="outline--blue"
-          [ngClass]="{
-            'input--edit': edit
-          }"
-          [disabled]="false"
-          [defaultValue]="char.char.description || ''"
-          [name]="'description'"
-          rows="40"
-        ></textarea>
+        <small>Last saved: {{lastSaved || 'unknown'}}</small>
+        <textarea class="outline--{{color}}" (keyup)="autosave($event)" [disabled]="false"
+          [defaultValue]="char.char.description || ''" [name]="'description'" rows="40"></textarea>
       </div>
     </div>
     <button type="submit" style="display: none;"></button>

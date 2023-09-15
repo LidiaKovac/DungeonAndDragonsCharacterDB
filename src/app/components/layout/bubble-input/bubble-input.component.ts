@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BubbleInputComponent implements OnInit {
   @Input() side!:"left" | 'right'
-  @Input() color!: string
+  @Input() color!: Colors
   @Input() defaultValue!: string
   @Input() disabled: boolean = false
   @Input() type:string = "text"

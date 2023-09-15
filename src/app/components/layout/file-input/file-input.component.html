@@ -1,0 +1,18 @@
+<div class="input__file">
+  <div class="scroller less" (click)="scrollDown($event, 'up')" *ngIf="thumbnails.length > 2">
+    <i class="bi bi-caret-up-fill"></i>
+  </div>
+  <input multiple accept="image/png, image/gif, image/jpeg" (change)="showThumbnail($event)" type="file"
+    [id]="id || name" [name]="name" />
+  <label for="{{id||name}}">
+    <i class="bi bi-camera"></i> Upload pictures
+  </label>
+  <div class="thumbnails" *ngIf="thumbnails.length > 0">
+    <div class="thumb" *ngFor="let thumb of thumbnails">
+      <img [src]="thumb" alt="thumbnail">
+    </div>
+  </div>
+  <div class="scroller more" (click)="scrollDown($event, 'down')" *ngIf="thumbnails.length > 2">
+    <i class="bi bi-caret-down-fill"></i>
+  </div>
+</div>

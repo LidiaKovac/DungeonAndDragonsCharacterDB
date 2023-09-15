@@ -22,6 +22,7 @@ interface DNDClass {
   skillProfNum: number
   skillProf: Skill[]
   startEquip: string
+
 }
 
 interface DNDRace {
@@ -48,7 +49,7 @@ interface Throws extends Record<string, number> {
 }
 
 interface ApiResp<T> {
-  char:T
+  char: T
   skills: Skill[]
   modifiers: Modifiers
 }
@@ -77,9 +78,9 @@ interface Character extends Record<string, string | number | DNDClass | CharSkil
   deathScore: number
   createdAt: Date;
   updatedAt: Date;
-
+  prof: number
 }
-
+type Colors = 'blue' | 'green' | 'pink' | 'orange'
 type Abs = 'cha' | 'str' | 'con' | 'dex' | 'int' | 'wis'
 
 interface User {

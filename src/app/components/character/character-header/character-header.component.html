@@ -1,45 +1,32 @@
-<div *ngIf="char?.char?.name" class="char__header" >
+<div *ngIf="char && char.char && char.char.name" class="char__header">
   <button type="submit" [ngStyle]="{ display: 'none' }"></button>
   <div class="character__options">
-    <app-button [color]="'blue'" (click)="setEdit()">
+    <app-button [color]="color" (click)="setEdit()">
       <i class="bi bi-pencil-square"></i>
     </app-button>
-    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-moon-fill"></i></app-button>
-    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-images"></i></app-button>
-    <app-button [color]="'blue'" [disabled]="true"><i class="bi bi-paperclip"></i></app-button>
+    <app-button [color]="color" [disabled]="true"><i class="bi bi-moon-fill"></i></app-button>
+    <app-button [color]="color" [disabled]="true"><i class="bi bi-images"></i></app-button>
+    <app-button [color]="color" [disabled]="true"><i class="bi bi-paperclip"></i></app-button>
   </div>
   <div class="char__anagraphics">
     <div class="char__banner-name">
-      <app-input [color]="'blue'" [name]="char.char.name" [isForm]="false" [disabled]="!edit" [type]="'text'" [class]="'char__name'"
-        [defaultValue]="char.char.name"></app-input>
+      <app-input [color]="color" [name]="'name'" [disabled]="!edit" [type]="'text'" [class]="'char__name'"
+        [defaultValue]="char.char.name || 'N/A'"></app-input>
       <!-- <FaDiceD20 class=`bg--${color}`]} /> -->
     </div>
     <div class="char__game-data">
-      <app-input [color]="'blue'" [disabled]="!edit" [isForm]="false" [type]="'text'" [class]="'char__class'"
-        [defaultValue]="char.char.Race.name"></app-input>
+      <app-input name="race" [color]="color" [disabled]="true" [isForm]="false" [type]="'text'" [class]="'char__class'"
+        [defaultValue]="char.char.Race?.name || 'N/A'"></app-input>
 
-      <app-bubble-input [color]="'blue'" [side]="'right'"  [disabled]="!edit" [name]="char.char.level" type="number"
-        [label]="char.char.Class.name" [defaultValue]="char.char.level"></app-bubble-input>
+      <app-bubble-input [color]="color" [side]="'right'" [disabled]="!edit" [name]="'level'" type="number"
+        [label]="char.char.Class?.name || 'N/A'" [defaultValue]="char.char.level || 'N/A'"></app-bubble-input>
 
 
-      <app-input
-        [color]="'blue'"
-        [name]="'player'"
-        [disabled]="true"
-        [type]="'text'"
-        [class]="'char__player'"
-        [defaultValue]="me.nickname"
-        [isForm]="false"
-      ></app-input>
+      <app-input [color]="color" [name]="'player'" [disabled]="true" [type]="'text'" [class]="'char__player'"
+        [defaultValue]="me?.nickname || 'N/A'" [isForm]="false"></app-input>
 
-      <app-input
-        [color]="'blue'"
-        [name]="'alignment'"
-        [disabled]="true"
-        [type]="'text'"
-        [class]="'char__alignment'"
-        [defaultValue]="'Cattivissimo me'"
-      ></app-input>
+      <app-input [color]="color" [name]="'alignment'" [disabled]="true" [type]="'text'" [class]="'char__alignment'"
+        [defaultValue]="'Cattivissimo me'"></app-input>
     </div>
   </div>
 </div>

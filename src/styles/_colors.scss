@@ -71,7 +71,7 @@ $colors: (
     }
   }
   .outline--#{$name} {
-    outline: 2px solid $col;
+    outline: 3px solid $col;
   }
   .outline--#{$name}-darker {
     outline: 3px solid darken($col, 10%);
@@ -82,6 +82,20 @@ $colors: (
   .outline--#{$name}-lighter {
     outline: 3px lighten($col, 20%) solid;
   }
+
+  .border--#{$name} {
+    border: 3px solid $col;
+  }
+  .border--#{$name}-darker {
+    border: 3px solid darken($col, 10%);
+  }
+  .border--#{$name}-medium {
+    border: 3px lighten($col, 10%) solid;
+  }
+  .border--#{$name}-lighter {
+    border: 3px lighten($col, 20%) solid;
+  }
+
   .fill--#{$name} {
     fill: $col;
   }

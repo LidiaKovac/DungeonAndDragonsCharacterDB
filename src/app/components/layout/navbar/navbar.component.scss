@@ -1,0 +1,26 @@
+nav {
+  padding-inline: 50px;
+  .nav__links {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        height: 50px;
+      }
+    }
+  }
+  a {
+    &[disabled="true"] {
+      pointer-events: none;
+      text-decoration: none;
+      &:hover {
+        cursor: no-drop;
+      }
+    }
+  }
+}

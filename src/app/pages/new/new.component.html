@@ -1,0 +1,30 @@
+<h1>Create a new character</h1>
+
+<small>
+  You don't have to create a full character, you can also just write down your idea!
+  <br />You can start with the name and a couple of images to inspire you.
+</small>
+<div class="new-char__wrap">
+
+  <form (submit)="handleSubmit($event)">
+    <div class="form__inner">
+
+      <div class="form__char-data">
+
+        <label for="name">Name*</label>
+        <app-input [required]="true" [color]="'blue'" [placeholder]="'Name'" [type]="'text'" [id]="'name'"
+          [name]="'name'" [isForm]="true"></app-input>
+        <label for="level">Level</label>
+        <app-input [color]="'blue'" [placeholder]="'Level'" [type]="'number'" [id]="'Level'" [name]="'level'"
+          [isForm]="true"></app-input>
+      </div>
+      <div class="new-char__upload">
+        <app-file-input [name]="'inspo'" [id]="'inspo'"></app-file-input>
+      </div>
+    </div>
+    <textarea [defaultValue]="'Description'"  name="description" id="description" [cols]="30" [rows]="20">
+
+    </textarea>
+    <app-button [color]="'orange'" [type]="'submit'">Create</app-button>
+  </form>
+</div>

@@ -23,22 +23,23 @@ form.skill__form {
       text-align: center;
     }
   }
-  @each $name, $col in $colors {
-    .skill__ab--#{$name} {
-      @extend .skill__ab;
-      background-color: lighten($col, 20%);
-    }
-    .skill__prof--#{$name} {
-      background-color: $col;
-      border-radius: 20px;
-      @if ($col == $blue-rgb or $col == $pink-rgb) {
-        .skill__name {
-          color: white;
-        }
-      } @else {
-        .skill__name {
-          color: black;
-        }
+}
+@each $name, $col in $colors {
+  .skill__ab--#{$name} {
+    @extend .skill__ab;
+    background-color: lighten($col, 20%);
+
+  }
+  .skill__prof--#{$name} {
+    background-color: $col;
+    border-radius: 20px;
+    @if ($col == $blue-rgb or $col == $pink-rgb) {
+      .skill__name {
+        color: white;
+      }
+    } @else {
+      .skill__name {
+        color: black;
       }
     }
   }

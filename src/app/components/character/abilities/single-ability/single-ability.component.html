@@ -1,7 +1,7 @@
 <app-bubble-input [side]="'right'" [name]="ab"
   [type]="'number'"
-  [color]="'blue'"
-  [defaultValue]="char[ab].toString()"
+  [color]="color"
+  [defaultValue]="char[ab]?.toString() || 'N/A'"
   [label]="ab"
   [disabled]="true"
 ></app-bubble-input>

@@ -27,6 +27,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { BubbleInputComponent } from './components/layout/bubble-input/bubble-input.component';
 import { SingleAbilityComponent } from './components/character/abilities/single-ability/single-ability.component';
 import { SkillsComponent } from './components/character/skills/skills.component';
+import { NewComponent } from './pages/new/new.component';
+import { FileInputComponent } from './components/layout/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { SkillsComponent } from './components/character/skills/skills.component'
     SignupComponent,
     BubbleInputComponent,
     SingleAbilityComponent,
-    SkillsComponent
+    SkillsComponent,
+    NewComponent,
+    FileInputComponent
   ],
   imports: [
     BrowserModule,

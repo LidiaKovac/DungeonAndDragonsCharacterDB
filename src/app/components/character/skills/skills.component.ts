@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
   selector: 'app-skills',
@@ -9,11 +10,17 @@ export class SkillsComponent implements OnInit {
   @Input() char!: ApiResp<Character>
   possibleCharSkillProf: string[] = []
   charSkill: string[] = []
-  constructor() {}
+  color!: Colors
+  constructor(private charSrv: CharactersService) {
+    this.charSrv.color.subscribe(col => this.color = col)
+  }
 
   ngOnInit(): void {
-    this.possibleCharSkillProf = this.char.char.Class.skillProf.map(sk => sk.name)
-    this.charSkill = this.char.char.Skills.map(sk => sk.name)
+    if (this.char.char.Class && this.char.char.Skills) {
+
+      this.possibleCharSkillProf = this.char.char.Class.skillProf.map(sk => sk.name)
+      this.charSkill = this.char.char.Skills.map(sk => sk.name)
+    }
 
   }
 

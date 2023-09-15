@@ -7,7 +7,7 @@ import { EditService } from 'src/app/services/edit.service';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-  @Input() color!: string
+  @Input() color!: Colors
   @Input() defaultValue!: string
   @Input() disabled: boolean = false
   @Input() type: string = "text"
@@ -15,6 +15,7 @@ export class InputComponent implements OnInit {
   @Input() id!: string
   @Input() name!: string
   @Input() isForm!: boolean
+  @Input() required!: boolean
   edit: boolean = false
   constructor(private editSrv: EditService) {
     this.editSrv.edit.subscribe(res => this.edit = res)

@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   isLoggedIn = new BehaviorSubject<boolean>(false)
   me = new BehaviorSubject<User | null>(null)
   login(email: string, password: string) {
-    return this.http.post("http://localhost:3001/api/user/login", {
+    return this.http.post(`${environment.backendURL}user/login`, {
       email, password
     }, {
       responseType: 'text',
@@ -32,7 +33,7 @@ export class AuthService {
 
   }
   verify() {
-    return this.http.get<User>("http://localhost:3001/api/user/me", {
+    return this.http.get<User>(`${environment.backendURL}user/me`, {
       // responseType: 'text',
       observe: 'response',
     }).pipe(map(res => {

@@ -29,6 +29,9 @@
       width: 50px;
       aspect-ratio: 1/1;
       border-radius: 50%;
+      &.selected {
+        @extend .bg--blue, :hover
+      }
     }
   }
 
@@ -51,7 +54,7 @@
     }
     .char__body-second-col {
       @include flex-config(column, center, center, 20px, "uneven");
-      >div {
+      > div {
         width: 100%;
       }
       .inspo__wrap {
@@ -202,9 +205,15 @@
         }
       }
     }
-
   }
   .character__description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    small {
+      align-self: flex-end;
+      margin-inline-end: 20px;
+    }
     textarea {
       width: 100%;
       border: none;
