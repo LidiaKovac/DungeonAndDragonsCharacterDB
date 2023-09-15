@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CharactersService } from 'src/app/services/characters.service';
 import { abs } from 'src/app/utils';
 @Component({
   selector: 'app-abilities',
@@ -7,8 +8,10 @@ import { abs } from 'src/app/utils';
 })
 export class AbilitiesComponent implements OnInit {
   abs = abs
-  @Input() char!: ApiResp<Character>
-  constructor() { }
+  char!: ApiResp<Character>
+  constructor(private charSrv: CharactersService) {
+    this.charSrv.char.subscribe(res => this.char = res!)
+  }
 
   ngOnInit(): void {
   }

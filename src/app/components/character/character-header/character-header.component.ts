@@ -9,7 +9,7 @@ import { EditService } from 'src/app/services/edit.service';
   styleUrls: ['./character-header.component.scss'],
 })
 export class CharacterHeaderComponent implements OnInit {
-  @Input() char!: ApiResp<Character>;
+  char!: ApiResp<Character>;
   color!: Colors
   me!: User;
   edit!: boolean
@@ -22,6 +22,7 @@ export class CharacterHeaderComponent implements OnInit {
     });
     this.editSrv.edit.subscribe(res => this.edit = res)
     this.charSrv.color.subscribe(color => this.color = color)
+    this.charSrv.char.subscribe(res => this.char = res!)
   }
 
   ngOnInit(): void { }

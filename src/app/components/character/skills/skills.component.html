@@ -8,7 +8,7 @@
     'skill__prof--green': charSkill && charSkill.includes(skill.name) && color == 'green',
     'skill__prof--orange': charSkill && charSkill.includes(skill.name) && color == 'orange'
   }">
-    <input [disabled]="!possibleCharSkillProf.includes(skill.name) || char.char.skillProfLeft <=0"
+    <input (change)="handleChange($event)" [disabled]="!possibleCharSkillProf.includes(skill.name) || char.char.skillProfLeft <=0"
       [checked]="charSkill && charSkill.includes(skill.name)" type="checkbox" [name]="skill.name" />
     <div class="skill__ab--{{color}}">
       {{skill?.ab?.toUpperCase()}}

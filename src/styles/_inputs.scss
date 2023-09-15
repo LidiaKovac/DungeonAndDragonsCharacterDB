@@ -1,8 +1,6 @@
 @use "./colors";
 @import "./mixins";
 
-
-
 input[type="file"]:has(~ label) {
   display: none;
 }

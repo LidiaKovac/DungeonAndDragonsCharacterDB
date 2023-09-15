@@ -8,11 +8,11 @@
   </div>
   <form *ngIf="char" (submit)="handleSubmit($event)">
 
-    <app-character-header [char]="char" ></app-character-header>
+    <app-character-header></app-character-header>
   </form>
   <form *ngIf="char" class="char-sheet__main" (submit)="handleSubmit($event)">
     <div class="char__body-column">
-      <app-abilities [char]="char"></app-abilities>
+      <app-abilities></app-abilities>
       <div class="char__rest-btns">
         <app-button [color]="'orange'" [disabled]="true">
           <span>Long rest <i class="bi bi-fire"></i> </span>
@@ -28,7 +28,7 @@
         [label]="'INSPIRATION'"></app-bubble-input>
       <app-bubble-input [color]="color" [side]="'right'" [disabled]="true" [defaultValue]="char.char.prof.toString() || 'N/A'"
         [label]="'Proficiency'"></app-bubble-input>
-      <app-skills [char]="char"></app-skills>
+      <app-skills></app-skills>
     </div>
     <div class="char__body-third-col">
       <div class="char__body-ac-init-speed">

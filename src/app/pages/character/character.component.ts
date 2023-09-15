@@ -28,11 +28,12 @@ export class CharacterComponent implements OnInit {
     }), switchMap(id => {
       return this.charSrv.getCharById(id!)
     }), switchMap((char) => {
-      this.char = char
+      return this.charSrv.char
+    }), switchMap((char) => {
+      this.char = char!
       return this.charSrv.color
     })).subscribe(color => {
       this.color = color
-
       // this.color.next(this.charSrv.color)
       // this.lastSaved= moment(char.char.updatedAt).fromNow() ;
       //TODO: return updateAt from backend
@@ -55,7 +56,7 @@ export class CharacterComponent implements OnInit {
     })
   }
 
-  setColor(col:Colors) {
+  setColor(col: Colors) {
     this.charSrv.setColor(col)
   }
 

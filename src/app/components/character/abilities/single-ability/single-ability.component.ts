@@ -8,10 +8,11 @@ import { CharactersService } from 'src/app/services/characters.service';
 })
 export class SingleAbilityComponent implements OnInit {
   @Input() ab!: string
-  @Input() char!: Character
+  char!: ApiResp<Character>
   color!: Colors;
   constructor(private charSrv: CharactersService) {
     this.charSrv.color.subscribe(col => this.color = col)
+    this.charSrv.char.subscribe(res => this.char = res!)
   }
 
   ngOnInit(): void {
