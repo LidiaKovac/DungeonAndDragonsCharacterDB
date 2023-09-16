@@ -1,6 +1,13 @@
 @import "../../../styles/colors";
 
 .dash__wrap {
+  h1 {
+     display: flex;
+     gap: 20px;
+     app-button {
+      width: 100px;
+     }
+  }
     gap :20px;
     max-width: 100vw;
     min-height: calc(100vh - 75px);

@@ -29,6 +29,7 @@ import { SingleAbilityComponent } from './components/character/abilities/single-
 import { SkillsComponent } from './components/character/skills/skills.component';
 import { NewComponent } from './pages/new/new.component';
 import { FileInputComponent } from './components/layout/file-input/file-input.component';
+import { InspoComponent } from './pages/inspo/inspo.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { FileInputComponent } from './components/layout/file-input/file-input.co
     SingleAbilityComponent,
     SkillsComponent,
     NewComponent,
-    FileInputComponent
+    FileInputComponent,
+    InspoComponent
   ],
   imports: [
     BrowserModule,

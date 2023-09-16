@@ -5,6 +5,8 @@ import { HomeComponent } from './pages/landing/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { NewComponent } from './pages/new/new.component';
+import { IsCompleteGuard } from './pages/character/is-complete.guard';
+import { InspoComponent } from './pages/inspo/inspo.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,12 @@ const routes: Routes = [
   },
   {
     path: "char/:id",
-    component: CharacterComponent
+    component: CharacterComponent,
+    canActivate: [IsCompleteGuard]
+  },
+  {
+    path: "char/:id/inspo",
+    component: InspoComponent,
   },
   {
     path: "new",
