@@ -54,7 +54,7 @@ interface ApiResp<T> {
   modifiers: Modifiers
 }
 
-interface Character extends Record<string, string | number | DNDClass | CharSkill[] | DNDRace | Date> {
+interface Character extends Record<string, string | number | DNDClass | CharSkill[] | DNDRace | Date | Inspo[]> {
 
   id: PK;
   name: string;
@@ -79,6 +79,7 @@ interface Character extends Record<string, string | number | DNDClass | CharSkil
   createdAt: Date;
   updatedAt: Date;
   prof: number
+  Inspos: Inspo[]
 }
 type Colors = 'blue' | 'green' | 'pink' | 'orange'
 type Abs = 'cha' | 'str' | 'con' | 'dex' | 'int' | 'wis'
@@ -90,6 +91,10 @@ interface User {
   email: string
 }
 
+
+interface Inspo {
+  url: string
+}
 
 interface Skill {
   name: string

@@ -1,5 +1,8 @@
 <div class="dash__wrap">
-  <h1>Your characters <a routerLink="/new"> <app-button [color]="'blue'">Add +</app-button> </a> </h1>
+  <h1>
+    Your characters
+    <a routerLink="/new"> <app-button [color]="'blue'">Add +</app-button> </a>
+  </h1>
   <div class="char__table">
     <div class="char-table__header">
       <span>Name</span>
@@ -8,8 +11,10 @@
       <span>Complete?</span>
     </div>
     <div class="char-table__body">
-
-      <app-single-char *ngFor="let char of chars" [char]="char"></app-single-char>
+      <app-single-char
+        *ngFor="let char of chars"
+        [char]="char"
+      ></app-single-char>
     </div>
   </div>
 </div>
