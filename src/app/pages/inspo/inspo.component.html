@@ -1,4 +1,6 @@
-<canvas #inspo width="500px"
- height="500px">
-
-</canvas>
+<div>
+  <div class="pin__wrap" *ngFor="let item of canvasImages">
+    <img [src]="'assets/tape/' + getRandom() + '.png'" alt="">
+    <img class="pin__img" [src]="item.src" />
+  </div>
+</div>

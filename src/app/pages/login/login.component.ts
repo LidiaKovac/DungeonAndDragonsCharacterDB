@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     // ev.preventDefault()
     console.log(form)
     this.authSrv.login(form.value.email, form.value.password).subscribe(res => {
-      this.router.navigate(["/"])
+      this.router.navigate(["/dashboard"])
     })
   }
 }

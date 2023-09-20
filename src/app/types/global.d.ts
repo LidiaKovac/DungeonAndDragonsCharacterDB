@@ -126,3 +126,15 @@ interface Modifiers extends Record<string, SingleMod> {
   int: SingleMod
   wis: SingleMod
 }
+
+//canvas
+
+interface CanvasImage {
+  id: string
+  width: number
+  height: number
+  top: number
+  left: number
+  z: number
+  src: string
+}
