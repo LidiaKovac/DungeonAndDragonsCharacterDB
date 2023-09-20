@@ -5,7 +5,7 @@
       <i class="bi bi-pencil-square"></i>
     </app-button>
     <app-button [color]="color" [disabled]="true"><i class="bi bi-moon-fill"></i></app-button>
-    <app-button [color]="color" [disabled]="true"><i class="bi bi-images"></i></app-button>
+   <app-button [color]="color" (click)="navigate('/inspo')" ><i class="bi bi-images"></i></app-button>
     <app-button [color]="color" [disabled]="true"><i class="bi bi-paperclip"></i></app-button>
   </div>
   <div class="char__anagraphics">

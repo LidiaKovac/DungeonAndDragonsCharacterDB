@@ -30,6 +30,7 @@ import { SkillsComponent } from './components/character/skills/skills.component'
 import { NewComponent } from './pages/new/new.component';
 import { FileInputComponent } from './components/layout/file-input/file-input.component';
 import { InspoComponent } from './pages/inspo/inspo.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { InspoComponent } from './pages/inspo/inspo.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule
   ],
   providers: [{
     useClass: TokenInterceptor,

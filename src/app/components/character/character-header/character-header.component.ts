@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CharactersService } from 'src/app/services/characters.service';
 import { EditService } from 'src/app/services/edit.service';
@@ -14,7 +15,7 @@ export class CharacterHeaderComponent implements OnInit {
   me!: User;
   edit!: boolean
 
-  constructor(private authSrv: AuthService, private editSrv: EditService, private charSrv: CharactersService) {
+  constructor(private authSrv: AuthService, private editSrv: EditService, private charSrv: CharactersService, private router: Router) {
     //not using switchMap because the subscribtions don't depend on each other
     //TODO: add desubription on destroy
     this.authSrv.me.subscribe((res) => {
@@ -30,5 +31,9 @@ export class CharacterHeaderComponent implements OnInit {
   handleSubmit() { }
   setEdit() {
     this.editSrv.toggleEdit()
+  }
+  navigate(loc:string) {
+    this.router.navigate(["char", this.char.char.id, "inspo"])
+
   }
 }

@@ -1,6 +1,6 @@
-<div>
-  <div class="pin__wrap" *ngFor="let item of canvasImages">
-    <img [src]="'assets/tape/' + getRandom() + '.png'" alt="">
-    <img class="pin__img" [src]="item.src" />
+<div  class="inspo__wrap">
+  <div [style]="item.style" cdkDrag cdkDragBoundary=".inspo__wrap" (cdkDragEnded)="savePosition($event, item.id, item)" class="pin__wrap" *ngFor="let item of inspos">
+    <img [src]="'assets/tape/' + item.tape + '.png'" >
+    <img class="pin__img" [src]="item.url" />
   </div>
 </div>

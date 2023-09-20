@@ -32,6 +32,10 @@ export class CharactersService {
     return this.http.put<ApiResp<Character>>(`${environment.backendURL}character/${id}/skills/${skillName}`, null).pipe(tap(res => this.char$.next(res)))
   }
 
+  editCharInspoById(charId:string, inspoId: string, body: Record<string, string | number>) {
+    return this.http.put(`${environment.backendURL}character/${charId}/inspo/${inspoId}`, body)
+  }
+
   setColor(color: Colors) {
     this.color$.next(color)
   }

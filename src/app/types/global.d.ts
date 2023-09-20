@@ -93,7 +93,11 @@ interface User {
 
 
 interface Inspo {
+  id: string
   url: string
+  x: number
+  y: number
+  style?: string
 }
 
 interface Skill {
@@ -129,12 +133,8 @@ interface Modifiers extends Record<string, SingleMod> {
 
 //canvas
 
-interface CanvasImage {
-  id: string
-  width: number
-  height: number
-  top: number
-  left: number
-  z: number
-  src: string
+interface CanvasImage extends Inspo {
+  x: number
+  y: number
+  tape: number
 }
