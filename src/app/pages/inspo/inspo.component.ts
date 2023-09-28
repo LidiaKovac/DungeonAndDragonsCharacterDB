@@ -52,11 +52,23 @@ export class InspoComponent {
 
 
 
-  savePosition(ev: CdkDragEnd, id: string, curr:Inspo) {
+  savePosition(ev: CdkDragEnd, id: string, curr: Inspo) {
     console.log(ev.distance)
-    const newX = (Number(curr.x) + Number(ev.distance.x)) < 0 ? 0 : (Number(curr.x) + Number(ev.distance.x))
-    const newY = (Number(curr.y) + Number(ev.distance.y))< 0 ? 0 : Number(curr.y) + Number(ev.distance.y)
-    this.charSrv.editCharInspoById(this.char.char.id, id, { x: newX, y: newY  }).subscribe(res => console.log(res))
+    let newX = (Number(curr.x) + Number(ev.distance.x))
+    let newY = (Number(curr.y) + Number(ev.distance.y))
+    if(newX <= 0) {
+      newX = 0
+    }
+    if(newY <= 0) {
+      newY = 0
+    }
+    if(newX > window.innerWidth) {
+      newX = window.innerWidth - 500
+    }
+    if(newY > window.innerHeight) {
+      newY = window.innerHeight - 200
+    }
+    this.charSrv.editCharInspoById(this.char.char.id, id, { x: newX, y: newY }).subscribe(res => console.log(res))
   }
 
   getRandom() {
