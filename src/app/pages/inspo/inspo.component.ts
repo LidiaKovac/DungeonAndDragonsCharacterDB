@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
+import { ResizedEvent } from 'angular-resize-event/public-api';
 
 @Component({
   templateUrl: './inspo.component.html',
@@ -15,6 +16,7 @@ export class InspoComponent {
   color!: Colors;
   inspos: Inspo[] = []
   newInspo!: File
+  autoSaveTimer!: NodeJS.Timeout
   constructor(
     private route: ActivatedRoute,
     private charSrv: CharactersService
@@ -39,11 +41,7 @@ export class InspoComponent {
         this.color = color;
         this.char.char.Inspos = this.char.char.Inspos.map(img => {
           return {
-            id: img.id,
-            url: img.url,
-            x: img.x,
-            y: img.y,
-            style: `top: ${img.y}px; left: ${img.x}px;`
+            ...img, style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}px; height: ${img.h}px`
           }
         })
       });
@@ -67,7 +65,12 @@ export class InspoComponent {
     if (newY > window.innerHeight) {
       newY = window.innerHeight - 200
     }
-    this.charSrv.editCharInspoById(this.char.char.id, id, { x: newX, y: newY }).subscribe(res => console.log(res))
+    this.charSrv.editCharInspoById(this.char.char.id, id, { x: newX, y: newY }).subscribe(res => {
+      this.char.char.Inspos = res.map((img: Inspo) => ({
+        ...img,
+        style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
+      }))
+    })
   }
 
   getRandom() {
@@ -87,7 +90,7 @@ export class InspoComponent {
       this.charSrv.addCharInspoById(this.char.char.id, fd).subscribe((res) => {
         this.char.char.Inspos = res.map((img: Inspo) => ({
           ...img,
-          style: `top: ${img.y}px; left: ${img.x}px;`
+          style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
         }))
       })
     }
@@ -96,8 +99,18 @@ export class InspoComponent {
     this.charSrv.deleteCharInspoById(this.char.char.id, id).subscribe(res => {
       this.char.char.Inspos = res.map((img) => ({
         ...img,
-        style: `top: ${img.y}px; left: ${img.x}px;`
+        style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
       }))
     })
+  }
+  saveSize(ev: ResizedEvent, id: string) {
+    if(id) {
+
+      clearTimeout(this.autoSaveTimer)
+      this.autoSaveTimer = setTimeout(() => {
+        console.log(ev)
+        this.charSrv.editCharInspoById(this.char.char.id, id, { w: Math.round(ev.newRect.width), h: Math.round(ev.newRect.height) }).subscribe()
+      }, 500)
+    }
   }
 }

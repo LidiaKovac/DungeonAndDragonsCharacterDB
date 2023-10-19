@@ -9,8 +9,9 @@
   </label>
   <input accept="image/png, image/gif, image/jpeg" (change)="addNew($event)" type="file" id="picture"
     style="display: none;">
-  <div [style]="item.style" cdkDrag cdkDragBoundary=".inspo__wrap" (cdkDragEnded)="savePosition($event, item.id, item)"
-    class="pin__wrap" *ngFor="let item of this.char.char.Inspos" (blur)="onResize($event)">
+  <div (resized)="saveSize($event, item.id)" [style]="item.style" cdkDrag cdkDragBoundary=".inspo__wrap"
+    (cdkDragEnded)="savePosition($event, item.id, item)" class="pin__wrap" *ngFor="let item of this.char.char.Inspos"
+    (blur)="onResize($event)">
     <i class="bi bi-arrows-move" cdkDragHandle></i>
     <!-- <img [src]="'assets/tape/' + item.tape + '.png'" > -->
     <img class="pin__img" [src]="item.url" />

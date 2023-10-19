@@ -97,6 +97,8 @@ interface Inspo {
   url: string
   x: number
   y: number
+  w:number
+  h: number
   style?: string
   tape?: number
 }

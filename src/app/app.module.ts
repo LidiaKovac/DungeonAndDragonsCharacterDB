@@ -31,6 +31,7 @@ import { NewComponent } from './pages/new/new.component';
 import { FileInputComponent } from './components/layout/file-input/file-input.component';
 import { InspoComponent } from './pages/inspo/inspo.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AngularResizeEventModule } from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
+    AngularResizeEventModule
   ],
   providers: [{
     useClass: TokenInterceptor,
