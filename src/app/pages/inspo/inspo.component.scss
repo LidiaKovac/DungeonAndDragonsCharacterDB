@@ -1,21 +1,41 @@
-div {
-  width: 100%;
-  height: calc(100vh - 100px);
+div.inspo__wrap {
+  // width: 100%;
+  height: calc(100vh - 100px - 10%);
   position: relative;
+  margin: 5%;
+  .pin__add-new {
+    // padding: 30px;
+    font-size: 100px;
+    position: absolute;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: calc(150px + 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+  }
   div.pin__wrap {
     position: absolute;
     object-fit: cover;
     max-width: 25%;
-    height: calc(25vw * 9 / 16);
+    resize: both;
+    backdrop-filter: blur(5px);
 
+    overflow: hidden;
     img.pin__img {
       width: 100%;
+      height: 100%;
+      // aspect-ratio: 1/1;
+      object-fit: contain;
     }
-    img:not(.pin__img) {
-      width: 30%;
+    i {
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
+      color: white;
+      background-color: black;
+    }
+    i.bi-trash3-fill {
+      right: 0;
     }
   }
 }

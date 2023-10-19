@@ -36,6 +36,14 @@ export class CharactersService {
     return this.http.put(`${environment.backendURL}character/${charId}/inspo/${inspoId}`, body)
   }
 
+  addCharInspoById(charId: string, fd: FormData) {
+    return this.http.put<Inspo[]>(`${environment.backendURL}character/${charId}/inspo/`, fd)
+  }
+
+  deleteCharInspoById(charId: string, inspoId:string) {
+    return this.http.delete<Inspo[]>(`${environment.backendURL}character/${charId}/inspo/${inspoId}`)
+  }
+
   setColor(color: Colors) {
     this.color$.next(color)
   }

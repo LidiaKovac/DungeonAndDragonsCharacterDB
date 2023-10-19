@@ -98,6 +98,7 @@ interface Inspo {
   x: number
   y: number
   style?: string
+  tape?: number
 }
 
 interface Skill {
@@ -131,10 +132,4 @@ interface Modifiers extends Record<string, SingleMod> {
   wis: SingleMod
 }
 
-//canvas
 
-interface CanvasImage extends Inspo {
-  x: number
-  y: number
-  tape: number
-}

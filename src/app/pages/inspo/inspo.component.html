@@ -1,6 +1,19 @@
-<div  class="inspo__wrap">
-  <div [style]="item.style" cdkDrag cdkDragBoundary=".inspo__wrap" (cdkDragEnded)="savePosition($event, item.id, item)" class="pin__wrap" *ngFor="let item of inspos">
-    <img [src]="'assets/tape/' + item.tape + '.png'" >
+<div class="inspo__wrap">
+  <label for="picture" class="pin__add-new" [ngClass]="{
+    'bg--blue': color === 'blue',
+    'bg--green': color === 'green',
+    'bg--pink': color === 'pink',
+    'bg--orange': color === 'orange'
+  }" cdkDrag cdkDragBoundary=".inspo__wrap" (cdkDragEnded)="null">
+    <i class="bi bi-bookmark-plus"></i>
+  </label>
+  <input accept="image/png, image/gif, image/jpeg" (change)="addNew($event)" type="file" id="picture"
+    style="display: none;">
+  <div [style]="item.style" cdkDrag cdkDragBoundary=".inspo__wrap" (cdkDragEnded)="savePosition($event, item.id, item)"
+    class="pin__wrap" *ngFor="let item of this.char.char.Inspos" (blur)="onResize($event)">
+    <i class="bi bi-arrows-move" cdkDragHandle></i>
+    <!-- <img [src]="'assets/tape/' + item.tape + '.png'" > -->
     <img class="pin__img" [src]="item.url" />
+    <i class="bi bi-trash3-fill" (click)="remove(item.id)"></i>
   </div>
 </div>
