@@ -41,7 +41,7 @@ export class InspoComponent {
         this.color = color;
         this.char.char.Inspos = this.char.char.Inspos.map(img => {
           return {
-            ...img, style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}px; height: ${img.h}px`
+            ...img, style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
           }
         })
       });
@@ -51,34 +51,26 @@ export class InspoComponent {
 
   savePosition(ev: CdkDragEnd, id: string, curr: Inspo) {
     console.log(ev.distance)
-    let newX = (Number(curr.x) + Number(ev.distance.x))
-    let newY = (Number(curr.y) + Number(ev.distance.y))
+    let newX = (Number(curr.x) + Number((100 * ev.distance.x) / window.innerWidth))
+    let newY = (Number(curr.y) + Number((100 * ev.distance.y) / window.innerHeight))
+    console.log(newX, newY)
     if (newX <= 0) {
       newX = 0
     }
     if (newY <= 0) {
       newY = 0
     }
-    if (newX > window.innerWidth) {
-      newX = window.innerWidth - 500
-    }
-    if (newY > window.innerHeight) {
-      newY = window.innerHeight - 200
-    }
-    this.charSrv.editCharInspoById(this.char.char.id, id, { x: newX, y: newY }).subscribe(res => {
+
+    this.charSrv.editCharInspoById(this.char.char.id, id, { x: Math.round(newX), y: Math.round(newY) }).subscribe(res => {
       this.char.char.Inspos = res.map((img: Inspo) => ({
         ...img,
-        style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
+        style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
       }))
     })
   }
 
   getRandom() {
     return Math.ceil(Math.random() * 5)
-  }
-
-  onResize(event: Event) {
-    console.log(event)
   }
 
   addNew(event: Event) {
@@ -90,7 +82,7 @@ export class InspoComponent {
       this.charSrv.addCharInspoById(this.char.char.id, fd).subscribe((res) => {
         this.char.char.Inspos = res.map((img: Inspo) => ({
           ...img,
-          style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
+          style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
         }))
       })
     }
@@ -99,17 +91,26 @@ export class InspoComponent {
     this.charSrv.deleteCharInspoById(this.char.char.id, id).subscribe(res => {
       this.char.char.Inspos = res.map((img) => ({
         ...img,
-        style: `top: ${img.y}px; left: ${img.x}px; width: ${img.w}; height: ${img.h}`
+        style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
       }))
     })
   }
   saveSize(ev: ResizedEvent, id: string) {
-    if(id) {
+    if (id) {
 
       clearTimeout(this.autoSaveTimer)
       this.autoSaveTimer = setTimeout(() => {
-        console.log(ev)
-        this.charSrv.editCharInspoById(this.char.char.id, id, { w: Math.round(ev.newRect.width), h: Math.round(ev.newRect.height) }).subscribe()
+        const curr = this.char.char.Inspos.find(el => el.id === id)
+        console.log(Number(curr?.w), (Math.round((100 * ev.newRect.width) / window.innerWidth) + 2))
+        if (
+          Number(curr?.w) !== (Math.round((100 * ev.newRect.width) / window.innerWidth) + 2) &&
+          Number(curr?.h) !== (Math.round((100 * ev.newRect.height) / window.innerHeight) + 2)) {
+          // (100 * ev.distance.x) / window.innerWidth
+          this.charSrv.editCharInspoById(this.char.char.id, id, {
+            w: Math.round((100 * ev.newRect.width) / window.innerWidth),
+            h: Math.round((100 * ev.newRect.height) / window.innerHeight)
+          }).subscribe()
+        }
       }, 500)
     }
   }

@@ -5,11 +5,12 @@ div.inspo__wrap {
   margin: 5%;
   .pin__add-new {
     // padding: 30px;
-    font-size: 100px;
+    font-size: 30px;
     position: absolute;
     border-radius: 50%;
     aspect-ratio: 1/1;
-    width: calc(150px + 60px);
+    width: 60px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
