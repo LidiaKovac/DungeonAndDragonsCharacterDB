@@ -16,15 +16,10 @@ export class IsCompleteGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.http.get<ApiResp<Character>>(`${environment.backendURL}character/${route.params["id"]}`).pipe(map(char => {
-      for (const ab of abs) {
-        if(char.char[ab]) {
-          continue
-        } else {
+        if(!char.char.complete) {
           this.router.navigate(["char", route.params["id"], "inspo"])
-          return false
         }
-      }
-      return true
+        return char.char.complete
     }))
   }
 

@@ -1,11 +1,10 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
 import { ResizedEvent } from 'angular-resize-event/public-api';
+import { PassiveService } from 'src/app/services/passive.service';
 
 @Component({
   templateUrl: './inspo.component.html',
@@ -14,12 +13,16 @@ import { ResizedEvent } from 'angular-resize-event/public-api';
 export class InspoComponent {
   char!: ApiResp<Character>;
   color!: Colors;
-  inspos: Inspo[] = []
-  newInspo!: File
-  autoSaveTimer!: NodeJS.Timeout
+  inspos: Inspo[] = [];
+  newInspo!: File;
+  autoSaveTimer!: NodeJS.Timeout;
+  editMode: boolean = false;
+  classes!: DNDClass[];
+  races!: DNDRace[];
   constructor(
     private route: ActivatedRoute,
-    private charSrv: CharactersService
+    private charSrv: CharactersService,
+    private passiveSrv: PassiveService
   ) {
     this.route.paramMap
       .pipe(
@@ -35,83 +38,122 @@ export class InspoComponent {
         switchMap((char) => {
           this.char = char!;
           return this.charSrv.color;
+        }),
+        switchMap((color) => {
+          this.color = color;
+
+          return this.passiveSrv.classes;
+        }),
+        switchMap((cls) => {
+          this.classes = cls;
+          return this.passiveSrv.races;
+        }),
+        tap((rcs) => {
+          this.races = rcs;
         })
       )
-      .subscribe((color) => {
-        this.color = color;
-        this.char.char.Inspos = this.char.char.Inspos.map(img => {
+      .subscribe(() => {
+        this.char.char.Inspos = this.char.char.Inspos.map((img) => {
           return {
-            ...img, style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
-          }
-        })
+            ...img,
+            style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`,
+          };
+        });
+
       });
   }
 
-
+  // !drag and drop
 
   savePosition(ev: CdkDragEnd, id: string, curr: Inspo) {
-    console.log(ev.distance)
-    let newX = (Number(curr.x) + Number((100 * ev.distance.x) / window.innerWidth))
-    let newY = (Number(curr.y) + Number((100 * ev.distance.y) / window.innerHeight))
-    console.log(newX, newY)
+    console.log(ev.distance);
+    let newX =
+      Number(curr.x) + Number((100 * ev.distance.x) / window.innerWidth);
+    let newY =
+      Number(curr.y) + Number((100 * ev.distance.y) / window.innerHeight);
+    console.log(newX, newY);
     if (newX <= 0) {
-      newX = 0
+      newX = 0;
     }
     if (newY <= 0) {
-      newY = 0
+      newY = 0;
     }
 
-    this.charSrv.editCharInspoById(this.char.char.id, id, { x: Math.round(newX), y: Math.round(newY) }).subscribe(res => {
-      this.char.char.Inspos = res.map((img: Inspo) => ({
-        ...img,
-        style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
-      }))
-    })
+    this.charSrv
+      .editCharInspoById(this.char.char.id, id, {
+        x: Math.round(newX),
+        y: Math.round(newY),
+      })
+      .subscribe((res) => {
+        this.char.char.Inspos = res.map((img: Inspo) => ({
+          ...img,
+          style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`,
+        }));
+      });
   }
 
   getRandom() {
-    return Math.ceil(Math.random() * 5)
+    return Math.ceil(Math.random() * 5);
   }
 
   addNew(event: Event) {
-    console.log(event)
-    this.newInspo = (event.target as HTMLInputElement).files![0]
+    console.log(event);
+    this.newInspo = (event.target as HTMLInputElement).files![0];
     if (this.newInspo) {
-      const fd = new FormData()
-      fd.append("inspo", this.newInspo)
+      const fd = new FormData();
+      fd.append('inspo', this.newInspo);
       this.charSrv.addCharInspoById(this.char.char.id, fd).subscribe((res) => {
         this.char.char.Inspos = res.map((img: Inspo) => ({
           ...img,
-          style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
-        }))
-      })
+          style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`,
+        }));
+      });
     }
   }
   remove(id: string) {
-    this.charSrv.deleteCharInspoById(this.char.char.id, id).subscribe(res => {
+    this.charSrv.deleteCharInspoById(this.char.char.id, id).subscribe((res) => {
       this.char.char.Inspos = res.map((img) => ({
         ...img,
-        style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`
-      }))
-    })
+        style: `top: ${img.y}%; left: ${img.x}%; width: ${img.w}%; height: ${img.h}%`,
+      }));
+    });
   }
   saveSize(ev: ResizedEvent, id: string) {
     if (id) {
-
-      clearTimeout(this.autoSaveTimer)
+      clearTimeout(this.autoSaveTimer);
       this.autoSaveTimer = setTimeout(() => {
-        const curr = this.char.char.Inspos.find(el => el.id === id)
-        console.log(Number(curr?.w), (Math.round((100 * ev.newRect.width) / window.innerWidth) + 2))
+        const curr = this.char.char.Inspos.find((el) => el.id === id);
+        console.log(
+          Number(curr?.w),
+          Math.round((100 * ev.newRect.width) / window.innerWidth) + 2
+        );
         if (
-          Number(curr?.w) !== (Math.round((100 * ev.newRect.width) / window.innerWidth) + 2) &&
-          Number(curr?.h) !== (Math.round((100 * ev.newRect.height) / window.innerHeight) + 2)) {
+          Number(curr?.w) !==
+            Math.round((100 * ev.newRect.width) / window.innerWidth) + 2 &&
+          Number(curr?.h) !==
+            Math.round((100 * ev.newRect.height) / window.innerHeight) + 2
+        ) {
           // (100 * ev.distance.x) / window.innerWidth
-          this.charSrv.editCharInspoById(this.char.char.id, id, {
-            w: Math.round((100 * ev.newRect.width) / window.innerWidth),
-            h: Math.round((100 * ev.newRect.height) / window.innerHeight)
-          }).subscribe()
+          this.charSrv
+            .editCharInspoById(this.char.char.id, id, {
+              w: Math.round((100 * ev.newRect.width) / window.innerWidth),
+              h: Math.round((100 * ev.newRect.height) / window.innerHeight),
+            })
+            .subscribe();
         }
-      }, 500)
+      }, 500);
     }
+  }
+
+  // !sidebar
+
+  toggleEdit() {
+    this.editMode = !this.editMode;
+    if (this.editMode) {
+    }
+  }
+
+  getOptionsFromArray(arr: Record<string, any>[], fieldKey: string, fieldDisplay: string):Option[] {
+    return arr.map(el => ({val: el[fieldKey], display: el[fieldDisplay]} as Option))
   }
 }

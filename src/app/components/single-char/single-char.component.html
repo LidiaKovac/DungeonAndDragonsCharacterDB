@@ -1,3 +1,3 @@
 <div  class="single-char__wrap">
- <a routerLink="/char/{{char.id}}">  {{char.name}} </a> <span> {{char.level}} </span> <span>Coming soon</span> <span style="text-align: center;" *ngIf="isComplete()">✅ </span> <span style="text-align: center;" *ngIf="!isComplete()">❌</span>
+ <a routerLink="/char/{{char.id}}">  {{char.name}} </a> <span> {{char.level}} </span> <span>Coming soon</span> <span style="text-align: center;" *ngIf="char.complete; else notComplete">✅ </span> <ng-template #notComplete> <span style="text-align: center;" >❌</span></ng-template>
 </div>

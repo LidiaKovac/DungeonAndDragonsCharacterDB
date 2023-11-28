@@ -1,5 +1,7 @@
-<div class="inspo__wrap">
-  <label
+<div class="inspo__view">
+
+  <div class="inspo__wrap">
+    <label
     for="picture"
     class="pin__add-new"
     [ngClass]="{
@@ -11,7 +13,7 @@
     cdkDrag
     cdkDragBoundary=".inspo__wrap"
     (cdkDragEnded)="(null)"
-  >
+    >
     <i class="bi bi-bookmark-plus"></i>
   </label>
   <input
@@ -29,10 +31,43 @@
     (cdkDragEnded)="savePosition($event, item.id, item)"
     class="pin__wrap"
     *ngFor="let item of this.char.char.Inspos"
-  >
+    >
     <i class="bi bi-arrows-move" cdkDragHandle></i>
     <!-- <img [src]="'assets/tape/' + item.tape + '.png'" > -->
     <img class="pin__img" [src]="item.url" />
     <i class="bi bi-trash3-fill" (click)="remove(item.id)"></i>
   </div>
+</div>
+<div class="inspo__info" *ngIf="!editMode">
+  <button (click)="toggleEdit()">Edit</button>
+  <h1> {{char.char.name}} </h1>
+  <h2>{{char.char.Class?.name || "No Class"}} </h2>
+  <h2>{{char.char.Race?.name || "No Race"}}</h2>
+  <p>
+    {{char.char.description}}
+  </p>
+</div>
+<div class="inspo__info" *ngIf="editMode">
+  <button (click)="toggleEdit()">Save</button>
+  <app-input
+    [color]="'pink'"
+    [defaultValue]="char.char.name"
+    [type]="'text'"
+    [placeholder]="'Character Name'"
+
+
+    ></app-input>
+    <app-select [options]="getOptionsFromArray(classes, 'id', 'name')">
+
+    </app-select>
+    <app-select [options]="getOptionsFromArray(races, 'id', 'name')">
+
+    </app-select>
+    <textarea cols="30" rows="10">
+      {{char.char.description}}
+    </textarea>
+
+</div>
+
+
 </div>

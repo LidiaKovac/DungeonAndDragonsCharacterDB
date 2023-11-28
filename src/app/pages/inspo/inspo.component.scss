@@ -1,42 +1,62 @@
-div.inspo__wrap {
-  // width: 100%;
-  height: calc(100vh - 100px - 10%);
-  position: relative;
-  margin: 5%;
-  .pin__add-new {
-    // padding: 30px;
-    font-size: 30px;
-    position: absolute;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    width: 60px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 12;
-  }
-  div.pin__wrap {
-    position: absolute;
-    object-fit: cover;
-    max-width: 25%;
-    resize: both;
-    backdrop-filter: blur(5px);
+@use "../../../styles/colors";
+.inspo__view {
+  display: flex;
+  height: calc(100% - 100px - 10%);
 
-    overflow: hidden;
-    img.pin__img {
-      width: 100%;
-      height: 100%;
-      // aspect-ratio: 1/1;
-      object-fit: contain;
-    }
-    i {
+  div.inspo__wrap {
+    width: 75%;
+    position: relative;
+    margin: 5%;
+    .pin__add-new {
+      font-size: 30px;
       position: absolute;
-      color: white;
-      background-color: black;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      width: 60px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 12;
     }
-    i.bi-trash3-fill {
-      right: 0;
+    div.pin__wrap {
+      position: absolute;
+      object-fit: cover;
+      max-width: 25%;
+      resize: both;
+      backdrop-filter: blur(5px);
+
+      overflow: hidden;
+      img.pin__img {
+        width: 100%;
+        height: 100%;
+        // aspect-ratio: 1/1;
+        object-fit: contain;
+      }
+      i {
+        position: absolute;
+        color: white;
+        background-color: black;
+      }
+      i.bi-trash3-fill {
+        right: 0;
+      }
+    }
+  }
+  div.inspo__info {
+    width: 25%;
+    height: 100%;
+    @extend .border--pink;
+    border: {
+      top: none;
+      right: none;
+      bottom: none;
+    };
+    &:has(input) {
+
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
   }
 }
